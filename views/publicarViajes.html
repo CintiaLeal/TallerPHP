@@ -1,0 +1,110 @@
+<link href='https://css.gg/arrow-long-right-r.css' rel='stylesheet'>
+<style>
+    body {
+        /* background: url("img/fondoCiudad.jpg"); */
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Montserrat', sans-serif;
+        height: 100vh;
+        margin: -20px 0 50px;
+    }
+    
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 700px;
+        max-width: 100%;
+        min-height: 300px;
+    }
+    
+    input {
+        background-color: #eee;
+        border: none;
+        padding: 11px 13px;
+        margin: 10px;
+        width: 97%;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Quintessential&family=Sen&display=swap');
+    h2 {
+        font-family: 'Quintessential', cursive;
+        font-family: 'Sen', sans-serif;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+    }
+    
+    button {
+        border-radius: 10px;
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        width: 97%;
+        text-transform: uppercase;
+    }
+    
+    .btnbtn {
+        border: 1px solid #389393;
+        background-color: #389393;
+    }
+    
+    .btnbtn:hover {
+        background-color: #225e5e;
+    }
+    
+    .btnAViaje {
+        border: 1px solid #F5A25D;
+        background-color: #F5A25D;
+        font-size: 20px;
+    }
+    
+    .btnAViaje:hover {
+        background-color: #f44336;
+    }
+    
+    .c1 {
+        width: 100%;
+        padding: 2%;
+        max-width: 99%;
+    }
+</style>
+<div class="container">
+
+    <form action="#">
+        <div class="c1">
+            <h2>Añade los detalles de tu viaje para empezar a ganar</h2>
+        </div>
+        <div class="c1">
+            <button class="btnbtn" id="btn" onclick="toggle();"> Ida y vuelta </button>
+        </div>
+        <input class="inputlogin" type="text" placeholder="Viaje desde" />
+        <input class="inputlogin" type="text" placeholder="Viaje a" />
+        <input class="inputlogin" type="date" />
+        <input id="element1" type="date" value="none" />
+        <div class="c1">
+            <button class="btnAViaje">Añadir viaje</button>
+        </div>
+    </form>
+</div>
+
+<SCRIPT LANGUAGE="JavaScript">
+    function toggle() {
+        var element = document.getElementById('element1');
+        var uno = document.getElementById('btn');
+        if (element.style.display != 'none') {
+            element.style.display = 'none';
+            uno.innerText = 'Solo ida';
+        } else {
+            element.style.display = '';
+            uno.innerText = 'Ida y vuelta';
+        }
+    }
+</SCRIPT>
