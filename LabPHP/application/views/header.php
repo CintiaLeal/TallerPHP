@@ -7,6 +7,8 @@
 
     <title>Te lo llevo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href='https://css.gg/phone.css' rel='stylesheet'>
+    <link href='https://css.gg/mail.css' rel='stylesheet'>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
 /*ESTILOS DEL HEADER*/
@@ -85,7 +87,7 @@ i{
 <nav>
         <div class="conteiner">
             <div class="c1">
-                <img src="./te_lo_llevo-removebg-preview.png" alt="Logo" height="80px" width="auto">
+                <img src="/LabPHP/application/views/te_lo_llevo-removebg-preview.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
                 <u style="color:lightcoral"><a>Comprar</a></u>
