@@ -6,6 +6,7 @@
 //     include ('header.php');
 // }
 include ('header.php');
+
 ?>
 <!-- codigo puro html -->
 
