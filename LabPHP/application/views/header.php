@@ -108,7 +108,7 @@ i{
                 </button>
 			</div>
 			<div class="c3">
-                    <button type="submit" style="background-color: #389393; color: white; border-radius: 5px; margin: 2%; size: 10px;"><a href = "<?= base_url().'index.php/welcome/login'?>" >Iniciar sesión</a></button>
+                    <button type="submit" style="background-color: #389393; color: white; border-radius: 5px; margin: 2%; size: 10px;"><a href = "<?= base_url().'/index.php/welcome/login'?>" >Iniciar sesión</a></button>
                     <button type="submit" style="background-color:lightsalmon; color: white; border-radius: 5px; padding-right: 12px; padding-left: 12px; margin: 2%;">Registrarse</button>  
 			</div>
         </div>
