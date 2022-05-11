@@ -25,7 +25,20 @@
             max-width: 100%;
             min-height: 300px;
             padding: 10px 15px;
-            width: 100%;
+            width: 70%;
+            border: 1px solid rgba(0, 0, 0, 0.5)
+        }
+        
+        .col2 {
+            background-color: #fff;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            width: 700px;
+            max-width: 100%;
+            min-height: 300px;
+            padding: 10px 15px;
+            width: 30%;
             border: 1px solid rgba(0, 0, 0, 0.5)
         }
         
@@ -48,15 +61,13 @@
         }
         
         .c1p {
-            width: 30%;
+            width: 50%;
             padding: 1%;
-            justify-content: center;
         }
         
         .c2p {
-            width: 32%;
+            width: 50%;
             padding: 1%;
-            justify-content: center;
         }
         
         button {
@@ -133,6 +144,11 @@
             border: none;
             font-family: 'Sen', sans-serif;
         }
+        
+        output {
+            font-family: 'Sen', sans-serif;
+            color: #606060;
+        }
     </style>
 </head>
 
@@ -140,88 +156,96 @@
     <div class="container">
         <!--Row with two equal columns-->
         <div class="row">
-
+            <div class="col2">
+                <h3>MacBook Pro</h3>
+                <div class="img">
+                    <img src="logo.png" height="200px" width="auto">
+                </div>
+                <p class="pmini">Cantidad: </p>
+                <p class="pmini">Embalaje: </p>
+                <p class="pmini">Donde Comprar: </p>
+            </div>
             <div class="col">
                 <div class="c1">
-                    <h2>Nuevo pedido</h2>
+                    <h2>Detalle de la entrega</h2>
                 </div>
-
                 <div class="cont">
-                    <div class="c2p">
-                        <p>Nombre:</p>
-                        <input type="text" />
-                    </div>
-                    <div class="c2p">
-                        <p>Lugar para recibir mi pedido</p>
+                    <div class="c1p">
+                        <p>Selecciona un viaje</p>
+
                         <select>
                         <option>Selecciones</option>
                     </select>
                     </div>
+                    <div class="c2p">
+                        <p>Fecha de entrega:</p>
 
-                    <div class="c2p">
-                        <p>Fecha de minima:</p>
                         <input type="date" />
-                    </div>
-                    <div class="c2p">
-                        <p>Fecha de maxima:</p>
-                        <input type="date" />
-                    </div>
-                    <div class="c2p">
-                        <p>Imagen:</p>
-                        <input type="file" />
-                    </div>
-                    <div class="c2p">
-                        <p>Precio:</p>
-                        <input type="text" id="neto" onkeyup="calcular()" />
-                    </div>
-                    <div class="c2p">
-                        <p>Link</p>
-                        <input type="text">
                     </div>
                     <div class="c1p">
-                        <p>Descripcion</p>
-                        <textarea name="descripcion" rows="5" cols="100"></textarea>
-                        <p class="amini">Incluir detalles sobre tu pedido</p>
+                        <p>Recompensa</p>
+                        <input type="range" value="50" min="0" max="100" onclick="calcular()" oninput="rangevalue.value=value" />
+                        <output id="rangevalue">50</output>
+                    </div>
+                    <div class="c1p">
+                        <p>Mensaje para el comprador</p>
+
+                        <textarea name="comentarios" rows="10" cols="40">Hola mi nombre es Martin, estoy viajando desde Uruguay el 05 de abril, si te sirve mi oferta for favor acepta mi oferta lo antes posible. Haré la entre en Roma apartir del dia 8. Cualquier duda házmelo saber. Saludos</textarea>
+                        <p class="amini">Incluir detalles sobre la entrega(lugar, día, hora, etc) aumenta las posibilidades de que tu oferta sea aceptada</p>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="row">
-            <div class="col3">
-                <div class="">
-                    <p class="pmini" value="neto">Precio: $ <input type="text" class="inputCalculados" id="pneto" disabled="disabled" /> </p>
-                    <p class="pmini" id="comiTeloLLevo">ComiTeloLLevo: $ <input type="text" class="inputCalculados" id="comisTeloLLevo" disabled="disabled" /></p>
-                    <p class="pmini" id="comi">Comision de para quien le va trae el pedido: $ <input type="text" class="inputCalculados" id="comis" disabled="disabled" /></p>
-                    <p class="pnegrita"><b>Pago total:  $ <input type="text" id="total" class="inputCalculados" disabled="disabled" /> </b></p>
-                </div>
 
-            </div>
-
-        </div>
         <!--Row with three equal columns-->
         <div class="row">
-            <button class="btnbtn" type="submit">Hacer Pedido</button>
-
+            <div class="col3">
+                <div class="c1">
+                    <p class="pmini"> Precio del producto: $<input type="text" id="neto" value="570" class="inputCalculados" onkeyup="calcular()" /></p>
+                    <p class="pmini">Tu recompensa: $<input type="text" id="recompensa" class="inputCalculados" /></p>
+                    <p class="pnegrita"><b>Tu pago total: $<input type="text" id="total" class="inputCalculados" disabled="disabled" /></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btnbtn" type="submit">Hacer Oferta</button>
         </div>
 
     </div>
-
-
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <SCRIPT LANGUAGE="JavaScript">
+    const rangeInputs = document.querySelectorAll('input[type="range"]')
+    const numberInput = document.querySelector('input[type="number"]')
+
+
+    function handleInputChange(e) {
+        let target = e.target
+        if (e.target.type !== 'range') {
+            target = document.getElementById('range')
+        }
+        const min = target.min
+        const max = target.max
+        const val = target.value
+
+        target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
+    }
+
+    rangeInputs.forEach(input => {
+        input.addEventListener('input', handleInputChange)
+    })
+
+    numberInput.addEventListener('input', handleInputChange)
+
     function calcular() {
         ne = eval(document.getElementById('neto').value);
+        r = eval(document.getElementById('rangevalue').value);
 
 
-        comiTeloLLevo = ne / 50;
-        comi = ne / 20;
-        total = ne + comi + comiTeloLLevo;
+        total = ne + r;
 
-        document.getElementById('comisTeloLLevo').value = comiTeloLLevo;
-        document.getElementById('comis').value = comi;
-        document.getElementById('pneto').value = ne;
+        document.getElementById('recompensa').value = ne;
         document.getElementById('total').value = total;
     }
 </SCRIPT>
