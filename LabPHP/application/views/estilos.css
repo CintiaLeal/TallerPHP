@@ -69,3 +69,13 @@ i{
     border: none;
     background-color: white;
 }
+/* ESTILOS DEL INICIO */
+.titulo{
+    font-family: 'Unica One', cursive;
+    color: gray;
+}
+
+.subtitulo{
+    font-family: 'Sen', sans-serif;
+    color: gray;
+}
