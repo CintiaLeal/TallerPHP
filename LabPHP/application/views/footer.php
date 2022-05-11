@@ -1,10 +1,10 @@
         <footer>
             <div class="conteinerF">
                 <div class="c1F">
-                    <img src="74717.png" height="40px" width="auto" style="opacity: 50%; margin: 1%;">
+                    <img src="imgs/74717.png" height="40px" width="auto" style="opacity: 50%; margin: 1%;">
                 </div>
                 <div class="c2F">
-                    <img src="./te_lo_llevo-removebg-preview - copia.png" height="50px" width="auto" style="margin-left: 20%;">
+                    <img src="imgs/te_lo_llevo-removebg-preview - copia.png" height="50px" width="auto" style="margin-left: 20%;">
                 </div>
             </div>
 

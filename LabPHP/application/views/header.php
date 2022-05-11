@@ -87,7 +87,7 @@ i{
 <nav>
         <div class="conteiner">
             <div class="c1">
-                <img src="/LabPHP/application/views/te_lo_llevo-removebg-preview.png" alt="Logo" height="80px" width="auto">
+                <img src="imgs/te_lo_llevo-removebg-preview.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
                 <u style="color:lightcoral"><a>Comprar</a></u>
