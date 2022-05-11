@@ -6,14 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Te lo llevo</title>
-	<link rel="stylesheet" href="/application/views/estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
+/*ESTILOS DEL HEADER*/
+a{
+    font-family: 'Sen', sans-serif;
+    color: #fa7f72;
+}
+.conteiner {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.c1 {
+    width: 15%;
+    margin: 2%;
+    display: flex;
+}
+
+.c2 {
+    width: 10%;
+    padding: 1%;
+    margin-top: 1.5%;
+
+}
+
+.c3{
+    width: 15%;
+    margin: 1.5%;
+}
+.c4{
+    width: 15%;
+    margin: 2%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*ESTILOS DEL FOOTER*/
+.conteinerF {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.c1F {
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+}
+
+.c2F {
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+}
+i{
+    height:50px; 
+    width: auto;
+    opacity: 50%;
+}
+.buscar{
+    max-height: 40px;
+}
+
+.iconos{
+    max-height: 40px;
+    max-width: 40px;
+    margin: 3%;
+    border: none;
+    background-color: white;
+}
+
+</style>
 </head>
 <body>
 <nav>
         <div class="conteiner">
             <div class="c1">
-                <img src="te_lo_llevo-removebg-preview.png" alt="Logo" height="80px" width="auto">
+                <img src="./te_lo_llevo-removebg-preview.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
                 <u style="color:lightcoral"><a>Comprar</a></u>

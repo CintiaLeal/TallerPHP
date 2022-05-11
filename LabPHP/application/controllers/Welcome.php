@@ -20,13 +20,14 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->load->view('inicio.php');
 		//$this->load->view('welcome_message');
 		// carga manual de la base de datos $this->load->database('mysqli', false );
 		//print_r($this->db->query("select * from paises"));
 
-		$p = $this->db->query("select * from paises")->result();
-		foreach($p as $pa){
-			print_r($pa->nombre."<br>");
-		}
+		// $p = $this->db->query("select * from paises")->result();
+		// foreach($p as $pa){
+		// 	print_r($pa->nombre."<br>");
+		// }
 	}
 }
