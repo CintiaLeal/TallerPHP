@@ -310,13 +310,13 @@
         <div class="overlay">
             <div class="overlay-panel overlay-left">
                 <h1>Hola :)</h1>
-                <img src="img/logo.png" height="300px" width="auto">
+                <img src="imgs/logo.png" height="300px" width="auto">
                 <p>Estas en registrar usuario, si usted ya tiene una cuenta presione el boton Iniciar Sesion</p>
                 <button class="ghost" id="signIn">Iniciar Sesion</button>
             </div>
             <div class="overlay-panel overlay-right">
                 <h1>Hola, Bienvenido</h1>
-                <img src="img/logo.png" height="300px" width="auto">
+                <img src="imgs/logo.png" height="300px" width="auto">
                 <p>Ingrese su nombre de usuario y contrasenia, si usted no tiene cuenta presione el boton Registrarse
                 </p>
                 <button class="ghost" id="signUp">Registrarse</button>
