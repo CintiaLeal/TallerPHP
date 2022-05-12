@@ -24,9 +24,9 @@ class Usuario_model extends CI_Model {
 
     public function iniciarSesion($data){
         // $this->db->where('nick', $data['nick']);
-        $query = $this->db->select('password','usuarios')->where('nick',$data['nick']);
+        $query = (mysqli_result) $this->db->select('password','usuarios')->where('nick',$data['nick']);
         // if($query->num_rows() > 0){
-            foreach($query->row() as $row){
+            foreach($query->result() as $row){
                 if($row->password == $data['password']){
                     return true;
                 }

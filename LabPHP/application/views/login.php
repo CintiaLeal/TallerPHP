@@ -362,7 +362,7 @@
 </div>
 
 <?php
-    // include ('footer.php');
+    include ('footer.php');
 ?>
 <SCRIPT LANGUAGE="JavaScript">
     
