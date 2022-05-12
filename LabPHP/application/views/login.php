@@ -1,5 +1,13 @@
 <html>
-
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te lo llevo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href='https://css.gg/phone.css' rel='stylesheet'>
+    <link href='https://css.gg/mail.css' rel='stylesheet'>
+</head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
@@ -256,11 +264,39 @@
         width: 50%;
         padding: 1%;
     }
+    /*ESTILOS PARA EL FOOTER */
+    .af{
+        font-family: 'Sen', sans-serif;
+        color: #fa7f72;
+    }
+    .conteinerF {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .c1F {
+        width: 20%;
+        padding: 1%;
+        margin: 1%;
+    }
+    
+    .c2F {
+        width: 20%;
+        padding: 1%;
+        margin: 1%;
+    }
+    i{
+        height:50px; 
+        width: auto;
+        opacity: 50%;
+    }
 </style>
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="<?= base_url().'/index.php/usuario/registro'?>" method="POST">
             <h1>Crear Usuario</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -268,31 +304,31 @@
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <!-- <span>or use your email for registration</span> -->
-            <input type="text" placeholder="User Name" />
+            <input type="text" placeholder="User name" name="username"/>
             <div class="conteiner" onkeypress="enterEnviar(event);">
                 <div class="c1">
-                    <input type="text" placeholder="Nombre" />
+                    <input type="text" placeholder="Nombre" name="name"/>
                 </div>
                 <div class="c2">
 
-                    <input type="text" placeholder="Apellido" />
+                    <input type="text" placeholder="Apellido" name="apellido"/>
                 </div>
                 <div class="c1">
-                    <input type="text" placeholder="Telefono" />
+                    <input type="text" placeholder="Telefono" name="telefono"/>
                 </div>
                 <div class="c2">
-                    <input type="file" placeholder="Imagen" />
+                    <input type="file" placeholder="Imagen" name="img"/>
                 </div>
             </div>
-            <input type="text" placeholder="Email" />
-            <input type="text" placeholder="Biografia" />
-            <input id="pass1" type="password" placeholder="Contrasenia" />
-            <input id="pass2" type="password" placeholder="Repite tu Contrasenia" />
+            <input type="text" placeholder="Email" name="email"/>
+            <input type="text" placeholder="Biografia" name="biografia"/>
+            <input id="pass1" type="password" placeholder="Password" name="password"/>
+            <input id="pass2" type="password" placeholder="Repite tu password"/>
             <input type="submit" onclick="validarContrasena()" class="btn-submit" value="Verificar">
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="GET">
             <h1>Login</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -300,8 +336,8 @@
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <!-- <span>or use your account</span> -->
-            <input class="inputlogin" type="user" placeholder="User Name" />
-            <input class="inputlogin" type="password" placeholder="Password" />
+            <input class="inputlogin" type="user" placeholder="User Name" name="username"/>
+            <input class="inputlogin" type="password" placeholder="Password" name="password"/>
 
             <button>Entrar</button>
         </form>
@@ -310,13 +346,13 @@
         <div class="overlay">
             <div class="overlay-panel overlay-left">
                 <h1>Hola :)</h1>
-                <img src="imgs/logo.png" height="300px" width="auto">
+                <img src="imgs/te_lo_llevo-removebg-preview.png" height="300px" width="auto">
                 <p>Estas en registrar usuario, si usted ya tiene una cuenta presione el boton Iniciar Sesion</p>
                 <button class="ghost" id="signIn">Iniciar Sesion</button>
             </div>
             <div class="overlay-panel overlay-right">
                 <h1>Hola, Bienvenido</h1>
-                <img src="imgs/logo.png" height="300px" width="auto">
+                <img src="imgs/te_lo_llevo-removebg-preview.png" height="300px" width="auto">
                 <p>Ingrese su nombre de usuario y contrasenia, si usted no tiene cuenta presione el boton Registrarse
                 </p>
                 <button class="ghost" id="signUp">Registrarse</button>
@@ -325,11 +361,9 @@
     </div>
 </div>
 
-<footer>
-
-</footer>
-</body>
-</html>
+<?php
+    // include ('footer.php');
+?>
 <SCRIPT LANGUAGE="JavaScript">
     
 

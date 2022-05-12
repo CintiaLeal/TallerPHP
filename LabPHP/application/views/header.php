@@ -12,7 +12,7 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
 /*ESTILOS DEL HEADER*/
-a{
+.af{
     font-family: 'Sen', sans-serif;
     color: #fa7f72;
 }
@@ -91,13 +91,13 @@ i{
                 <img src="imgs/te_lo_llevo-removebg-preview.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
-                <u style="color:lightcoral"><a>Comprar</a></u>
+                <u style="color:lightcoral"><a class="af">Comprar</a></u>
             </div>
             <div class="c2">
                 <label style="color: #389393">|</label>
             </div>
             <div class="c2">
-                <u style="color:lightcoral"><a>Viajar</a></u>
+                <u style="color:lightcoral"><a class="af">Viajar</a></u>
             </div>
 			<div class="c1">
                 <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">
