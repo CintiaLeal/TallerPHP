@@ -88,7 +88,7 @@ i{
 <nav>
         <div class="conteiner">
             <div class="c1">
-                <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475160/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
+                <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
                 <u style="color:lightcoral"><a class="af">Comprar</a></u>

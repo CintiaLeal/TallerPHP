@@ -37,8 +37,6 @@ class Usuario_model extends CI_Model {
         // if($query->num_rows() > 0){
             foreach($p as $pa){
                 if($pa->password == $data['pwd']){
-                    session_start();
-                    $_SESSION["usuario"] = $data['nick'];
                     return true;
                 }
             }

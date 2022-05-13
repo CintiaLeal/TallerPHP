@@ -324,7 +324,7 @@
             <input type="text" placeholder="Biografia" name="biografia"/>
             <input id="pass1" type="password" placeholder="Password" name="password"/>
             <input id="pass2" type="password" placeholder="Repite tu password"/>
-            <input type="submit" onclick="validarContrasena()" class="btn-submit" value="Verificar">
+            <input type="submit" onclick="validarContrasena()" class="btn-submit" value="Registrarse">
         </form>
     </div>
     <div class="form-container sign-in-container">
@@ -339,7 +339,7 @@
             <input class="inputlogin" type="user" placeholder="User Name" name="username"/>
             <input class="inputlogin" type="password" placeholder="Password" name="password"/>
 
-            <button>Entrar</button>
+            <button>Iniciar</button>
         </form>
     </div>
     <div class="overlay-container">

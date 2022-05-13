@@ -84,10 +84,20 @@ class Usuario extends CI_Controller {
             'pwd' => $password
         );
         if($this->Usuario_model->iniciarSesion($data)){
+            session_start();
+            $_SESSION["usuario"] = strtoupper($username);
             $this->load->view('inicio.php');
         }
         else{
-            echo "FALSE";
+            //FALTA MANDAR UNA ALERTA PARA QUE QUEDE CON MEJOR VISTA AL USUARIO
+            echo "No se ha podido iniciar sesión";
+            $this->load->view('inicio.php');
+        }
+    }
+
+    function cerrarSesion(){
+        if(session_destroy()){
+            $this->load->view('inicio.php');
         }
     }
 }
