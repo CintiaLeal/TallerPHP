@@ -8,6 +8,31 @@ class Usuario extends CI_Controller {
         $this->load->model('Usuario_model');
     }
 
+    function enviarMail($email){
+        $config = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'smtp.googlemail.com',
+            'smtp_user' => 'telollevolabphp@gmail.com', //Su Correo de Gmail Aqui
+            'smtp_pass' => 'telollevoLavphp2022', // Su Password de Gmail aqui
+            'smtp_port' => '465',
+            'smtp_crypto' => 'ssl',
+            'mailtype' => 'html',
+            'wordwrap' => TRUE,
+            'charset' => 'utf-8'
+            );
+        $this->load->library('email', $config);
+        $this->email->from('telollevolabphp@gmail.com');
+        $this->email->subject('Verificación de mail');
+        $this->email->message('<h1>Hola desde correo<h1>');
+        $this->email->to($email);
+        if($this->email->send()){
+            return true;
+        }
+        else{
+            $this->email->print_debugger();
+        }
+    }
+
     function registro(){
             $name = $_POST['name'];
             $username = $_POST['username'];
@@ -27,7 +52,13 @@ class Usuario extends CI_Controller {
                 'biografia' => $bio,
                 'password' => $password
             );
-            $this->Usuario_model->registrarUsuario($data);
+            /*SI EL USUARIO FUE REGISTRO Y EL EMAIL SE ENVIO*/
+            if($this->Usuario_model->registrarUsuario($data) && $this->enviarMail($email)){
+                echo true;
+            }
+            else{
+                echo false;
+            }
     }
 
     function iniciarSesion(){

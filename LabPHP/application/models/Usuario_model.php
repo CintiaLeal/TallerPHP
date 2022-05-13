@@ -21,6 +21,14 @@ class Usuario_model extends CI_Model {
             'password' => $data['password']
             )
         );
+        /*PARA VERIFICAR QUE LO HAYA GUARDADO EN LA BASE SIN TENER QUE IR A CHEQUEAR*/
+        $p = $this->db->query("select nick from usuarios where nick = '".$data['username']."'")->result();
+        if(isset($p)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public function iniciarSesion($data){
