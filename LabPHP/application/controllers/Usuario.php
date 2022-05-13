@@ -71,7 +71,7 @@ class Usuario extends CI_Controller {
                 'biografia' => $bio,
                 'password' => $password
             );
-            $this->Usuario_model->registrarUsuario($data)   
+            $this->Usuario_model->registrarUsuario($data);   
     }
 
     function iniciarSesion(){
