@@ -1,5 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 class Usuario extends CI_Controller {
     function __construct()
@@ -9,28 +16,40 @@ class Usuario extends CI_Controller {
     }
 
     function enviarMail($email){
-        $config = array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'smtp.googlemail.com',
-            'smtp_user' => 'telollevolabphp@gmail.com', //Su Correo de Gmail Aqui
-            'smtp_pass' => 'telollevoLavphp2022', // Su Password de Gmail aqui
-            'smtp_port' => '465',
-            'smtp_crypto' => 'ssl',
-            'mailtype' => 'html',
-            'wordwrap' => TRUE,
-            'charset' => 'utf-8'
-            );
-        $this->load->library('email', $config);
-        $this->email->from('telollevolabphp@gmail.com');
-        $this->email->subject('Verificación de mail');
-        $this->email->message('<h1>Hola desde correo<h1>');
-        $this->email->to($email);
-        if($this->email->send()){
-            return true;
-        }
-        else{
-            $this->email->print_debugger();
-        }
+
+        // $mail = new PHPMailer(true);
+
+        // try {
+        //     // Configuracion SMTP
+        //     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                         // Mostrar salida (Desactivar en producción)
+        //     $mail->isSMTP();                                               // Activar envio SMTP
+        //     $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
+        //     $mail->SMTPAuth  = true;                                       // Identificacion SMTP
+        //     $mail->Username  = 'romias141916@gmail.com';                  // Usuario SMTP
+        //     $mail->Password  = '54849735lala';	          // Contraseña SMTP
+        //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        //     $mail->Port  = 587;
+        //     $mail->setFrom('romias141916@gmail.com', 'Romina');                // Remitente del correo
+
+        //     // Destinatarios
+        //     $mail->addAddress('romilopez1@hotmail.es', 'Romina');  // Email y nombre del destinatario
+
+        //     // Contenido del correo
+        //     $mail->isHTML(true);
+        //     $mail->Subject = 'Asunto del correo';
+        //     $mail->Body  = 'Contenido del correo <b>en HTML!</b>';
+        //     $mail->AltBody = 'Contenido del correo en texto plano para los clientes de correo que no soporten HTML';
+        //     $mail->send();
+        //     echo 'El mensaje se ha enviado';
+        // } catch (Exception $e) {
+        //     echo "El mensaje no se ha enviado. Mailer Error: {$mail->ErrorInfo}";
+        // }
+        // if($mail->send()){
+        //     return true;
+        // }
+        // else{
+        //     print_r($this->email->print_debugger());
+        // }
     }
 
     function registro(){
@@ -52,13 +71,7 @@ class Usuario extends CI_Controller {
                 'biografia' => $bio,
                 'password' => $password
             );
-            /*SI EL USUARIO FUE REGISTRO Y EL EMAIL SE ENVIO*/
-            if($this->Usuario_model->registrarUsuario($data) && $this->enviarMail($email)){
-                echo true;
-            }
-            else{
-                echo false;
-            }
+            $this->Usuario_model->registrarUsuario($data)   
     }
 
     function iniciarSesion(){
