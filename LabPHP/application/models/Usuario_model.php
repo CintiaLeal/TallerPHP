@@ -6,6 +6,7 @@ class Usuario_model extends CI_Model {
         parent::__construct();
         $this->load->database();
         $this->db->load_rdriver();
+        
     }
 
     public function registrarUsuario($data){
@@ -24,10 +25,10 @@ class Usuario_model extends CI_Model {
 
     public function iniciarSesion($data){
         // $this->db->where('nick', $data['nick']);
-        $query = (mysqli_result) $this->db->select('password','usuarios')->where('nick',$data['nick']);
+        $p = $this->db->query("select nick , password  from usuarios where nick = '".$data['nick']."'")->result();
         // if($query->num_rows() > 0){
-            foreach($query->result() as $row){
-                if($row->password == $data['password']){
+            foreach($p as $pa){
+                if($pa->password == $data['pwd']){
                     return true;
                 }
             }
