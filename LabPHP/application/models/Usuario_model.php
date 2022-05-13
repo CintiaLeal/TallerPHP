@@ -34,10 +34,11 @@ class Usuario_model extends CI_Model {
     public function iniciarSesion($data){
         // $this->db->where('nick', $data['nick']);
         $p = $this->db->query("select nick , password  from usuarios where nick = '".$data['nick']."'")->result();
-        print_r($p);
         // if($query->num_rows() > 0){
             foreach($p as $pa){
                 if($pa->password == $data['pwd']){
+                    session_start();
+                    $_SESSION["usuario"] = $data['nick'];
                     return true;
                 }
             }

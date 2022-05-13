@@ -1,10 +1,10 @@
         <footer>
             <div class="conteinerF">
                 <div class="c1F">
-                    <img src="imgs/74717.png" height="40px" width="auto" style="opacity: 50%; margin: 1%;">
+                    <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475444/74717_lvmzx5.png" height="40px" width="auto" style="opacity: 50%; margin: 1%;">
                 </div>
                 <div class="c2F">
-                    <img src="imgs/te_lo_llevo-removebg-preview - copia.png" height="50px" width="auto" style="margin-left: 20%;">
+                    <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475369/te_lo_llevo-removebg-preview_-_copia_s12jso.png" height="50px" width="auto" style="margin-left: 20%;">
                 </div>
             </div>
 

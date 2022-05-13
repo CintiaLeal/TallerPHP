@@ -25,8 +25,8 @@ class Usuario extends CI_Controller {
         //     $mail->isSMTP();                                               // Activar envio SMTP
         //     $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
         //     $mail->SMTPAuth  = true;                                       // Identificacion SMTP
-        //     $mail->Username  = 'romias141916@gmail.com';                  // Usuario SMTP
-        //     $mail->Password  = '54849735lala';	          // Contraseña SMTP
+        //     $mail->Username  = '';                  // Usuario SMTP
+        //     $mail->Password  = '';	          // Contraseña SMTP
         //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         //     $mail->Port  = 587;
         //     $mail->setFrom('romias141916@gmail.com', 'Romina');                // Remitente del correo
@@ -71,7 +71,9 @@ class Usuario extends CI_Controller {
                 'biografia' => $bio,
                 'password' => $password
             );
-            $this->Usuario_model->registrarUsuario($data);   
+            if($this->Usuario_model->registrarUsuario($data)){
+                $this->load->view('inicio.php');
+            }   
     }
 
     function iniciarSesion(){
@@ -82,7 +84,7 @@ class Usuario extends CI_Controller {
             'pwd' => $password
         );
         if($this->Usuario_model->iniciarSesion($data)){
-            echo "TRUE";
+            $this->load->view('inicio.php');
         }
         else{
             echo "FALSE";
