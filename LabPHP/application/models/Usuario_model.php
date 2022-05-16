@@ -43,4 +43,24 @@ class Usuario_model extends CI_Model {
             return false;
         // }
     }
+
+    public function datosPerfil($nick){
+        $p = $this->db->query("select * from usuarios where nick = '".$nick."'")->result();
+        if(isset($p)){
+            foreach($p as $row){
+                $nombre = $row->nombre;
+                $apellido = $row->apellido;
+                $biografia = $row->biografia;
+            }
+            $res = array(
+                'nombre' => $nombre,
+                'apellido' => $apellido,
+                'biografia' => $biografia
+            );
+            return $res;
+        }
+        else{
+            return false;
+        }
+    }
 }

@@ -85,7 +85,7 @@ class Usuario extends CI_Controller {
         );
         if($this->Usuario_model->iniciarSesion($data)){
             session_start();
-            $_SESSION["usuario"] = strtoupper($username);
+            $_SESSION["usuario"] = $username;
             $this->load->view('inicio.php');
         }
         else{
@@ -97,6 +97,18 @@ class Usuario extends CI_Controller {
 
     function cerrarSesion(){
         if(session_destroy()){
+            $this->load->view('inicio.php');
+        }
+    }
+
+    function verPerfil(){
+        session_start();
+        $username = $_SESSION["usuario"];
+        $datos = $this->Usuario_model->datosPerfil($username);
+        if($datos!= false){
+            $this->load->view('perfiles.php',$datos);
+        }
+        else{
             $this->load->view('inicio.php');
         }
     }

@@ -99,7 +99,6 @@ i{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-left: 10%;
 }
 
 .bio_title{
