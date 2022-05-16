@@ -91,7 +91,7 @@ i{
                 <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
-                <u style="color:lightcoral"><a class="af">Comprar</a></u>
+                <u style="color:lightcoral"><a href = "<?= base_url().'/index.php/welcome/crearPedido'?>"  class="af">Comprar</a></u>
             </div>
             <div class="c2">
                 <label style="color: #389393">|</label>
