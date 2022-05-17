@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <title>Document</title>
 <style>
     .nombre{
@@ -14,7 +15,7 @@
         display:flex;
         justify-content: center;
     }
-    label{ color: orange;
+    label{ color: red;
         text-align: center;
         font-size: 60px;
     }
@@ -41,15 +42,15 @@
 <form>
     <p class="clasificacion">
       <input id="radio1" type="radio" name="estrellas" value="5"><!--
-      --><label for="radio1">★</label><!--
+      --><label for="radio1">❤</label><!--
       --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-      --><label for="radio2">★</label><!--
+      --><label for="radio2">❤</label><!--
       --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-      --><label for="radio3">★</label><!--
+      --><label for="radio3">❤</label><!--
       --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-      --><label for="radio4">★</label><!--
+      --><label for="radio4">❤</label><!--
       --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-      --><label for="radio5">★</label>
+      --><label for="radio5">❤</label>
     </p>
   </form>
   <div>

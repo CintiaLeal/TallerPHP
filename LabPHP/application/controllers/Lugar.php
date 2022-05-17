@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Viaje extends CI_Controller {
+class Lugar extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Viaje_model');
+        $this->load->model('Lugar_model');
       //  $this->load->model('Viaje_model');
     }
 
@@ -31,22 +31,35 @@ class Viaje extends CI_Controller {
             }   
     }
 */
+public function getEstados(){
+    $id = $_POST['estado'];
 
+    $Estados =  $this->Lugar_model->getEstados($id);
+
+    $data = array('estados' => $Estados); 
+    echo json_encode($data);
+}
+
+public function getCiudad(){
+    $id = $_POST['estado'];
+
+    $Ciudad =  $this->Lugar_model->getCiudad($id);
+
+    $data = array('ciudades' => $Ciudad); 
+    echo json_encode($data);
+}
+   
 /* <?php session_start();
         $username = $_SESSION["usuario"];?>
            <?php echo $username;?>*/
-function registro(){
+/*function registro(){
     session_start();
-    $viaje_id = '485';
+    $viaje_id = rand();
     $username = $_SESSION["usuario"];
     $ciudadH = $_POST['c'];
     $ciudadD = $_POST['ciudades'];
-    /*$fecha = DateTime::createFromFormat('Y/m/d', $_POST['fechaI']);
-    $fechaI = $fecha->format('d/m/Y');*/
-    //$fechaI = strtotime($_POST['fechaI']);
-    //  $fechaI =  $_POST['fechaI'];//date('d-m-Y');
-    $fechaI =  $_POST['fechaI'];
-    $fechaV =  $_POST['element1']; //date('d-m-Y');
+    $fechaI = $_POST['fechaI'];
+    $fechaV = $_POST['element1'];
     $data = array(
         'viaje_id' => $viaje_id,
         'username' =>$username,
@@ -56,9 +69,9 @@ function registro(){
         'fechaV' => $fechaV,
         
     );
-    if($this->Viaje_model->registrarViaje($data)){
+    if($this->Lugar_model->registrarViaje($data)){
         $this->load->view('inicio.php');
     }   
-}
+}*/
 
 }

@@ -5,7 +5,6 @@ if(isset($_SESSION)){
 else{
     include ('header.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,7 +139,7 @@ else{
         var estado = $("#estado").val();
         $.ajax({
             type: 'POST',
-            url: '<?php echo base_url() . 'index.php/viaje/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+            url: '<?php echo base_url() . 'index.php/lugar/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
             data: {estado: estado}, //estado primero es el que manda 
             dataType: "json",
             success: function(resp){   
@@ -168,7 +167,7 @@ else{
     var estado = $("#estados").val();
     $.ajax({
         type: 'POST',
-        url: '<?php echo base_url() . 'index.php/viaje/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+        url: '<?php echo base_url() . 'index.php/lugar/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
         data: {estado: estado}, //estado primero es el que manda 
         dataType: "json",
         success: function(resp){   
@@ -182,6 +181,7 @@ else{
                 console.log(element);
                 var option = document.createElement("option");
                 option.text = element.name;
+                option.value = element.id;
                 select.add(option);
                 
             });
@@ -196,7 +196,7 @@ function buscarx(){
 var estado = $("#est").val();
 $.ajax({
     type: 'POST',
-    url: '<?php echo base_url() . 'index.php/viaje/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+    url: '<?php echo base_url() . 'index.php/lugar/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
     data: {estado: estado}, //estado primero es el que manda 
     dataType: "json",
     success: function(resp){   
@@ -224,7 +224,7 @@ function buscarCiudadx(){
 var estado = $("#esta").val();
 $.ajax({
 type: 'POST',
-url: '<?php echo base_url() . 'index.php/viaje/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+url: '<?php echo base_url() . 'index.php/lugar/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
 data: {estado: estado}, //estado primero es el que manda 
 dataType: "json",
 success: function(resp){   
@@ -238,6 +238,7 @@ success: function(resp){
         console.log(element);
         var option = document.createElement("option");
         option.text = element.name;
+        option.value = element.id;
         select.add(option);
         
     });
@@ -252,11 +253,11 @@ success: function(resp){
         <div class="row">
 
             <div class="col">
-                
+          
                     <h2>Publicar Viaje</h2>
                     <button class="btnbtn" id="btn" onclick="toggle();"> Ida y vuelta </button>
                 
-                <form action="<?= base_url().'index.php/viaje/registroViaje'?>" method="POST">
+                <form action="<?= base_url().'index.php/viaje/registro'?>" method="POST">
                     <div class="cont">
                         <div class="c2p">
                             <p><b>Desde:</b></p>
@@ -303,14 +304,14 @@ success: function(resp){
                         </div>
                         <div class="c2p">
                             <p>Fecha ida:</p>
-                            <input class="inputlogin" type="date" />
+                            <input id="fechaI" name="fechaI" class="inputlogin" type="date" />
                         </div>
                         <div class="c2p">
                             <p id="element2">Fecha vuelta:</p>
-                            <input id="element1" type="date" value="none" />
+                            <input id="element1" name="element1"  type="date" value="none" />
                         </div>
 
-
+                       
                 </div>
             </div>
 
