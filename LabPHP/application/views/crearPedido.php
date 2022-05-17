@@ -1,3 +1,13 @@
+<?php
+if(isset($_SESSION)){
+    include ('headerLogueado.php');
+}
+else{
+    include ('header.php');
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -136,6 +146,62 @@
         }
     </style>
 </head>
+<script>
+    function buscar(){
+
+        var estado = $("#estado").val();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url() . 'index.php/viaje/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+            data: {estado: estado}, //estado primero es el que manda 
+            dataType: "json",
+            success: function(resp){   
+
+                var select = document.getElementById("estados");
+                for (let i = select.options.length; i >= 0; i--) {
+                    select.remove(i);
+                }
+                let valorFinal = resp.estados;
+                valorFinal.forEach(element =>  {
+                    console.log(element);
+                    var option = document.createElement("option");
+                    option.text = element.name;
+                    option.value = element.id;
+                    select.add(option);
+                    
+                });
+            }
+        });
+
+    }
+    
+    function buscarCiudad(){
+
+    var estado = $("#estados").val();
+    $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url() . 'index.php/viaje/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+        data: {estado: estado}, //estado primero es el que manda 
+        dataType: "json",
+        success: function(resp){   
+
+            var select = document.getElementById("ciudades");
+            for (let i = select.options.length; i >= 0; i--) {
+                select.remove(i);
+            }
+            let valorFinal = resp.ciudades;
+            valorFinal.forEach(element =>  {
+                console.log(element);
+                var option = document.createElement("option");
+                option.text = element.name;
+                select.add(option);
+                
+            });
+        }
+    });
+
+}
+</script>
 
 <body>
     <div class="container">
@@ -153,10 +219,24 @@
                         <input type="text" />
                     </div>
                     <div class="c2p">
-                        <p>Lugar para recibir mi pedido</p>
-                        <select>
-                        <option>Selecciones</option>
-                    </select>
+                        <div class="c2p">
+                            <select name="estado" id="estado" onchange="buscar()">
+                            <option value="">Pais</option>
+                                <?php foreach ($Lugar as $row) {?>
+                                <option value="<?=$row->id;?>"><?=$row->name;?></option>
+                                <?php } ?>
+                            </select>
+                            </div>
+                            <div class="c2p">
+                            <select id="estados"  name="estados" onchange="buscarCiudad()">
+                                <option>Estado</option>
+                            </select>
+                            </div>
+                            <div class="c2p">
+                            <select id="ciudades"  name="ciudades" >
+                                <option>Ciudad</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="c2p">
@@ -195,8 +275,8 @@
             <div class="col3">
                 <div class="">
                     <p class="pmini" value="neto">Precio: $ <input type="text" class="inputCalculados" id="pneto" disabled="disabled" /> </p>
-                    <p class="pmini" id="comiTeloLLevo">ComiTeloLLevo: $ <input type="text" class="inputCalculados" id="comisTeloLLevo" disabled="disabled" /></p>
-                    <p class="pmini" id="comi">Comision de para quien le va trae el pedido: $ <input type="text" class="inputCalculados" id="comis" disabled="disabled" /></p>
+                    <p class="pmini" id="comiTeloLLevo">Tasa de TeloLLevo: $ <input type="text" class="inputCalculados" id="comisTeloLLevo" disabled="disabled" /></p>
+                    <p class="pmini" id="comi">Recompensa del viajero: $ <input type="text" class="inputCalculados" id="comis" disabled="disabled" /></p>
                     <p class="pnegrita"><b>Pago total:  $ <input type="text" id="total" class="inputCalculados" disabled="disabled" /> </b></p>
                 </div>
 
@@ -217,6 +297,8 @@
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <SCRIPT LANGUAGE="JavaScript">
 
+    
+
         const btn = document.querySelector("#btn");
         const imagen = document.querySelector("#imagen");
         let urlImagen = ''
@@ -227,6 +309,7 @@
             if (!error && result && result.event === 'success') {
                 console.log(result.info.secure_url)
                 urlImagen = result.info.secure_url;
+                imagen.value = result.info.secure_url;
             }
         })
         btn.addEventListener("click", e => {
@@ -240,8 +323,8 @@
         ne = eval(document.getElementById('neto').value);
 
 
-        comiTeloLLevo = ne / 50;
-        comi = ne / 20;
+        comiTeloLLevo = ne * 0.1;
+        comi = ne * 0.15;
         total = ne + comi + comiTeloLLevo;
 
         document.getElementById('comisTeloLLevo').value = comiTeloLLevo;
@@ -251,4 +334,8 @@
     }
 </SCRIPT>
 
+
+<?php
+    include ('footer.php');
+?>
 </html>

@@ -17,7 +17,9 @@ class Welcome extends CI_Controller {
 	}
 
 	public function crearPedido(){
-		$this->load->view('crearPedido.php');
+		$this->load->model("Lugar_model");
+		$Lugar =  $this->Lugar_model->getLugar();
+		$this->load->view('crearPedido.php', compact("Lugar"));
 	}
 	
 	public function publicarViajes(){
