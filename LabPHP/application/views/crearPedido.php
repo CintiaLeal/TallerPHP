@@ -216,6 +216,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <SCRIPT LANGUAGE="JavaScript">
+
+        const btn = document.querySelector("#btn");
+        const imagen = document.querySelector("#imagen");
+        let urlImagen = ''
+        const widget_cloudinary = cloudinary.createUploadWidget({
+            cloudName: "dmc55ugqh",
+            uploadPreset: "fkvyrxo1"
+        }, (error, result) => {
+            if (!error && result && result.event === 'success') {
+                console.log(result.info.secure_url)
+                urlImagen = result.info.secure_url;
+            }
+        })
+        btn.addEventListener("click", e => {
+            e.preventDefault();
+            widget_cloudinary.open()
+        }, false)
+        imagen.value = urlImagen;
+        console.log(imagen.value);
+
     function calcular() {
         ne = eval(document.getElementById('neto').value);
 

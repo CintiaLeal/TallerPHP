@@ -316,7 +316,11 @@
                     <input type="text" placeholder="Telefono" name="telefono"/>
                 </div>
                 <div class="c2">
-                    <input type="file" placeholder="Imagen" name="img"/>
+                    <button  type="button" class="file-select btn" id="btn">
+                        Agregar imagen
+
+                    </button>
+                    <input name="imagen" id="imagen" class="d-none" />
                 </div>
             </div>
             <input type="text" placeholder="Email" name="email"/>
@@ -363,6 +367,7 @@
 <?php
     include ('footer.php');
 ?>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <SCRIPT LANGUAGE="JavaScript">
     
 
@@ -403,5 +408,26 @@ function enterEnviar(event){
       validarContrasena()
     }
 }
+
+//imagen en cloudinary
+
+const btn = document.querySelector("#btn");
+        const imagen = document.querySelector("#imagen");
+        let urlImagen = ''
+        const widget_cloudinary = cloudinary.createUploadWidget({
+            cloudName: "dmc55ugqh",
+            uploadPreset: "fkvyrxo1"
+        }, (error, result) => {
+            if (!error && result && result.event === 'success') {
+                console.log(result.info.secure_url)
+                urlImagen = result.info.secure_url;
+            }
+        })
+        btn.addEventListener("click", e => {
+            e.preventDefault();
+            widget_cloudinary.open()
+        }, false)
+        imagen.value = urlImagen;
+        console.log(imagen.value);
 </SCRIPT>
 

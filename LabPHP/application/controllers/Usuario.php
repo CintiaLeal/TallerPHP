@@ -57,10 +57,11 @@ class Usuario extends CI_Controller {
             $username = $_POST['username'];
             $apellido = $_POST['apellido'];
             $telefono = $_POST['telefono'];
-            $img = $_POST['img'];
+            $img = $_POST['imagen'];
             $email = $_POST['email'];
             $bio = $_POST['biografia'];
             $password = $_POST['password'];
+            $fechaActual = date('d-m-Y');
             $data = array(
                 'nombre' => $name, 
                 'username' => $username,
@@ -69,7 +70,8 @@ class Usuario extends CI_Controller {
                 'img' => $img,
                 'email' => $email,
                 'biografia' => $bio,
-                'password' => $password
+                'password' => $password,
+                'unido' => $fechaActual
             );
             if($this->Usuario_model->registrarUsuario($data)){
                 $this->load->view('inicio.php');
@@ -85,7 +87,7 @@ class Usuario extends CI_Controller {
         );
         if($this->Usuario_model->iniciarSesion($data)){
             session_start();
-            $_SESSION["usuario"] = strtoupper($username);
+            $_SESSION["usuario"] = $username;
             $this->load->view('inicio.php');
         }
         else{
@@ -97,6 +99,18 @@ class Usuario extends CI_Controller {
 
     function cerrarSesion(){
         if(session_destroy()){
+            $this->load->view('inicio.php');
+        }
+    }
+
+    function verPerfil(){
+        session_start();
+        $username = $_SESSION["usuario"];
+        $datos = $this->Usuario_model->datosPerfil($username);
+        if($datos!= false){
+            $this->load->view('perfiles.php',$datos);
+        }
+        else{
             $this->load->view('inicio.php');
         }
     }

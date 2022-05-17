@@ -6,12 +6,16 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 	}
+	
 	public function index(){
 		$this->load->view('inicio.php');
+		// $this->load->view('perfiles.php');
 	}
+
 	public function login(){
 		$this->load->view('login.php');
 	}
+
 	public function crearPedido(){
 		$this->load->view('crearPedido.php');
 	}

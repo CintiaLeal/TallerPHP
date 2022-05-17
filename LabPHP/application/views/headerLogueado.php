@@ -8,6 +8,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href='https://css.gg/phone.css' rel='stylesheet'>
     <link href='https://css.gg/mail.css' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="js/addons/rating.js"></script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
 /*ESTILOS DEL HEADER*/
@@ -81,6 +83,65 @@ i{
     background-color: white;
 }
 
+/*ESTILOS DE PERFILES*/
+.comprador{
+    font-family: 'Unica One', cursive;
+    font-size: x-large;
+    color: #aaaaaa;
+}
+
+.viajero{
+    font-family: 'Unica One', cursive;
+    font-size: x-large;
+    color: #aaaaaa;
+}
+
+.c_perfiles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bio_title{
+    font-family: 'Unica One', cursive;
+    font-size: medium;
+    color: #aaaaaa;
+}
+
+.valoraciones_title{
+    font-family: 'Unica One', cursive;
+    font-size: medium;
+    color: #aaaaaa;
+}
+
+.c_bio_val{
+    margin: 2%;
+    display: flex;
+}
+
+.scroll_text_bio{
+    background-color: #389393;
+    opacity: 50%;
+    border-radius: 5px;
+    color: white;
+    width: 300px;
+    height: 150px;
+}
+
+.scroll_text_val{
+    background-color: #fa7f72;
+    opacity: 50%;
+    border-radius: 5px;
+    color: white;
+    width: 300px;
+    height: 150px;
+}
+
+.c_textarea{
+    width: 100%;
+    display: flex;
+}
+
 </style>
     
     </head>
@@ -91,7 +152,7 @@ i{
                 <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
-                <u style="color:lightcoral"><a>Comprar</a></u>
+                <u style="color:lightcoral"><a href = "<? = base_url().'/index.php/welcome/crearPedido'?>">Comprar</a></u>
             </div>
             <div class="c2">
                 <label style="color: #389393">|</label>
