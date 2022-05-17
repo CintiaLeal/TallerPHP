@@ -98,20 +98,27 @@ class Usuario extends CI_Controller {
     }
 
     function cerrarSesion(){
-        if(session_destroy()){
+        session_unset();
+        if(!isset($_SESSION["usuario"])){
             $this->load->view('inicio.php');
         }
     }
 
     function verPerfil(){
         session_start();
-        $username = $_SESSION["usuario"];
-        $datos = $this->Usuario_model->datosPerfil($username);
-        if($datos!= false){
-            $this->load->view('perfiles.php',$datos);
+        if(isset($_SESSION["usuario"])){
+            $username = $_SESSION["usuario"];
+            $datos = $this->Usuario_model->datosPerfil($username);
+            if($datos!= false){
+                $this->load->view('perfiles.php',$datos);
+            }
+            else{
+                $this->load->view('inicio.php');
+            }
         }
         else{
             $this->load->view('inicio.php');
         }
+        
     }
 }

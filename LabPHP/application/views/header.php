@@ -10,7 +10,6 @@
     <link href='https://css.gg/phone.css' rel='stylesheet'>
     <link href='https://css.gg/mail.css' rel='stylesheet'>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <script src="js/addons/rating.js"></script>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
 /*ESTILOS DEL HEADER*/
