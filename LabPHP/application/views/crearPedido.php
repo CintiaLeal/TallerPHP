@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Auto-layout Columns</title>
+    <title>Pedidos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <style type="text/css">
@@ -169,7 +169,10 @@
                     </div>
                     <div class="c2p">
                         <p>Imagen:</p>
-                        <input type="file" />
+                        <button  type="button" class="file-select btn" id="btn">
+                        Seleccionar Archivo
+                        </button>
+                        <input name="imagen" id="imagen" class="d-none" />
                     </div>
                     <div class="c2p">
                         <p>Precio:</p>
@@ -211,6 +214,7 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <SCRIPT LANGUAGE="JavaScript">
     function calcular() {
         ne = eval(document.getElementById('neto').value);

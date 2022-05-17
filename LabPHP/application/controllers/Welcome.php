@@ -15,4 +15,10 @@ class Welcome extends CI_Controller {
 	public function crearPedido(){
 		$this->load->view('crearPedido.php');
 	}
+	
+	public function publicarViajes(){
+		$this->load->model("Lugar_model");
+        $Lugar =  $this->Lugar_model->getLugar();
+		$this->load->view('publicarViajes.php', compact("Lugar"));
+	}
 }

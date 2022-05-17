@@ -97,7 +97,7 @@ i{
                 <label style="color: #389393">|</label>
             </div>
             <div class="c2">
-                <u style="color:lightcoral"><a>Viajar</a></u>
+            <u style="color:lightcoral"><a href = "<?= base_url().'/index.php/welcome/publicarViajes'?>">Viaje</a></u>
             </div>
             <div class="c1">
                 <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">
