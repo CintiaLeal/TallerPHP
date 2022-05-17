@@ -14,7 +14,8 @@ else{
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap Auto-layout Columns</title>
-    <script src="jquery-1.11.2.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <style type="text/css">
@@ -109,100 +110,17 @@ else{
             font-size: 20px;
         }
         
-      
+        select{
+            font-family: 'Sen', sans-serif;
+            color: #606060;
+            font-size: 20px;
+            width: 90%;
+            justify-content: center;
+        }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <!--Row with two equal columns-->
-        <div class="row">
-
-            <div class="col">
-                
-                    <h2>Publicar Viaje</h2>
-                    <button class="btnbtn" id="btn" onclick="toggle();"> Ida y vuelta </button>
-                
-            <form action="<?= base_url().'/index.php/viaje/registroViaje'?>" method="POST">
-                <div class="cont">
-                    <div class="c1">
-                        <p><b>Desde:</b></p>
-                    </div>
-                    <div class="c2p">
-                    <select>
-                     <option value="">Pais</option>
-                        <?php foreach ($Lugar as $row) {?>
-                        <option value="<?=$row->id;?>"><?=$row->name;?></option>
-                          <?php } ?>
-                    </select>
-               
-                    </div>
-                    <div class="c2p">
-                        <p>Estado</p>
-                        <select>
-                        <option>Selecciones</option>
-                    </select>
-                    </div>
-                    <div class="c2p">
-                        <p>Ciudad</p>
-                        <select>
-                        <option>Selecciones</option>
-                    </select>
-                    </div>
-                    <div class="c1">
-                        <p><b>Hasta:</b></p>
-                    </div>
-                    <div class="c2p">
-                    <select>
-                     <option value="">Pais</option>
-                        <?php foreach ($Lugar as $row) {?>
-                        <option value="<?=$row->id;?>"><?=$row->name;?></option>
-                          <?php } ?>
-                    </select>
-                    </div>
-                    <div class="c2p">
-                        <p>Estado</p>
-                        <select>
-                        <option>Selecciones</option>
-                    </select>
-                    </div>
-                    <div class="c2p">
-                        <p>Ciudad</p>
-                        <select>
-                        <option>Selecciones</option>
-                    </select>
-                    </div>
-
-                    <div class="c2p">
-                        <p>Fecha ida:</p>
-                        <input class="inputlogin" type="date" />
-                    </div>
-                    <div class="c2p">
-                        <p id="element2">Fecha vuelta:</p>
-                        <input id="element1" type="date" value="none" />
-                    </div>
-
-
-                </div>
-            </div>
-
-            <button class="btnAViaje" type="submit">Publicar Viaje</button>
-        </form>   
-        </div>
-
-
-    </div>
-
-
-    </div>
-
-
-</body>
-<?php
-    include ('footer.php');
-?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<SCRIPT LANGUAGE="JavaScript">
+<script>
     function toggle() {
         var element = document.getElementById('element1');
         var element2 = document.getElementById('element2');
@@ -217,6 +135,196 @@ else{
             uno.innerText = 'Ida y vuelta';
         }
     }
-</SCRIPT>
+    function buscar(){
 
+        var estado = $("#estado").val();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url() . 'index.php/viaje/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+            data: {estado: estado}, //estado primero es el que manda 
+            dataType: "json",
+            success: function(resp){   
+
+                var select = document.getElementById("estados");
+                for (let i = select.options.length; i >= 0; i--) {
+                    select.remove(i);
+                }
+                let valorFinal = resp.estados;
+                valorFinal.forEach(element =>  {
+                    console.log(element);
+                    var option = document.createElement("option");
+                    option.text = element.name;
+                    option.value = element.id;
+                    select.add(option);
+                    
+                });
+            }
+        });
+
+    }
+    
+    function buscarCiudad(){
+
+    var estado = $("#estados").val();
+    $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url() . 'index.php/viaje/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+        data: {estado: estado}, //estado primero es el que manda 
+        dataType: "json",
+        success: function(resp){   
+
+            var select = document.getElementById("ciudades");
+            for (let i = select.options.length; i >= 0; i--) {
+                select.remove(i);
+            }
+            let valorFinal = resp.ciudades;
+            valorFinal.forEach(element =>  {
+                console.log(element);
+                var option = document.createElement("option");
+                option.text = element.name;
+                select.add(option);
+                
+            });
+        }
+    });
+
+}
+
+//-----------------------------------------HASTA
+function buscarx(){
+
+var estado = $("#est").val();
+$.ajax({
+    type: 'POST',
+    url: '<?php echo base_url() . 'index.php/viaje/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+    data: {estado: estado}, //estado primero es el que manda 
+    dataType: "json",
+    success: function(resp){   
+
+        var select = document.getElementById("esta");
+        for (let i = select.options.length; i >= 0; i--) {
+            select.remove(i);
+        }
+        let valorFinal = resp.estados;
+        valorFinal.forEach(element =>  {
+            console.log(element);
+            var option = document.createElement("option");
+            option.text = element.name;
+            option.value = element.id;
+            select.add(option);
+            
+        });
+    }
+});
+
+}
+
+function buscarCiudadx(){
+
+var estado = $("#esta").val();
+$.ajax({
+type: 'POST',
+url: '<?php echo base_url() . 'index.php/viaje/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+data: {estado: estado}, //estado primero es el que manda 
+dataType: "json",
+success: function(resp){   
+
+    var select = document.getElementById("c");
+    for (let i = select.options.length; i >= 0; i--) {
+        select.remove(i);
+    }
+    let valorFinal = resp.ciudades;
+    valorFinal.forEach(element =>  {
+        console.log(element);
+        var option = document.createElement("option");
+        option.text = element.name;
+        select.add(option);
+        
+    });
+}
+});
+
+}
+</script>
+<body>
+    <div class="container">
+        <!--Row with two equal columns-->
+        <div class="row">
+
+            <div class="col">
+                
+                    <h2>Publicar Viaje</h2>
+                    <button class="btnbtn" id="btn" onclick="toggle();"> Ida y vuelta </button>
+                
+                <form action="<?= base_url().'index.php/viaje/registroViaje'?>" method="POST">
+                    <div class="cont">
+                        <div class="c2p">
+                            <p><b>Desde:</b></p>
+                        </div>
+                        <div class="c2p">
+                        <select name="estado" id="estado" onchange="buscar()">
+                        <option value="">Pais</option>
+                            <?php foreach ($Lugar as $row) {?>
+                            <option value="<?=$row->id;?>"><?=$row->name;?></option>
+                            <?php } ?>
+                        </select>
+                        </div>
+                        <div class="c2p">
+                        <select id="estados"  name="estados" onchange="buscarCiudad()">
+                             <option>Estado</option>
+                        </select>
+                        </div>
+                        <div class="c2p">
+                        <select id="ciudades"  name="ciudades" >
+                            <option>Ciudad</option>
+                        </select>
+                        </div>
+
+                        <div class="c2p">
+                            <p><b>Hasta:</b></p>
+                        </div>
+                        <div class="c2p">
+                        <select name="est" id="est" onchange="buscarx()">
+                        <option value="">Pais</option>
+                            <?php foreach ($Lugar as $row) {?>
+                            <option value="<?=$row->id;?>"><?=$row->name;?></option>
+                            <?php } ?>
+                        </select>
+                        </div>
+                        <div class="c2p">
+                        <select id="esta"  name="esta" onchange="buscarCiudadx()">
+                             <option>Estado</option>
+                        </select>
+                        </div>
+                        <div class="c2p">
+                        <select id="c"  name="c" >
+                            <option>Ciudad</option>
+                        </select>
+                        </div>
+                        <div class="c2p">
+                            <p>Fecha ida:</p>
+                            <input class="inputlogin" type="date" />
+                        </div>
+                        <div class="c2p">
+                            <p id="element2">Fecha vuelta:</p>
+                            <input id="element1" type="date" value="none" />
+                        </div>
+
+
+                </div>
+            </div>
+
+            <button class="btnAViaje" type="submit">Publicar Viaje</button>
+        </form>   
+     
+    </div>
+ 
+
+    </div>
+
+ 
+</body>
+<?php
+    include ('footer.php');
+?>
 </html>

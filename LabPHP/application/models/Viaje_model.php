@@ -24,6 +24,17 @@ class Usuario_model extends CI_Model {
         );
 
     }*/
+    public function getLugar(){
 
-    
+        return  $this->db->query("select * from countries")->result();
+     }
+ 
+     public function getEstados($id){
+       
+         return  $this->db->query("select * from states where id_country =  $id")->result();
+     }
+ 
+     public function getCiudad($id){
+         return  $this->db->query("select * from cities where id_state =  $id")->result();
+     }
 }

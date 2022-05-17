@@ -5,7 +5,7 @@ class Viaje extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Viaje_model');
+        $this->load->model('Lugar_model');
     }
 
 /* 
@@ -30,5 +30,22 @@ class Viaje extends CI_Controller {
             }   
     }
 */
+public function getEstados(){
+    $id = $_POST['estado'];
+
+    $Estados =  $this->Lugar_model->getEstados($id);
+
+    $data = array('estados' => $Estados); 
+    echo json_encode($data);
+}
+
+public function getCiudad(){
+    $id = $_POST['estado'];
+
+    $Ciudad =  $this->Lugar_model->getCiudad($id);
+
+    $data = array('ciudades' => $Ciudad); 
+    echo json_encode($data);
+}
    
 }
