@@ -61,6 +61,7 @@ class Usuario extends CI_Controller {
             $email = $_POST['email'];
             $bio = $_POST['biografia'];
             $password = $_POST['password'];
+            $fechaActual = date('d-m-Y');
             $data = array(
                 'nombre' => $name, 
                 'username' => $username,
@@ -69,7 +70,8 @@ class Usuario extends CI_Controller {
                 'img' => $img,
                 'email' => $email,
                 'biografia' => $bio,
-                'password' => $password
+                'password' => $password,
+                'unido' => $fechaActual
             );
             if($this->Usuario_model->registrarUsuario($data)){
                 $this->load->view('inicio.php');
