@@ -149,15 +149,6 @@ i{
             <div class="c1">
                 <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
             </div>
-            <div class="c2">
-                <u style="color:lightcoral"><a class="af">Comprar</a></u>
-            </div>
-            <div class="c2">
-                <label style="color: #389393">|</label>
-            </div>
-            <div class="c2">
-                <u style="color:lightcoral"><a href = "<?= base_url().'/index.php/welcome/publicarViajes'?>">Viaje</a></u>
-            </div>
 			<div class="c1">
                 <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">
                 <button type="button" style="background-color:dimgray; border-radius:5px;" class="buscar">
