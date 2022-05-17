@@ -153,6 +153,42 @@
         animation: show 0.6s;
     }
 
+    /*ESTILOS DEL FOOTER*/
+.conteinerF {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.c1F {
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+}
+
+.c2F {
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+}
+i{
+    height:50px; 
+    width: auto;
+    opacity: 50%;
+}
+.buscar{
+    max-height: 40px;
+}
+
+.iconos{
+    max-height: 40px;
+    max-width: 40px;
+    margin: 3%;
+    border: none;
+    background-color: white;
+}
+
     @keyframes show {
 
         0%,
@@ -316,9 +352,8 @@
                     <input type="text" placeholder="Telefono" name="telefono"/>
                 </div>
                 <div class="c2">
-                    <button  type="button" class="file-select btn" id="btn">
+                    <button  type="button" class="file-select btn" id="btn" style="border-color:#389393; border-radius:5px; background-color:#389393; opacity:70%; color: white;">
                         Agregar imagen
-
                     </button>
                     <input name="imagen" id="imagen" class="d-none" />
                 </div>
@@ -349,13 +384,13 @@
         <div class="overlay">
             <div class="overlay-panel overlay-left">
                 <h1>Hola :)</h1>
-                <img src="logo.png" height="300px" width="auto">
+                <img src="https://res.cloudinary.com/dmc55ugqh/image/upload/v1652475704/te_lo_llevo-removebg-preview_qhl4w4.png" height="300px" width="auto">
                 <p>Estas en registrar usuario, si usted ya tiene una cuenta presione el boton Iniciar Sesion</p>
                 <button class="ghost" id="signIn">Iniciar Sesion</button>
             </div>
             <div class="overlay-panel overlay-right">
                 <h1>Hola, Bienvenido</h1>
-                <img src="logo.png" height="300px" width="auto">
+                <img src="https://res.cloudinary.com/dmc55ugqh/image/upload/v1652475704/te_lo_llevo-removebg-preview_qhl4w4.png" height="300px" width="auto">
                 <p>Ingrese su nombre de usuario y contrasenia, si usted no tiene cuenta presione el boton Registrarse
                 </p>
                 <button class="ghost" id="signUp">Registrarse</button>
@@ -369,8 +404,6 @@
 ?>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <SCRIPT LANGUAGE="JavaScript">
-    
-
 
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
@@ -383,51 +416,45 @@
     signInButton.addEventListener('click', () => {
         container.classList.remove("right-panel-active");
     });
+    
+    //imagen en cloudinary
 
-   
-  
+    const btn = document.querySelector("#btn");
+    let imagen = document.getElementById("imagen");
+    let urlImagen = '';
+    const widget_cloudinary = cloudinary.createUploadWidget({
+    cloudName: "dmc55ugqh",
+    uploadPreset: "fkvyrxo1"
+    }, (error, result) => {
+    if (!error && result && result.event === 'success') {
+        console.log(result.info.secure_url)
+        urlImagen = result.info.secure_url;
+        imagen.value = urlImagen;
+    }
+    })
+    btn.addEventListener("click", e => {
+    e.preventDefault();
+    widget_cloudinary.open();
+    }, false)
+    //Validar contrasena
+    function validarContrasena() {
+    var p1 = document.getElementById('pass1').value;
+    var p2 = document.getElementById('pass2').value;
 
-
-
-//Validar contrasena
-function validarContrasena() {
-var p1 = document.getElementById('pass1').value;
-var p2 = document.getElementById('pass2').value;
-
-    if (p1 != p2) {
-    alert("Las passwords deben de coincidir");
-    return false;
-  } else {
-    alert("Todo esta correcto");
-    return true; 
-  }
-}
+        if (p1 != p2) {
+        alert("Las passwords deben de coincidir");
+        return false;
+    } else {
+        alert("Todo esta correcto");
+        alert(imagen.value);
+        return true; 
+    }
+    }
 //enter
 function enterEnviar(event){
     if(event.keyCode == 13){
-      validarContrasena()
+        validarContrasena()
     }
 }
-
-//imagen en cloudinary
-
-const btn = document.querySelector("#btn");
-        const imagen = document.querySelector("#imagen");
-        let urlImagen = ''
-        const widget_cloudinary = cloudinary.createUploadWidget({
-            cloudName: "dmc55ugqh",
-            uploadPreset: "fkvyrxo1"
-        }, (error, result) => {
-            if (!error && result && result.event === 'success') {
-                console.log(result.info.secure_url)
-                urlImagen = result.info.secure_url;
-            }
-        })
-        btn.addEventListener("click", e => {
-            e.preventDefault();
-            widget_cloudinary.open()
-        }, false)
-        imagen.value = urlImagen;
-        console.log(imagen.value);
 </SCRIPT>
 
