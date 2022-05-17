@@ -17,6 +17,7 @@
                         Comprador:
                     </u>
                 </label>
+                <br>
                 <?if($promedioC == 0){?>
                         <i style='font-size:15px; color:#fa7f72;' class='far'>&#xf004;</i>
                         <i style='font-size:15px; color:#fa7f72;' class='far'>&#xf004;</i>
@@ -114,7 +115,7 @@
                 <h3 style="font-family: 'Unica One', cursive;">
                     <u style="color: #606060;"><?=$nombre.'<br>'.$apellido?></u>
                 </h3>
-                <img src="https://res.cloudinary.com/dmc55ugqh/image/upload/v1652475712/cld-sample.jpg" alt="Foto de perfil" style="margin-bottom: 15%; margin-left:15%; max-width: 200px; max-height: auto;">
+                <img src="<?=$imagen?>" alt="Foto de perfil" style="margin-bottom: 15%; margin-left:15%; max-width: 200px; max-height: auto;">
             </div>
 
         </div>
@@ -158,9 +159,3 @@
 <?php
     include ('footer.php');
 ?>
-<script>
-    // Rating Initialization
-    $(document).ready(function() {
-    $('#rateMe1').mdbRate();
-    });
-</script>

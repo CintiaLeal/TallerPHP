@@ -57,7 +57,7 @@ class Usuario extends CI_Controller {
             $username = $_POST['username'];
             $apellido = $_POST['apellido'];
             $telefono = $_POST['telefono'];
-            $img = $_POST['img'];
+            $img = $_POST['imagen'];
             $email = $_POST['email'];
             $bio = $_POST['biografia'];
             $password = $_POST['password'];

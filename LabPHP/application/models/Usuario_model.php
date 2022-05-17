@@ -56,6 +56,7 @@ class Usuario_model extends CI_Model {
                 $apellido = $row->apellido;
                 $biografia = $row->biografia;
                 $unido = $row->unido;
+                $img = $row->img;
             }
             $una = 0;
             $dos = 0;
@@ -133,6 +134,7 @@ class Usuario_model extends CI_Model {
                 'apellido' => $apellido,
                 'biografia' => $biografia,
                 'unido' => $unido,
+                'imagen' => $img,
                 'promedioC' => $promedioC,
                 'promedioV' => $promedioV,
                 'comentarios' => $comentarios
