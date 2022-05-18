@@ -47,9 +47,9 @@ class Usuario_model extends CI_Model {
 
     public function datosPerfil($nick){
         $p = $this->db->query("select * from usuarios where nick = '".$nick."'")->result();
-        $estrellasC = $this->db->query("select estrellas from valoraciones where tipo='comprador'")->result();
-        $estrellasV = $this->db->query("select estrellas from valoraciones where tipo='viajero'")->result();
-        $valoraciones = $this->db->query("select comentario from valoraciones")->result();
+        $estrellasC = $this->db->query("select estrellas from valoraciones where tipo='comprador' and recibe = '$nick'")->result();
+        $estrellasV = $this->db->query("select estrellas from valoraciones where tipo='viajero' and recibe = '$nick'")->result();
+        $valoraciones = $this->db->query("select comentario from valoraciones where recibe = '$nick'")->result();
         if(isset($p)){
             foreach($p as $row){
                 $nombre = $row->nombre;

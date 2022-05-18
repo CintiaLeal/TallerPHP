@@ -74,7 +74,10 @@ class Usuario extends CI_Controller {
                 'unido' => $fechaActual
             );
             if($this->Usuario_model->registrarUsuario($data)){
-                $this->load->view('inicio.php');
+                $this->load->view('exito.php');
+            }
+            else{
+                $this->load->view('error.php');
             }   
     }
 
@@ -91,9 +94,8 @@ class Usuario extends CI_Controller {
             $this->load->view('inicio.php');
         }
         else{
-            //FALTA MANDAR UNA ALERTA PARA QUE QUEDE CON MEJOR VISTA AL USUARIO
-            echo "No se ha podido iniciar sesión";
-            $this->load->view('inicio.php');
+            //POR AHORA DEJAMOS ESTO, VER SI PODEMOS QUE SEA SOLO UNA ALERTA
+            $this->load->view('error.php');
         }
     }
 
@@ -101,6 +103,9 @@ class Usuario extends CI_Controller {
         session_unset();
         if(!isset($_SESSION["usuario"])){
             $this->load->view('inicio.php');
+        }
+        else{
+            $this->load->view('error.php');
         }
     }
 
@@ -113,12 +118,17 @@ class Usuario extends CI_Controller {
                 $this->load->view('perfiles.php',$datos);
             }
             else{
-                $this->load->view('inicio.php');
+                $this->load->view('error.php');
             }
         }
         else{
-            $this->load->view('inicio.php');
+            //SIGNIFICA QUE NO HAY SESION INICIADA
+            $this->load->view('error.php');
         }
         
+    }
+
+    function editar(){
+
     }
 }
