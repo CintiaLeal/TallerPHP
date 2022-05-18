@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(isset($_SESSION)){
     include ('headerLogueado.php');
 }
@@ -259,7 +259,7 @@ success: function(resp){
 <body>
     <div class="container">
 
-        <form action="<?= base_url().'/index.php/pedido/registro'?>" method="POST">
+        <form action="<?= base_url().'/index.php/Pedido/registro'?>" method="POST">
             <!--Row with two equal columns-->
             <div class="row">
 

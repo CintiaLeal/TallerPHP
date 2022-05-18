@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(isset($_SESSION)){
+    include ('headerLogueado.php');
+}
+else{
+    include ('header.php');
+}
+
+?>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -299,46 +309,10 @@ i{
         width: 50%;
         padding: 1%;
     }
-    /*ESTILOS PARA EL FOOTER */
-    .af{
-        font-family: 'Sen', sans-serif;
-        color: #fa7f72;
-    }
-    .conteinerF {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .c1F {
-        width: 20%;
-        padding: 1%;
-        margin: 1%;
-    }
-    
-    .c2F {
-        width: 20%;
-        padding: 1%;
-        margin: 1%;
-    }
-    i{
-        height:50px; 
-        width: auto;
-        opacity: 50%;
-    }
 </style>
 <body>
 
-<?php
-if(isset($_SESSION["usuario"])){
-    include ('headerLogueado.php');
-}
-else{
-    include ('header.php');
-}
-
-?>
 
 <div class="container" id="container">
     <div class="form-container sign-up-container">
@@ -408,10 +382,6 @@ else{
             </div>
         </div>
     </div>
-        
-    <?php
-        include ('footer.php');
-    ?>
 </div>
 
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
@@ -470,3 +440,7 @@ function enterEnviar(event){
 }
 </SCRIPT>
 
+        
+<?php
+    include ('footer.php');
+?>

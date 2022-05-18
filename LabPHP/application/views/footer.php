@@ -1,4 +1,35 @@
-        <footer>
+<style>
+        /*ESTILOS PARA EL FOOTER */
+        .af{
+        font-family: 'Sen', sans-serif;
+        color: #fa7f72;
+    }
+    .conteinerF {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .c1F {
+        width: 20%;
+        padding: 1%;
+        margin: 1%;
+    }
+    
+    .c2F {
+        width: 20%;
+        padding: 1%;
+        margin: 1%;
+    }
+    i{
+        height:50px; 
+        width: auto;
+        opacity: 50%;
+    }
+    </style>
+
+<footer>
             <div class="conteinerF">
                 <div class="c1F">
                     <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475444/74717_lvmzx5.png" height="40px" width="auto" style="opacity: 50%; margin: 1%;">
