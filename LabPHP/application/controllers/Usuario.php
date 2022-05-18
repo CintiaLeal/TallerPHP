@@ -173,4 +173,8 @@ class Usuario extends CI_Controller {
             $this->load->view('error.php');
         }
     }
+
+    function editarUsuario(){
+        $this->load->view('editarUsuario.php');
+    }
 }

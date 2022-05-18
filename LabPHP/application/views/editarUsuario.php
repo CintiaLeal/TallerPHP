@@ -7,7 +7,7 @@ else{
 }
 
 ?>
-<form action="<?= base_url().'/index.php/usuario/editarUsuario'?>" id="form" method="POST">
+<form action="<?= base_url().'/index.php/usuario/editar'?>" id="form" method="POST">
     <div style="display: flex; justify-content:center; margin-bottom: 3%;">
             <h4><u style="font-family: 'Unica One', cursive; color: darksalmon;">Ingrese los datos que desea editar</u></h4>
     </div>
@@ -36,7 +36,7 @@ else{
                 Editar imagen
             </button>
             <input name="imagen" id="imagen" class="d-none"/>
-            <button  type="button" id="confirmar" style="border-color:lightcoral; border-radius:5px; background-color:lightcoral; opacity:70%; color: white; margin: 5px; margin-left:10%">
+            <button  type="submit" id="confirmar" style="border-color:lightcoral; border-radius:5px; background-color:lightcoral; opacity:70%; color: white; margin: 5px; margin-left:10%">
                 Confirmar
             </button>
     </div>
@@ -44,7 +44,7 @@ else{
 <?php
     include ('footer.php');
 ?>
-
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <script>
     //imagen en cloudinary
     const btn = document.querySelector("#btn");
