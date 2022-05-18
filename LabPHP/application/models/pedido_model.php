@@ -9,9 +9,9 @@ class Viaje_model extends CI_Model {
         
     }
 
-    public function registrarPedido($data){
+    public function registrar($data){
         $this->db->insert('pedidos',array(
-            'usuario' => $data[username],
+            'usuario' => $data['username'],
             'titulo' => $data['titulo'],
             'descripcion' => $data['descripcion'],
             'precio' => $data['precio'],
