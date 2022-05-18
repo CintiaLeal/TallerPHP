@@ -8,7 +8,6 @@ class Pedido_model extends CI_Model {
         $this->db->load_rdriver();
         
     }
-
     public function registrar($data){
         $this->db->insert('pedidos',array(
             'usuario' => $data['username'],
