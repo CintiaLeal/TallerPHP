@@ -15,6 +15,11 @@ class Usuario extends CI_Controller {
         $this->load->model('Usuario_model');
     }
 
+    function index(){
+        session_start();
+        $this->load->view('inicio.php');
+    }
+
     function enviarMail($email){
 
         // $mail = new PHPMailer(true);
@@ -175,6 +180,7 @@ class Usuario extends CI_Controller {
     }
 
     function editarUsuario(){
+        session_start();
         $this->load->view('editarUsuario.php');
     }
 }
