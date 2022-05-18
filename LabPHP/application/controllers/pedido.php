@@ -8,6 +8,10 @@ class Pedidos extends CI_Controller {
 	}
 
     function registro(){
+        
+        alert('lleegaaadlkdsfhadsj');
+        console.log("llega");
+        
         session_start();
         $username = $_SESSION["usuario"];
         $nombre = $_post["nombre"];
