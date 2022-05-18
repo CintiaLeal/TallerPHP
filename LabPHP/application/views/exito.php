@@ -92,7 +92,7 @@
 
     <body>
         <div id="logo">
-            <a href="<?= base_url().'/index.php/welcome/index'?>" style="text-align:center;">
+            <a href="<?= base_url().'/index.php'?>" style="text-align:center;">
                 <img src="https://res.cloudinary.com/dmc55ugqh/image/upload/v1652475704/te_lo_llevo-removebg-preview_qhl4w4.png" style="max-height:100px; max-width: auto;">
             </a>
         </div>
@@ -104,7 +104,7 @@
             <h2 style="text-align:center;">Su petición ha sido procesada con éxito</h2>
         </div>
         <div class="row d-flex flex-column align-items-center">
-            <a href="<?= base_url().'/index.php/welcome/index'?>" style="text-align:center;"><button type="submit" class="button button1"><b style="color: white;">Volver al inicio</b></button></a>
+            <a href="<?= base_url().'/index.php'?>" style="text-align:center;"><button type="submit" class="button button1"><b style="color: white;">Volver al inicio</b></button></a>
         </div>
 
         <?php

@@ -155,7 +155,8 @@ class Usuario_model extends CI_Model {
             $this->db->query("update usuarios set apellido = "."'".$data["apellido"]."'"."where nick ="."'".$_SESSION["usuario"]."'");
         }
         if($data['biografia']!=null){
-            $this->db->query("update usuarios set biografia = "."'".$data["biografia"]."'"."where nick ="."'".$_SESSION["usuario"]."'");
+            $bio = $data['biografia'];
+            $this->db->query("update usuarios set biografia = "."'".$bio."'"." where nick ="."'".$_SESSION["usuario"]."'");
         }
         if($data['telefono']!=null){
             $this->db->query("update usuarios set telefono = "."'".$data["telefono"]."'"."where nick ="."'".$_SESSION["usuario"]."'");

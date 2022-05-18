@@ -1,5 +1,5 @@
 <?php 
-    if(isset($_SESSION)){
+    if(isset($_SESSION["usuario"])){
         include ('headerLogueado.php');
     }
     else{

@@ -41,7 +41,7 @@
 <div>
 <form>
     <p class="clasificacion">
-      <input id="radio1" type="radio" name="estrellas" value="5"><!--
+      --><input id="radio1" type="radio" name="estrellas" value="5"><!--
       --><label for="radio1">❤</label><!--
       --><input id="radio2" type="radio" name="estrellas" value="4"><!--
       --><label for="radio2">❤</label><!--
