@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_SESSION)){
     include ('headerLogueado.php');
 }
@@ -7,7 +8,6 @@ else{
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,16 +147,28 @@ else{
     </style>
 </head>
 <script>
+    function toggle() {
+        var element = document.getElementById('element1');
+        var element2 = document.getElementById('element2');
+        var uno = document.getElementById('btn');
+        if (element.style.display != 'none' & element.style.display != 'none') {
+            element.style.display = 'none';
+            element2.style.display = 'none';
+            uno.innerText = 'Solo ida';
+        } else {
+            element2.style.display = '';
+            element.style.display = '';
+            uno.innerText = 'Ida y vuelta';
+        }
+    }
     function buscar(){
-
         var estado = $("#estado").val();
         $.ajax({
             type: 'POST',
-            url: '<?php echo base_url() . 'index.php/viaje/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+            url: '<?php echo base_url() . 'index.php/lugar/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
             data: {estado: estado}, //estado primero es el que manda 
             dataType: "json",
             success: function(resp){   
-
                 var select = document.getElementById("estados");
                 for (let i = select.options.length; i >= 0; i--) {
                     select.remove(i);
@@ -167,24 +179,19 @@ else{
                     var option = document.createElement("option");
                     option.text = element.name;
                     option.value = element.id;
-                    select.add(option);
-                    
+                    select.add(option);                    
                 });
             }
         });
-
     }
-    
     function buscarCiudad(){
-
     var estado = $("#estados").val();
     $.ajax({
         type: 'POST',
-        url: '<?php echo base_url() . 'index.php/viaje/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+        url: '<?php echo base_url() . 'index.php/lugar/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
         data: {estado: estado}, //estado primero es el que manda 
         dataType: "json",
         success: function(resp){   
-
             var select = document.getElementById("ciudades");
             for (let i = select.options.length; i >= 0; i--) {
                 select.remove(i);
@@ -194,100 +201,172 @@ else{
                 console.log(element);
                 var option = document.createElement("option");
                 option.text = element.name;
-                select.add(option);
-                
+                option.value = element.id;
+                select.add(option);         
             });
         }
     });
-
+}
+function buscarx(){
+var estado = $("#est").val();
+$.ajax({
+    type: 'POST',
+    url: '<?php echo base_url() . 'index.php/lugar/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+    data: {estado: estado}, //estado primero es el que manda 
+    dataType: "json",
+    success: function(resp){   
+        var select = document.getElementById("esta");
+        for (let i = select.options.length; i >= 0; i--) {
+            select.remove(i);
+        }
+        let valorFinal = resp.estados;
+        valorFinal.forEach(element =>  {
+            console.log(element);
+            var option = document.createElement("option");
+            option.text = element.name;
+            option.value = element.id;
+            select.add(option);         
+        });
+    }
+});
+}
+function buscarCiudadx(){
+var estado = $("#esta").val();
+$.ajax({
+type: 'POST',
+url: '<?php echo base_url() . 'index.php/lugar/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
+data: {estado: estado}, //estado primero es el que manda 
+dataType: "json",
+success: function(resp){   
+    var select = document.getElementById("c");
+    for (let i = select.options.length; i >= 0; i--) {
+        select.remove(i);
+    }
+    let valorFinal = resp.ciudades;
+    valorFinal.forEach(element =>  {
+        console.log(element);
+        var option = document.createElement("option");
+        option.text = element.name;
+        option.value = element.id;
+        select.add(option);
+        
+    });
+}
+});
 }
 </script>
 
 <body>
     <div class="container">
-        <!--Row with two equal columns-->
-        <div class="row">
 
-            <div class="col">
-                <div class="c1">
-                    <h2>Nuevo pedido</h2>
-                </div>
+        <form action="<?= base_url().'/index.php/pedido/registro'?>" method="POST">
+            <!--Row with two equal columns-->
+            <div class="row">
 
-                <div class="cont">
-                    <div class="c2p">
-                        <p>Nombre:</p>
-                        <input type="text" />
+                <div class="col">
+                    <div class="c1">
+                        <h2>Nuevo pedido</h2>
                     </div>
-                    <div class="c2p">
+
+                    <div class="cont">
                         <div class="c2p">
-                            <select name="estado" id="estado" onchange="buscar()">
-                            <option value="">Pais</option>
-                                <?php foreach ($Lugar as $row) {?>
-                                <option value="<?=$row->id;?>"><?=$row->name;?></option>
-                                <?php } ?>
-                            </select>
-                            </div>
+                            <p>Nombre:</p>
+                            <input name="nombre" id="nombre" type="text" />
+                        </div>
+                        <div class="c2p">
                             <div class="c2p">
-                            <select id="estados"  name="estados" onchange="buscarCiudad()">
-                                <option>Estado</option>
-                            </select>
+                            <p>origen:</p>
+                                <select name="estado" id="estado" onchange="buscar()">
+                                <option value="">Pais</option>
+                                    <?php foreach ($Lugar as $row) {?>
+                                    <option value="<?=$row->id;?>"><?=$row->name;?></option>
+                                    <?php } ?>
+                                </select>
+                                </div>
+                                <div class="c2p">
+                                <select id="estados"  name="estados" onchange="buscarCiudad()">
+                                    <option>Estado</option>
+                                </select>
+                                </div>
+                                <div class="c2p">
+                                <select id="ciudades"  name="ciudades" >
+                                    <option>Ciudad</option>
+                                </select>
                             </div>
+                            
                             <div class="c2p">
-                            <select id="ciudades"  name="ciudades" >
-                                <option>Ciudad</option>
-                            </select>
+                                <p>destino:</p>
+                                <select name="est" id="est" onchange="buscarx()">
+                                <option value="">Pais</option>
+                                    <?php foreach ($Lugar as $row) {?>
+                                    <option value="<?=$row->id;?>"><?=$row->name;?></option>
+                                    <?php } ?>
+                                </select>
+                                </div>
+                                <div class="c2p">
+                                <select id="esta"  name="esta" onchange="buscarCiudadx()">
+                                    <option>Estado</option>
+                                </select>
+                                </div>
+                                <div class="c2p">
+                                <select id="c"  name="c" >
+                                    <option>Ciudad</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="c2p">
+                            <div>
+                                <p>Fecha de minima:</p>
+                                <input name="min" type="date" />
+                            </div>
+                            <div>
+                                <p>Fecha de maxima:</p>
+                                <input name = "max" type="date" />
+                            </div>
+                        </div>
+                        <div class="c2p">
+                            <p>Imagen:</p>
+                            <button  type="button" class="file-select btn" id="btn">
+                            Seleccionar Archivo
+                            </button>
+                            <input name="imagen" id="imagen" class="d-none" />
+                        </div>
+                        <div class="c2p">
+                            <p>Precio:</p>
+                            <input type="text" id="neto" onkeyup="calcular()" />
+                        </div>
+                        <div class="c2p">
+                            <p>Link</p>
+                            <input id = "link" name="link" type="text">
+                        </div>
+                        <div class="c1p">
+                            <p>Descripcion</p>
+                            <textarea id = "descripcion" name="descripcion" rows="5" cols="100"></textarea>
+                            <p class="amini">Incluir detalles sobre tu pedido</p>
                         </div>
                     </div>
-
-                    <div class="c2p">
-                        <p>Fecha de minima:</p>
-                        <input type="date" />
-                    </div>
-                    <div class="c2p">
-                        <p>Fecha de maxima:</p>
-                        <input type="date" />
-                    </div>
-                    <div class="c2p">
-                        <p>Imagen:</p>
-                        <button  type="button" class="file-select btn" id="btn">
-                        Seleccionar Archivo
-                        </button>
-                        <input name="imagen" id="imagen" class="d-none" />
-                    </div>
-                    <div class="c2p">
-                        <p>Precio:</p>
-                        <input type="text" id="neto" onkeyup="calcular()" />
-                    </div>
-                    <div class="c2p">
-                        <p>Link</p>
-                        <input type="text">
-                    </div>
-                    <div class="c1p">
-                        <p>Descripcion</p>
-                        <textarea name="descripcion" rows="5" cols="100"></textarea>
-                        <p class="amini">Incluir detalles sobre tu pedido</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col3">
-                <div class="">
-                    <p class="pmini" value="neto">Precio: $ <input type="text" class="inputCalculados" id="pneto" disabled="disabled" /> </p>
-                    <p class="pmini" id="comiTeloLLevo">Tasa de TeloLLevo: $ <input type="text" class="inputCalculados" id="comisTeloLLevo" disabled="disabled" /></p>
-                    <p class="pmini" id="comi">Recompensa del viajero: $ <input type="text" class="inputCalculados" id="comis" disabled="disabled" /></p>
-                    <p class="pnegrita"><b>Pago total:  $ <input type="text" id="total" class="inputCalculados" disabled="disabled" /> </b></p>
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col3">
+                    <div class="">
+                        <p class="pmini" value="neto">Precio: $ <input type="text" class="inputCalculados" id="pneto" disabled="disabled" /> </p>
+                        <p class="pmini" id="comiTeloLLevo">Tasa de TeloLLevo: $ <input type="text" class="inputCalculados" id="comisTeloLLevo" disabled="disabled" /></p>
+                        <p class="pmini" id="comi">Recompensa del viajero: $ <input type="text" class="inputCalculados" id="comis" disabled="disabled" /></p>
+                        <p class="pnegrita"><b>Pago total:  $ <input type="text" id="total" name="total" class="inputCalculados" disabled="disabled" /> </b></p>
+                    </div>
 
-        </div>
-        <!--Row with three equal columns-->
-        <div class="row">
-            <button class="btnbtn" type="submit">Hacer Pedido</button>
+                </div>
 
-        </div>
+            </div>
+            <!--Row with three equal columns-->
+            <div class="row">
+                <button class="btnbtn" type="submit">Hacer Pedido</button>
+
+            </div>
+        </form>
 
     </div>
 

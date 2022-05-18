@@ -135,7 +135,6 @@ else{
         }
     }
     function buscar(){
-
         var estado = $("#estado").val();
         $.ajax({
             type: 'POST',
@@ -143,7 +142,6 @@ else{
             data: {estado: estado}, //estado primero es el que manda 
             dataType: "json",
             success: function(resp){   
-
                 var select = document.getElementById("estados");
                 for (let i = select.options.length; i >= 0; i--) {
                     select.remove(i);
@@ -154,16 +152,12 @@ else{
                     var option = document.createElement("option");
                     option.text = element.name;
                     option.value = element.id;
-                    select.add(option);
-                    
+                    select.add(option);                    
                 });
             }
         });
-
     }
-    
     function buscarCiudad(){
-
     var estado = $("#estados").val();
     $.ajax({
         type: 'POST',
@@ -171,7 +165,6 @@ else{
         data: {estado: estado}, //estado primero es el que manda 
         dataType: "json",
         success: function(resp){   
-
             var select = document.getElementById("ciudades");
             for (let i = select.options.length; i >= 0; i--) {
                 select.remove(i);
@@ -182,17 +175,13 @@ else{
                 var option = document.createElement("option");
                 option.text = element.name;
                 option.value = element.id;
-                select.add(option);
-                
+                select.add(option);         
             });
         }
     });
-
 }
-
 //-----------------------------------------HASTA
 function buscarx(){
-
 var estado = $("#est").val();
 $.ajax({
     type: 'POST',
@@ -200,7 +189,6 @@ $.ajax({
     data: {estado: estado}, //estado primero es el que manda 
     dataType: "json",
     success: function(resp){   
-
         var select = document.getElementById("esta");
         for (let i = select.options.length; i >= 0; i--) {
             select.remove(i);
@@ -211,16 +199,12 @@ $.ajax({
             var option = document.createElement("option");
             option.text = element.name;
             option.value = element.id;
-            select.add(option);
-            
+            select.add(option);         
         });
     }
 });
-
 }
-
 function buscarCiudadx(){
-
 var estado = $("#esta").val();
 $.ajax({
 type: 'POST',
@@ -228,7 +212,6 @@ url: '<?php echo base_url() . 'index.php/lugar/getCiudad'; ?>', // C:\MAMP\htdoc
 data: {estado: estado}, //estado primero es el que manda 
 dataType: "json",
 success: function(resp){   
-
     var select = document.getElementById("c");
     for (let i = select.options.length; i >= 0; i--) {
         select.remove(i);
@@ -244,16 +227,13 @@ success: function(resp){
     });
 }
 });
-
 }
 </script>
 <body>
     <div class="container">
         <!--Row with two equal columns-->
         <div class="row">
-
             <div class="col">
-          
                     <h2>Publicar Viaje</h2>
                     <button class="btnbtn" id="btn" onclick="toggle();"> Ida y vuelta </button>
                 
@@ -309,21 +289,13 @@ success: function(resp){
                         <div class="c2p">
                             <p id="element2">Fecha vuelta:</p>
                             <input id="element1" name="element1"  type="date" value="none" />
-                        </div>
-
-                       
+                        </div>     
                 </div>
             </div>
-
             <button class="btnAViaje" type="submit">Publicar Viaje</button>
         </form>   
-     
     </div>
- 
-
-    </div>
-
- 
+    </div> 
 </body>
 <?php
     include ('footer.php');
