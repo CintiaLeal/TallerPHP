@@ -145,4 +145,23 @@ class Usuario_model extends CI_Model {
             return false;
         }
     }
+
+    function editar($data){
+        session_start();
+        if($data['nombre']!=null){
+            $q1 = $this->db->query("update usuarios set nombre = "."'".$data["nombre"]."'"."where nick ="."'".$_SESSION["usuario"]."'")->result();
+        }
+        if($data['apellido']!=null){
+            $q2 = $this->db->query("update usuarios set apellido = "."'".$data["apellido"]."'"."where nick ="."'".$_SESSION["usuario"]."'")->result();
+        }
+        if($data['biografia']!=null){
+            $q3 = $this->db->query("update usuarios set biografia = "."'".$data["biografia"]."'"."where nick ="."'".$_SESSION["usuario"]."'")->result();
+        }
+        if($data['telefono']!=null){
+            $q4 = $this->db->query("update usuarios set telefono = "."'".$data["telefono"]."'"."where nick ="."'".$_SESSION["usuario"]."'")->result();
+        }
+        if($data['imagen']!=null){
+            $q5 = $this->db->query("update usuarios set img = "."'".$data["imagen"]."'"."where nick ="."'".$_SESSION["usuario"]."'")->result();
+        }
+    }
 }

@@ -186,6 +186,13 @@ i{
     background-color: white;
 }
 
+/*ESTILOS PARA EDITAR USUARIO*/
+.cU{
+    width: 15%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
 </style>
     
     </head>

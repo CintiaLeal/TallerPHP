@@ -129,6 +129,48 @@ class Usuario extends CI_Controller {
     }
 
     function editar(){
-
+        if(isset($_POST['nombre'])){
+            $nombre = $_POST['nombre'];
+        }
+        else{
+            $nombre = null;
+        }
+        if(isset($_POST['apellido'])){
+            $apellido = $_POST['apellido'];
+        }
+        else{
+            $apellido = null;
+        }
+        if(isset($_POST['biografia'])){
+            $biografia = $_POST['biografia'];
+        }
+        else{
+            $biografia = null;
+        }
+        if(isset($_POST['telefono'])){
+            $telefono = $_POST['telefono'];
+        }
+        else{
+            $telefono = null;
+        }
+        if(isset($_POST['imagen'])){
+            $imagen = $_POST['imagen'];
+        }
+        else{
+            $imagen = null;
+        }
+        $data = array(
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+            'biografia' => $biografia,
+            'telefono' => $telefono,
+            'imagen'=> $imagen
+        );
+        if($this->Usuario_model->editar($data)){
+            $this->load->view('exito.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
     }
 }
