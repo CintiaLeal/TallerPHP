@@ -26,4 +26,7 @@ class Welcome extends CI_Controller {
         $Lugar =  $this->Lugar_model->getLugar();
 		$this->load->view('publicarViajes.php', compact("Lugar"));
 	}
+	public function error(){
+		$this->load->view('error.php');
+	}
 }

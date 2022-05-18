@@ -24,6 +24,5 @@ class Viaje_model extends CI_Model {
             'destino' => $data['destino'],
             )
         );
-        
     }
 }
