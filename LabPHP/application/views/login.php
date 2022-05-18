@@ -329,6 +329,17 @@ i{
     }
 </style>
 <body>
+
+<?php
+if(isset($_SESSION["usuario"])){
+    include ('headerLogueado.php');
+}
+else{
+    include ('header.php');
+}
+
+?>
+
 <div class="container" id="container">
     <div class="form-container sign-up-container">
         <form action="<?= base_url().'/index.php/usuario/registro'?>" method="POST">
@@ -397,11 +408,12 @@ i{
             </div>
         </div>
     </div>
+        
+    <?php
+        include ('footer.php');
+    ?>
 </div>
 
-<?php
-    include ('footer.php');
-?>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <SCRIPT LANGUAGE="JavaScript">
 

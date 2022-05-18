@@ -1,6 +1,6 @@
 <?php
 
-class Viaje_model extends CI_Model {
+class Pedido_model extends CI_Model {
 
     function __construct(){
         parent::__construct();
@@ -20,7 +20,7 @@ class Viaje_model extends CI_Model {
             'fechaMin' => $data['fechaMin'],
             'fechaMax' => $data['fechaMax'],
             'estado' => $data['estado'],
-            'origen' => $data['origen'],
+            'origen' => $data['origen']
             'destino' => $data['destino'],
             )
         );

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pedidos extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-        $this->login->model('pedidos_model');
+        $this->login->model('pedido_model');
 	}
 
     function registro(){
@@ -32,7 +32,7 @@ class Pedidos extends CI_Controller {
             'origen' => $ciudadD, 
             'destino' => $ciudadH,
         );
-        if($this->pedido_model->registrar($data)){
+        if($this->Pedido_model->registrar($data)){
             $this->load->view('inicio.php');
         }
         else{
