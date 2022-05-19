@@ -251,7 +251,7 @@ i{
                         <a href="<?= base_url().'/index.php/usuario/verPerfil'?>">Ver perfil</a>
                         <a href="<?= base_url().'/index.php/usuario/editarUsuario'?>">Editar perfil</a>
                         <a href="#">Ver viajes</a>
-                        <a href="#">Ver pedidos</a>
+                        <a href="<?= base_url().'/index.php/usuario/verPedidos'?>">Ver pedidos</a>
                         <a href="<?= base_url().'/index.php/usuario/cerrarSesion'?>">Cerrar sesión</a>
                     </div>
                 </div>   

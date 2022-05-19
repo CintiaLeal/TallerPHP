@@ -183,4 +183,10 @@ class Usuario extends CI_Controller {
         session_start();
         $this->load->view('editarUsuario.php');
     }
+
+    function verPedidos(){
+        session_start();
+        $res = $this->Usuario_model->devolverPedidos($_SESSION["usuario"]);
+        $this->load->view('verPedidos.php',$res);
+    }
 }

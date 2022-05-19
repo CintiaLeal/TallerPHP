@@ -30,7 +30,21 @@ else{
 
 <div class="conteiner">
     <textarea class="scroll_text_pedidos"> 
-       
+       <?
+        if($res!=null){
+            foreach($res as $row){
+        ?>
+                <img src="<? echo $row->imagen?>">
+                <? echo $row->titulo?>
+        <?
+            }
+        }
+        else{
+        ?>
+            Ups! No hay pedidos para este usuario.
+        <?
+        }
+       ?>
     </textarea>
 </div>
 

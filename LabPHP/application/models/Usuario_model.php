@@ -166,4 +166,21 @@ class Usuario_model extends CI_Model {
         }
         return true;
     }
+
+    function devolverPedidos($nick){
+        $id = $this->db->query("select id from usuarios where nick ="."'".$nick."'")->result();
+        if(isset($id)){
+            $num = 0;
+            foreach($id as $r){
+                $num = $r->id;
+            }
+            $q = $this->db->query("select * from pedidos p where p.usuario = $num")->result();
+        }
+        if(isset($q)){
+            return $q;
+        }
+        else{
+            return null;
+        }
+    }
 }
