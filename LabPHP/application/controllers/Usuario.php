@@ -20,41 +20,39 @@ class Usuario extends CI_Controller {
         $this->load->view('inicio.php');
     }
 
-    function enviarMail($email){
+    function enviarMail(){
 
-        // $mail = new PHPMailer(true);
+        $mail = new PHPMailer(true);
+        try {
+            // Configuracion SMTP
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                         // Mostrar salida (Desactivar en producción)
+            $mail->isSMTP();                                               // Activar envio SMTP
+            $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
+            $mail->SMTPAuth  = true;                                       // Identificacion SMTP
+            $mail->Username  = 'telollevolabphp@gmail.com';                  // Usuario SMTP
+            $mail->Password  = 'telollevoLavphp2022';	          // Contraseña SMTP
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port  = 587;
+            $mail->setFrom('telollevolabphp@gmail.com', 'TeLoLlevo');                // Remitente del correo
 
-        // try {
-        //     // Configuracion SMTP
-        //     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                         // Mostrar salida (Desactivar en producción)
-        //     $mail->isSMTP();                                               // Activar envio SMTP
-        //     $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
-        //     $mail->SMTPAuth  = true;                                       // Identificacion SMTP
-        //     $mail->Username  = '';                  // Usuario SMTP
-        //     $mail->Password  = '';	          // Contraseña SMTP
-        //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        //     $mail->Port  = 587;
-        //     $mail->setFrom('romias141916@gmail.com', 'Romina');                // Remitente del correo
+            // Destinatarios
+            $mail->addAddress('romias141916@gmail.com', 'Romina');  // Email y nombre del destinatario traerlos del que se registró
 
-        //     // Destinatarios
-        //     $mail->addAddress('romilopez1@hotmail.es', 'Romina');  // Email y nombre del destinatario
-
-        //     // Contenido del correo
-        //     $mail->isHTML(true);
-        //     $mail->Subject = 'Asunto del correo';
-        //     $mail->Body  = 'Contenido del correo <b>en HTML!</b>';
-        //     $mail->AltBody = 'Contenido del correo en texto plano para los clientes de correo que no soporten HTML';
-        //     $mail->send();
-        //     echo 'El mensaje se ha enviado';
-        // } catch (Exception $e) {
-        //     echo "El mensaje no se ha enviado. Mailer Error: {$mail->ErrorInfo}";
-        // }
-        // if($mail->send()){
-        //     return true;
-        // }
-        // else{
-        //     print_r($this->email->print_debugger());
-        // }
+            // Contenido del correo
+            $mail->isHTML(true);
+            $mail->Subject = 'Verificación de mail';
+            $mail->Body  = 'Hola! Necesitamos que verifique su correo';
+            // $mail->AltBody = 'Hola! Necesitamos que verifique su correo';
+            $mail->send();
+        } catch (Exception $e) {
+            echo "El mensaje no se ha enviado. Mailer Error: {$mail->ErrorInfo}";
+        }
+        if($mail->send()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     function registro(){
@@ -187,6 +185,12 @@ class Usuario extends CI_Controller {
     function verPedidos(){
         session_start();
         $res = $this->Usuario_model->devolverPedidos($_SESSION["usuario"]);
-        $this->load->view('verPedidos.php',$res);
+        if($res!=null){
+            $this->load->view('verPedidos.php',$res);
+        }
+        else{
+            $this->load->view('verPedidos.php',$res);
+        }
+        
     }
 }

@@ -177,7 +177,12 @@ class Usuario_model extends CI_Model {
             $q = $this->db->query("select * from pedidos p where p.usuario = $num")->result();
         }
         if(isset($q)){
-            return $q;
+            $res = array();
+            foreach($q as $row){
+                $res["pedido".$row->numero] = $row;
+            }
+            $res2 = array('arreglo' => $res);
+            return $res2;
         }
         else{
             return null;

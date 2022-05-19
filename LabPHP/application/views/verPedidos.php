@@ -29,25 +29,17 @@ else{
 </div>
 
 <div class="conteiner">
-    <textarea class="scroll_text_pedidos"> 
-       <?
-        if($res!=null){
-            foreach($res as $row){
-        ?>
-                <img src="<? echo $row->imagen?>">
-                <? echo $row->titulo?>
-        <?
-            }
-        }
-        else{
-        ?>
-            Ups! No hay pedidos para este usuario.
-        <?
-        }
-       ?>
-    </textarea>
+    <div class="scroll_text_pedidos">
+        <?foreach($arreglo as $row){?>
+            <div style="width:200px;">
+            <img src="<?=$row->imagen?>" style="max-width: 50px;">
+            <?echo "<br>"."<p class="."'texto'".">Titulo: ".$row->titulo."<br>";
+            echo "Descripcion: ".$row->descripcion."<br>";
+            echo "Precio: $".$row->precio."<br></p>";?>
+            </div>
+        <?}?>
+    </div>
 </div>
-
 
 <?php
     include ('footer.php');

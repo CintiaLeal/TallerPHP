@@ -1,37 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pedidos extends CI_Controller {
+class Pedido extends CI_Controller {
 	function __construct(){
 		parent::__construct();
-        $this->login->model('Pedido_model');
+        $this->load->model('Pedido_model');
 	}
 
-    function registro(){
-        
-        alert('lleegaaadlkdsfhadsj');
-        console.log("llega");
-        
+    function registro(){        
         session_start();
         $username = $_SESSION["usuario"];
-        $nombre = $_post["nombre"];
-        $descripcion = $_post["descripsion"];
-        $precio =$_post["total"];
-        $imagen = $_post["imagen"];
-        $link = $_post["link"];
+        $nombre = $_POST["nombre"];
+        $descripcion = $_POST["descripcion"];
+        $imagen = $_POST["imagen"];
+        $link = $_POST["link"];
         $ciudadH = $_POST['c'];
         $ciudadD = $_POST['ciudades'];
         $fechamin =  $_POST['min'];
         $fechamax =  $_POST['max']; //date('d-m-Y');
+        $precio = $_POST['precio'];
         $data = array(
             'username' =>$username,
             'titulo'=>$nombre,
-            'descripsion'=>$descripcion,
+            'descripcion'=>$descripcion,
             'precio'=>$precio,
             'imagen'=>$imagen,
             'link' => $link,
-            'fechamin' => $fechamin,
-            'fechamax' => $fechamax,
+            'fecha_min' => $fechamin,
+            'fecha_max' => $fechamax,
             'estado' => "activo",
             'origen' => $ciudadD, 
             'destino' => $ciudadH,

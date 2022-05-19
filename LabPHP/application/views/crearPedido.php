@@ -345,6 +345,7 @@ success: function(resp){
                             <textarea id = "descripcion" name="descripcion" rows="5" cols="100"></textarea>
                             <p class="amini">Incluir detalles sobre tu pedido</p>
                         </div>
+                        <input name="precio" type="text" id="precio" class="d-none"/>
                     </div>
                 </div>
 
@@ -410,6 +411,7 @@ success: function(resp){
         document.getElementById('comis').value = comi;
         document.getElementById('pneto').value = ne;
         document.getElementById('total').value = total;
+        document.getElementById("precio").value = total;
     }
 </SCRIPT>
 

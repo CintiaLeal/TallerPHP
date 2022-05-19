@@ -198,9 +198,18 @@ i{
 .scroll_text_pedidos{
     border-color:#389393;
     border-radius: 5px;
-    color: white;
-    width: 700px;
-    height: auto;
+    color: black;
+    width: 500px;
+    max-height: 250px;
+    overflow-y: scroll;
+    justify-content:space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.texto{
+    font-family: 'Sen', sans-serif;
 }
 </style>
     

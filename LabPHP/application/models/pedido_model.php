@@ -9,19 +9,31 @@ class Pedido_model extends CI_Model {
         
     }
     public function registrar($data){
-        $this->db->insert('pedidos',array(
-            'usuario' => $data['username'],
+        $id = $this->db->query("select id from usuarios where nick ='".$data['username']."'")->result();
+        if(isset($id)){
+            $num = 0;
+            foreach($id as $r){
+                $num = $r->id;
+            }
+        }
+        if($this->db->insert('pedidos',array(
+            'usuario' => $num,
             'titulo' => $data['titulo'],
             'descripcion' => $data['descripcion'],
             'precio' => $data['precio'],
             'imagen' => $data['imagen'],
             'link' => $data['link'],
-            'fechaMin' => $data['fechaMin'],
-            'fechaMax' => $data['fechaMax'],
+            'fecha_min' => $data['fecha_min'],
+            'fecha_max' => $data['fecha_max'],
             'estado' => $data['estado'],
-            'origen' => $data['origen']
+            'origen' => $data['origen'],
             'destino' => $data['destino'],
             )
-        );
+        )){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
