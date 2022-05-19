@@ -36,7 +36,7 @@ class Usuario extends CI_Controller {
             $mail->setFrom('telollevolabphp@gmail.com', 'TeLoLlevo');                // Remitente del correo
 
             // Destinatarios
-            $mail->addAddress('romias141916@gmail.com', 'Romina');  // Email y nombre del destinatario traerlos del que se registró
+            $mail->addAddress('cintialeal31m@gmail.com', 'Cintia');  // Email y nombre del destinatario traerlos del que se registró
 
             // Contenido del correo
             $mail->isHTML(true);
@@ -85,8 +85,8 @@ class Usuario extends CI_Controller {
     }
 
     function iniciarSesion(){
-        $username = $_GET['username'];
-        $password = $_GET['password'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
         $data = array(
             'nick' => $username,
             'pwd' => $password

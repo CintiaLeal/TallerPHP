@@ -351,7 +351,7 @@ i{
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="GET">
+        <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">
             <h1>Login</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>

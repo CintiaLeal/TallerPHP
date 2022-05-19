@@ -221,13 +221,13 @@ i{
                 <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
             </div>
             <div class="c2">
-                <u style="color:lightcoral"><a href = "<?= base_url().'/index.php/welcome/crearPedido'?>">Comprar</a></u>
+                <u><a href = "<?= base_url().'/index.php/welcome/crearPedido'?>" style="color:lightcoral">Comprar</a></u>
             </div>
             <div class="c2">
                 <label style="color: #389393">|</label>
             </div>
             <div class="c2">
-            <u style="color:lightcoral"><a href = "<?= base_url().'/index.php/welcome/publicarViajes'?>">Viaje</a></u>
+            <u><a href = "<?= base_url().'/index.php/welcome/publicarViajes'?>" style="color:lightcoral">Viaje</a></u>
             </div>
             <div class="c1">
                 <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">
