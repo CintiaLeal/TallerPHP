@@ -20,7 +20,7 @@ class Usuario extends CI_Controller {
         $this->load->view('inicio.php');
     }
 
-    function enviarMail(){
+    function enviarMail($email,$usuario){
 
         $mail = new PHPMailer(true);
         try {
@@ -36,19 +36,20 @@ class Usuario extends CI_Controller {
             $mail->setFrom('telollevolabphp@gmail.com', 'TeLoLlevo');                // Remitente del correo
 
             // Destinatarios
-            $mail->addAddress('cintialeal31m@gmail.com', 'Cintia');  // Email y nombre del destinatario traerlos del que se registró
+            $mail->addAddress($email, $usuario);  // Email y nombre del destinatario traerlos del que se registró
 
             // Contenido del correo
-            $mail->isHTML(true);
+            $numero_aleatorio = mt_rand();
+            $mail->isHTML(false);
             $mail->Subject = 'Verificación de mail';
-            $mail->Body  = 'Hola! Necesitamos que verifique su correo';
+            $mail->Body  = 'Hola! Necesitamos que verifique su correo, por favor introduzca este código de verificación: '.$numero_aleatorio;
             // $mail->AltBody = 'Hola! Necesitamos que verifique su correo';
             $mail->send();
         } catch (Exception $e) {
             echo "El mensaje no se ha enviado. Mailer Error: {$mail->ErrorInfo}";
         }
         if($mail->send()){
-            return true;
+            return $numero_aleatorio;
         }
         else{
             return false;
@@ -76,12 +77,43 @@ class Usuario extends CI_Controller {
                 'password' => $password,
                 'unido' => $fechaActual
             );
-            if($this->Usuario_model->registrarUsuario($data)){
-                $this->load->view('exito.php');
+            //enviar el mail y cargar la vista para verificar el codigo
+            $code = $this->enviarMail($email,$name);
+            if($code!=false){
+                $this->load->view('verificacion.php',$code,$data);
             }
-            else{
+            else{ //es decir que no se pudo mandar el mail
                 $this->load->view('error.php');
             }   
+    }
+
+    function validar(){
+        $name = $_POST['nombre'];
+        $username = $_POST['username'];
+        $apellido = $_POST['apellido'];
+        $telefono = $_POST['telefono'];
+        $img = $_POST['imagen'];
+        $email = $_POST['email'];
+        $bio = $_POST['biografia'];
+        $password = $_POST['password'];
+        $fechaActual = $_POST['unido'];
+        $data = array(
+            'nombre' => $name, 
+            'username' => $username,
+            'apellido' => $apellido,
+            'telefono' => $telefono,
+            'img' => $img,
+            'email' => $email,
+            'biografia' => $bio,
+            'password' => $password,
+            'unido' => $fechaActual
+        );
+        if($this->Usuario_model->registrarUsuario($data)){
+            $this->load->view('exito.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
     }
 
     function iniciarSesion(){
