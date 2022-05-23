@@ -40,7 +40,7 @@ else{
         border-color: #606060;
         color:white;
         background-color:lightsalmon;
-        font-size: 20px;
+        font-size: 24px;
         font-family: 'Unica One', cursive;
     }
     .label:hover ~ .label{
@@ -81,16 +81,16 @@ else{
         </form>
     </div>
 
-    <div style="justify-content: center; text-align:center; margin: 5%;">
-        <u><h4 style="font-family: 'Unica One', cursive;">VALORAR COMO:</h4></u>
-        <select style="font-family: 'Sen', sans-serif; background-color:lightseagreen; border-radius: 10px; color: white; border-color:#606060;">
+    <div style="justify-content: center; text-align:center; margin: 3%;">
+        <u><p class="nombre">VALORAR COMO:</p></u>
+        <select style="font-family: 'Sen', sans-serif; background-color:lightseagreen; border-radius: 10px; color: white; border-color:#606060; font-size:x-large;">
             <option value="comprador">Comprador</option>
             <option value="viajero">Viajero</option>
         </select>
     </div>
 
     <div style="justify-content: center; text-align:center; margin: 10px;">
-        <u><h4 style="font-family: 'Unica One', cursive;">Comentarios:</h4></u>
+        <u><p class="nombre">Comentarios:</p></u>
         <textarea id="comentarios" name="comentarios" style="border-radius: 10px; background-color:#aaaaaa; color: white; width: 400px; height: 200px;">
 
         </textarea>
@@ -104,5 +104,5 @@ else{
 </body>
 
 <?php
-    // include ('footer.php');
+    include ('footer.php');
 ?>
