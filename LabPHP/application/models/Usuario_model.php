@@ -188,4 +188,92 @@ class Usuario_model extends CI_Model {
             return null;
         }
     }
+
+    function devolverPedidosActivos($nick){
+        $id = $this->db->query("select id from usuarios where nick ="."'".$nick."'")->result();
+        if(isset($id)){
+            $num = 0;
+            foreach($id as $r){
+                $num = $r->id;
+            }
+            $q = $this->db->query("select * from pedidos p where p.usuario = $num and p.estado = 'activo'")->result();
+        }
+        if(isset($q)){
+            $res = array();
+            foreach($q as $row){
+                $res["pedido".$row->numero] = $row;
+            }
+            $res2 = array('arreglo' => $res);
+            return $res2;
+        }
+        else{
+            return null;
+        }
+    }
+
+    function devolverPedidosEntregados($nick){
+        $id = $this->db->query("select id from usuarios where nick ="."'".$nick."'")->result();
+        if(isset($id)){
+            $num = 0;
+            foreach($id as $r){
+                $num = $r->id;
+            }
+            $q = $this->db->query("select * from pedidos p where p.usuario = $num and p.estado = 'recibido'")->result();
+        }
+        if(isset($q)){
+            $res = array();
+            foreach($q as $row){
+                $res["pedido".$row->numero] = $row;
+            }
+            $res2 = array('arreglo' => $res);
+            return $res2;
+        }
+        else{
+            return null;
+        }
+    }
+
+    function devolverPedidosEnTransito($nick){
+        $id = $this->db->query("select id from usuarios where nick ="."'".$nick."'")->result();
+        if(isset($id)){
+            $num = 0;
+            foreach($id as $r){
+                $num = $r->id;
+            }
+            $q = $this->db->query("select * from pedidos p where p.usuario = $num and p.estado = 'transito'")->result();
+        }
+        if(isset($q)){
+            $res = array();
+            foreach($q as $row){
+                $res["pedido".$row->numero] = $row;
+            }
+            $res2 = array('arreglo' => $res);
+            return $res2;
+        }
+        else{
+            return null;
+        }
+    }
+
+    function devolverPedidosPendientes($nick){
+        $id = $this->db->query("select id from usuarios where nick ="."'".$nick."'")->result();
+        if(isset($id)){
+            $num = 0;
+            foreach($id as $r){
+                $num = $r->id;
+            }
+            $q = $this->db->query("select * from pedidos p where p.usuario = $num and p.estado = 'pendiente'")->result();
+        }
+        if(isset($q)){
+            $res = array();
+            foreach($q as $row){
+                $res["pedido".$row->numero] = $row;
+            }
+            $res2 = array('arreglo' => $res);
+            return $res2;
+        }
+        else{
+            return null;
+        }
+    }
 }
