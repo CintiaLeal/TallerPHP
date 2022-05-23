@@ -135,7 +135,8 @@ class Usuario extends CI_Controller {
     }
 
     function cerrarSesion(){
-        session_destroy();
+        session_start();
+        session_unset();
         if(!isset($_SESSION["usuario"])){
             $this->load->view('inicio.php');
         }
@@ -227,7 +228,71 @@ class Usuario extends CI_Controller {
         else{
             $this->load->view('error.php');
         }
-        
-        
     }
+
+    function verPedidosActivos(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosActivos($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+    function verPedidosPendientes(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosPendientes($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+    function verPedidosEnTransito(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosEnTransito($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+    function verPedidosEntregados(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosEntregados($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+
 }
