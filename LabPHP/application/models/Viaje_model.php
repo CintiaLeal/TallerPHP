@@ -10,15 +10,19 @@ class Viaje_model extends CI_Model {
     }
 
     public function registrarViaje($data){
-        $this->db->insert('viaje',array(
+        if($this->db->insert('viaje',array(
             'nick' => $data['username'],
             'citiesD_id' => $data['ciudadD'],
             'citiesH_id' => $data['ciudadH'],
             'fechaI' => $data['fechaI'],
             'fechaV' => $data['fechaV'],
             )
-        );
-        
+        )){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 /*$ciudadH = $_POST['c'];

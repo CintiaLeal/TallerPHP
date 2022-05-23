@@ -52,7 +52,7 @@ else{
 
 <div style="justify-content: center; text-align:center;">
     <u><p class="nombre">Nickname:</p></u>
-    <select style="font-family: 'Sen', sans-serif; font-size:x-large; background-color:lightseagreen; color: white; border-radius: 10px;">
+    <select id="usuario" name="usuario" style="font-family: 'Sen', sans-serif; font-size:x-large; background-color:lightseagreen; color: white; border-radius: 10px;">
         <?foreach($usuarios as $user){?>
             <option value="<?=$user->nick;?>">
                 <?=$user->nick;?>
@@ -83,7 +83,7 @@ else{
 
     <div style="justify-content: center; text-align:center; margin: 3%;">
         <u><p class="nombre">VALORAR COMO:</p></u>
-        <select style="font-family: 'Sen', sans-serif; background-color:lightseagreen; border-radius: 10px; color: white; border-color:#606060; font-size:x-large;">
+        <select id="tipo" name="tipo" style="font-family: 'Sen', sans-serif; background-color:lightseagreen; border-radius: 10px; color: white; border-color:#606060; font-size:x-large;">
             <option value="comprador">Comprador</option>
             <option value="viajero">Viajero</option>
         </select>
@@ -97,7 +97,7 @@ else{
     </div>
 
     <div style="justify-content: center; text-align:center;">
-        <button class="Cal"> Calificar</button>
+        <button class="Cal" id="calificar"> Calificar</button>
     </div>
 
 </div>
