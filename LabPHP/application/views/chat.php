@@ -304,6 +304,7 @@ function buscarChat(nick) {
                     div.setAttribute("class", "darker");
                     div.textContent = element.contenido;
                     micapa.appendChild(div);
+                    $('#global2').scrollTop( $('#global2').prop('scrollHeight') ); 
 
                 }
                 else{
@@ -312,6 +313,7 @@ function buscarChat(nick) {
                     div.setAttribute("class", "darkerv");
                     div.textContent = element.contenido;
                     micapa.appendChild(div);
+                    $('#global2').scrollTop( $('#global2').prop('scrollHeight') );      
                 }
                 
                 //scroll siemrpe abajo
@@ -354,6 +356,7 @@ function enviar() {
     div.setAttribute("class", "darkerv")
     div.textContent = contenido;
     micapa.appendChild(div);
+    $('#global2').scrollTop( $('#global2').prop('scrollHeight') ); 
 }
 </script>
 
