@@ -40,19 +40,14 @@ class Usuario extends CI_Controller {
 
             // Contenido del correo
             $numero_aleatorio = mt_rand();
-            $mail->isHTML(false);
-            $mail->Subject = 'Verificación de mail';
-            $mail->Body  = 'Hola! Necesitamos que verifique su correo, por favor introduzca este código de verificación: '.$numero_aleatorio;
+            $mail->isHTML(true);
+            $mail->Subject = 'VERIFICACION DE EMAIL';
+            $mail->Body  = 'Hola! Necesitamos que verifique su correo, por favor introduzca este codigo de verificacion: '.$numero_aleatorio;
             // $mail->AltBody = 'Hola! Necesitamos que verifique su correo';
             $mail->send();
+            return $numero_aleatorio;
         } catch (Exception $e) {
             echo "El mensaje no se ha enviado. Mailer Error: {$mail->ErrorInfo}";
-        }
-        if($mail->send()){
-            return $numero_aleatorio;
-        }
-        else{
-            return false;
         }
     }
 
@@ -79,8 +74,12 @@ class Usuario extends CI_Controller {
             );
             //enviar el mail y cargar la vista para verificar el codigo
             $code = $this->enviarMail($email,$name);
+            $arr = array(
+                'data' => $data,
+                'code' => $code
+            );
             if($code!=false){
-                $this->load->view('verificacion.php',$code,$data);
+                $this->load->view('verificacion.php',$arr);
             }
             else{ //es decir que no se pudo mandar el mail
                 $this->load->view('error.php');

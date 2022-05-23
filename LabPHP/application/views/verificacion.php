@@ -21,15 +21,15 @@ else{
     <div>
         <button type="button" id="validar" style="border-radius: 15px; background-color:darksalmon; color:white;">Verificar</button>
     </div>
-    <input class="d-none" id="nombre" name="nombre" value="<?=$nombre?>">
-    <input class="d-none" id="apellido" name="apellido" value="<?=$apellido?>">
-    <input class="d-none" id="username" name="username" value="<?=$username?>">
-    <input class="d-none" id="imagen" name="imagen" value="<?=$img?>">
-    <input class="d-none" id="password" name="password" value="<?=$password?>">
-    <input class="d-none" id="telefono" name="datos" value="<?=$telefono?>">
-    <input class="d-none" id="email" name="email" value="<?=$email?>">
-    <input class="d-none" id="biografia" name="biografia" value="<?=$biografia?>">
-    <input class="d-none" id="unido" name="unido" value="<?=$unido?>">
+    <input class="d-none" id="nombre" name="nombre" value="<?=$data['nombre']?>">
+    <input class="d-none" id="apellido" name="apellido" value="<?=$data['apellido']?>">
+    <input class="d-none" id="username" name="username" value="<?=$data['username']?>">
+    <input class="d-none" id="imagen" name="imagen" value="<?=$data['img']?>">
+    <input class="d-none" id="password" name="password" value="<?=$data['password']?>">
+    <input class="d-none" id="telefono" name="telefono" value="<?=$data['telefono']?>">
+    <input class="d-none" id="email" name="email" value="<?=$data['email']?>">
+    <input class="d-none" id="biografia" name="biografia" value="<?=$data['biografia']?>">
+    <input class="d-none" id="unido" name="unido" value="<?=$data['unido']?>">
 
 </form>
 <?php
@@ -40,7 +40,7 @@ else{
 function validar(){
     let cod = document.getElementById("codigo");
     let form = document.getElementById("form");
-    if(<?=$code?> == cod){
+    if(<?=$code?> == cod.value){
         alert("Los códigos coinciden! Bienvenid@");
         form.submit();
     }
