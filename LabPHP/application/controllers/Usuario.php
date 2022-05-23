@@ -316,5 +316,36 @@ class Usuario extends CI_Controller {
         }  
     }
 
+    function existeNick(){
+        $username = $_POST['username'];
 
+        $existe = $this->Usuario_model->existeNick($username);
+        if($existe != false){
+        
+            $data = array('existe' => $existe); 
+            
+        }
+        else{
+            $data = array('existe' => $existe); 
+        }
+        echo json_encode($data);
+
+
+    }
+    function existeEmail(){
+        $email = $_POST['email'];
+
+        $existeEmail = $this->Usuario_model->existeEmail($email);
+        if($existeEmail != false){
+        
+            $data = array('existeEmail' => $existeEmail); 
+            
+        }
+        else{
+            $data = array('existeEmail' => $existeEmail); 
+        }
+        echo json_encode($data);
+
+
+    }
 }

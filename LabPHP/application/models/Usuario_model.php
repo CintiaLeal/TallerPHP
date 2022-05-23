@@ -298,4 +298,18 @@ class Usuario_model extends CI_Model {
             return null;
         }
     }
+    public function existeNick($username){
+        $p = $this->db->query("select nick from usuarios where nick = '$username'")->result();
+        if($p){
+            return $existe = 1;
+        }
+        return $existe = 0;
+    } 
+    public function existeEmail($email){
+        $p = $this->db->query("select email from usuarios where email = '$email'")->result();
+        if($p){
+            return $existe = 1;
+        }
+        return $existe = 0;
+    } 
 }

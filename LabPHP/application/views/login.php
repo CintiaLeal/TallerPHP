@@ -102,6 +102,14 @@ input {
     margin: 7px 0;
     width: 100%;
 }
+.inputerror {
+    background-color: #E6B0AA;
+    border: none;
+    
+    padding: 11px 13px;
+    margin: 7px 0;
+    width: 100%;
+}
 .registrarinput{
     border-radius: 5px;
     background-color: #389393;
@@ -305,6 +313,7 @@ footer {
 
 
 </style>
+
 <header>
 <br>
 </header>
@@ -317,7 +326,7 @@ footer {
                 <h1>Crear Usuario</h1>
 
                 <!-- <span>or use your email for registration</span> -->
-                <input type="text" placeholder="User name" name="username" />
+                <input type="text" class="" placeholder="User name" name="username" id="idusername" onchange="existeUsername()"/>
                 <div class="conteiner" onkeypress="enterEnviar(event);">
                     <div class="c1">
                         <input type="text" placeholder="Nombre" name="name" />
@@ -336,11 +345,11 @@ footer {
                     <input name="imagen" id="imagen" class="d-none" />
                 </div>
                 </div>
-                <input type="text" placeholder="Email" name="email" />
+                <input type="text" class="" placeholder="Email" name="email" id="idemail" onchange="existeEmail()" />
                 <input type="text" placeholder="Biografia" name="biografia" />
-                <input id="pass1" type="password" placeholder="Password" name="password" />
-                <input id="pass2" type="password" placeholder="Repite tu password" />
-                <input type="submit" onclick="validarContrasena()" class="registrarinput" value="Registrarse">
+                <input id="pass1" class=""  type="password" placeholder="Password" name="password"/>
+                <input id="pass2" class=""  type="password" placeholder="Repite tu password" onchange="validarContrasena()" />
+                <input type="submit" class="registrarinput" value="Registrarse">
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -380,7 +389,9 @@ footer {
     </div>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <SCRIPT LANGUAGE="JavaScript">
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -394,8 +405,80 @@ signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
 
-//imagen en cloudinary
+//funcion existeUsername
+/*onchange="existeUsername()"*/
+function existeUsername(){
+console.log("puso un nick");
+let username = document.getElementById("idusername").value;
+console.log(username);
 
+$.ajax({
+        type: 'POST',
+        url: '<?php echo base_url() . 'index.php/usuario/existeNick'; ?>',
+        data: {
+            username: username}, //estado primero es el que manda
+        dataType: "json",
+        success: function(resp) {
+            let existe = resp.existe;
+            console.log(existe);
+            var input = document.getElementById('idusername');
+            if(existe==1){
+                input.setAttribute("class", "inputerror");
+               
+            }
+            else{
+                input.setAttribute("class", "");
+                
+            }
+
+            
+           
+ 
+        }
+ 
+    });
+
+
+}
+//funcion existeEmail
+/*onchange="existeEmail()"*/
+function existeEmail(){
+console.log("puso un email");
+let email = document.getElementById("idemail").value;
+console.log(email);
+
+$.ajax({
+        type: 'POST',
+        url: '<?php echo base_url() . 'index.php/usuario/existeEmail'; ?>',
+        data: {
+            email: email}, //estado primero es el que manda
+        dataType: "json",
+        success: function(resp) {
+            let existeE = resp.existeEmail;
+            console.log(existeE);
+            var input = document.getElementById('idemail');
+
+            if(existeE==1){
+                input.setAttribute("class", "inputerror");
+                
+            }
+            else{
+                input.setAttribute("class", "");
+               
+            }
+
+            
+           
+ 
+        }
+ 
+    });
+
+
+}
+
+
+//imagen en cloudinary
 const btn = document.querySelector("#btn");
 let imagen = document.getElementById("imagen");
 let urlImagen = '';
@@ -417,14 +500,11 @@ btn.addEventListener("click", e => {
 function validarContrasena() {
     var p1 = document.getElementById('pass1').value;
     var p2 = document.getElementById('pass2').value;
-
+    var inputp2 = document.getElementById('pass2');
     if (p1 != p2) {
-        alert("Las passwords deben de coincidir");
-        return false;
+        inputp2.setAttribute("class", "inputerror");
     } else {
-        alert("Todo esta correcto");
-        alert(imagen.value);
-        return true;
+        inputp2.setAttribute("class", "");
     }
 }
 
