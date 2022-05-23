@@ -223,7 +223,7 @@ class Usuario extends CI_Controller {
     function verViajes(){
         session_start();
         if(isset($_SESSION["usuario"])){
-            $res = $this->Usuario_model->devolverVaijes($_SESSION["usuario"]);
+            $res = $this->Usuario_model->devolverViajes($_SESSION["usuario"]);
             if($res!=null){
                 $this->load->view('verViajes.php',$res);
             }

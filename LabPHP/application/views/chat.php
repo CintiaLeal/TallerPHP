@@ -7,18 +7,7 @@ if(isset($_SESSION["usuario"])){
 else{
     include ('header.php');
 }
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Auto-layout Columns</title>
-    <script src="https://code.jquery.com/jquery-git.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <style type="text/css">
     /* Some custom styles to beautify this example */
 
@@ -103,18 +92,13 @@ else{
         width: 19%;
     }
 
-
-
-
-
-
-    body {
+    .body {
         margin: 0 auto;
         max-width: 800px;
         padding: 0 20px;
     }
 
-    .container {
+    .containerC {
         border: none;
         background-color: #f1f1f1;
         border-radius: 5px;
@@ -189,9 +173,7 @@ else{
         overflow-y: scroll;
     }
 
-    .demo {}
-
-    input {
+    .input {
         width: 100%;
     }
 
@@ -210,8 +192,6 @@ else{
         border: none;
     }
     </style>
-
-</head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
 let nickAnterior = "";
@@ -363,16 +343,16 @@ function enviar() {
 
 
 
-<body>
-    <div class="container">
+<body class="body">
+    <div class="containerC">
         <!--Row with two equal columns-->
         <div class="row">
             <div class="col3">
                 <div class="cont">
                     <div class="c1p">
-                        <input type="hidden" id="nickU" name="nickU" disabled="disabled" />
+                        <input type="hidden" id="nickU" name="nickU" disabled="disabled" class="input"/>
                         <input type="text" class="inputInfo" id="nombreApellido" name="nombreApellido"
-                            disabled="disabled" />
+                            disabled="disabled" class="input"/>
                     </div>
 
                 </div>
@@ -409,7 +389,7 @@ function enviar() {
                 <div class="cont">
 
                     <div class="c1p">
-                        <input type="textarea" class="inputEnvio" id="contenidoMensaje" name="contenidoMensaje">
+                        <input type="textarea" class="inputEnvio" id="contenidoMensaje" name="contenidoMensaje" class="input">
                         </input>
                     </div>
                     <div class="c3p">
@@ -418,8 +398,6 @@ function enviar() {
                 </div>
             </div>
         </div>
-
-
     </div>
 </body>
 

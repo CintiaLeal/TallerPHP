@@ -9,6 +9,8 @@
     <link href='https://css.gg/phone.css' rel='stylesheet'>
     <link href='https://css.gg/mail.css' rel='stylesheet'>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://code.jquery.com/jquery-git.js"></script>
+    </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
 /*ESTILOS DEL HEADER*/
@@ -212,9 +214,7 @@ i{
     font-family: 'Sen', sans-serif;
 }
 </style>
-    
-    </head>
-    <body>
+
     <nav>
         <div class="conteiner">
             <div class="c1">
@@ -261,7 +261,7 @@ i{
                     <div class="dropdown-content">
                         <a href="<?= base_url().'/index.php/usuario/verPerfil'?>">Ver perfil</a>
                         <a href="<?= base_url().'/index.php/usuario/editarUsuario'?>">Editar perfil</a>
-                        <a href="#">Ver viajes</a>
+                        <a href="<?= base_url().'/index.php/usuario/verViajes'?>">Ver viajes</a>
                         <a href="<?= base_url().'/index.php/usuario/verPedidos'?>">Ver pedidos</a>
                         <a href="<?= base_url().'/index.php/usuario/cerrarSesion'?>">Cerrar sesión</a>
                     </div>
