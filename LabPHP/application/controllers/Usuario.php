@@ -348,4 +348,8 @@ class Usuario extends CI_Controller {
 
 
     }
+
+    function valorarUsuario(){
+        $this->load->view('valoraciones.php');
+    }
 }
