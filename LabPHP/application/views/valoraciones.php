@@ -106,3 +106,11 @@ else{
 <?php
     include ('footer.php');
 ?>
+
+<script>
+    let btn = document.getElementById("calificar");
+    btn.addEventListener("click", e => {
+        e.preventDefault();
+        console.log(document.getElementsByName("estrellas").value);
+    });
+</script>
