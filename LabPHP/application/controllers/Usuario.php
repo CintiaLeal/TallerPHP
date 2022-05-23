@@ -23,9 +23,8 @@ class Usuario extends CI_Controller {
     function enviarMail($email,$usuario){
 
         $mail = new PHPMailer(true);
-        try {
             // Configuracion SMTP
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                         // Mostrar salida (Desactivar en producción)
+            $mail->SMTPDebug = 0;                         // Mostrar salida (Desactivar en producción)
             $mail->isSMTP();                                               // Activar envio SMTP
             $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
             $mail->SMTPAuth  = true;                                       // Identificacion SMTP
@@ -44,11 +43,13 @@ class Usuario extends CI_Controller {
             $mail->Subject = 'VERIFICACION DE EMAIL';
             $mail->Body  = 'Hola! Necesitamos que verifique su correo, por favor introduzca este codigo de verificacion: '.$numero_aleatorio;
             // $mail->AltBody = 'Hola! Necesitamos que verifique su correo';
-            $mail->send();
-            return $numero_aleatorio;
-        } catch (Exception $e) {
-            echo "El mensaje no se ha enviado. Mailer Error: {$mail->ErrorInfo}";
-        }
+            if($mail->send()){
+                return $numero_aleatorio;
+            }
+            else{
+                $this->load->view('error.php');
+            }
+
     }
 
     function registro(){
@@ -134,7 +135,7 @@ class Usuario extends CI_Controller {
     }
 
     function cerrarSesion(){
-        session_unset();
+        session_destroy();
         if(!isset($_SESSION["usuario"])){
             $this->load->view('inicio.php');
         }
@@ -209,19 +210,24 @@ class Usuario extends CI_Controller {
     }
 
     function editarUsuario(){
-        session_start();
         $this->load->view('editarUsuario.php');
     }
 
     function verPedidos(){
         session_start();
-        $res = $this->Usuario_model->devolverPedidos($_SESSION["usuario"]);
-        if($res!=null){
-            $this->load->view('verPedidos.php',$res);
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidos($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
         }
         else{
-            $this->load->view('verPedidos.php',$res);
+            $this->load->view('error.php');
         }
+        
         
     }
 }

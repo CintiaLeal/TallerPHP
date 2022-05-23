@@ -10,15 +10,15 @@ else{
 ?>
 
 <form action="<?= base_url().'/index.php/usuario/validar'?>" id="form" method="POST">
-    <div style="display: flex; text-align: center; justify-content: center;">
+    <div style="display: flex; text-align: center; justify-content: center; margin: 10px;">
         <h1><u style="font-family: 'Unica One', cursive; color:lightseagreen;">Por favor introduzca el código de verificación</u></h1>
     </div>
 
-    <div style="display: flex; text-align: center; justify-content: center;">
-        <input type="number" name="codigo" id="codigo" placeholder="Código de verificación">
+    <div style="display: flex; text-align: center; justify-content: center; margin: 10px;">
+        <input type="number" name="codigo" id="codigo" placeholder="Código de verificación" style="border-radius: 10px;">
     </div>
 
-    <div>
+    <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
         <button type="button" id="validar" style="border-radius: 15px; background-color:darksalmon; color:white;">Verificar</button>
     </div>
     <input class="d-none" id="nombre" name="nombre" value="<?=$data['nombre']?>">
