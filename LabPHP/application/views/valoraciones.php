@@ -24,7 +24,7 @@ else{
         display:flex;
         justify-content: center;
     }
-    label{ 
+    .label{ 
         color: lightcoral;
         text-align: center;
         font-size: 60px;
@@ -43,32 +43,40 @@ else{
         font-size: 20px;
         font-family: 'Unica One', cursive;
     }
-    label:hover ~ label{
+    .label:hover ~ .label{
         color:#606060;
     }
 </style>
 </head>
 <body>
-    <p class="nombre">Nickname</p>
-<div style="justify-content: center;">
+
+<div style="justify-content: center; text-align:center;">
+    <u><p class="nombre">Nickname:</p></u>
+    <select style="font-family: 'Sen', sans-serif; font-size:x-large; background-color:lightseagreen; color: white; border-radius: 10px;">
+        <?foreach($usuarios as $user){?>
+            <option value="<?=$user->nick;?>">
+                <?=$user->nick;?>
+            </option>
+        <?}?>
+
+    </select>
+</div>
     
-    <div style="justify-content: center; text-align:center;">
-        <img src="http://www.w3.org/2000/svg" class="img" alt= "img" width="40" height="40" fill="#389393" class="bi bi-person-circle" viewBox="0 0 16 16" style="opacity: 50%;">
-    </div>
+<div style="justify-content: center;">
 
     <div style="justify-content: center; text-align:center;">
         <form>
             <p class="clasificacion">
                 <input id="radio1" type="radio" name="estrellas" value="5">
-                <label for="radio1">✯</label>
+                <label for="radio1" class="label">✯</label>
                 <input id="radio2" type="radio" name="estrellas" value="4">
-                <label for="radio2">✯</label>
+                <label for="radio2" class="label">✯</label>
                 <input id="radio3" type="radio" name="estrellas" value="3">
-                <label for="radio3">✯</label>
+                <label for="radio3" class="label">✯</label>
                 <input id="radio4" type="radio" name="estrellas" value="2">
-                <label for="radio4">✯</label>
+                <label for="radio4" class="label">✯</label>
                 <input id="radio5" type="radio" name="estrellas" value="1">
-                <label for="radio5">✯</label>
+                <label for="radio5" class="label">✯</label>
             </p>
         </form>
     </div>

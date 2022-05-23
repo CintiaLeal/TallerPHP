@@ -304,5 +304,10 @@ class Usuario_model extends CI_Model {
             return $existe = 1;
         }
         return $existe = 0;
-    } 
+    }
+    
+    function listarUsuarios(){
+        session_start();
+        return $this->db->query("select nick from usuarios where nick <>'".$_SESSION["usuario"]."'")->result();
+    }
 }

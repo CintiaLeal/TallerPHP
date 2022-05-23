@@ -8,7 +8,7 @@ class Welcome extends CI_Controller {
 	}
 	
 	public function index(){
-		$this->load->view('valoraciones.php');
+		$this->load->view('inicio.php');
 	}
 
 	public function login(){

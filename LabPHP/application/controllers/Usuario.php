@@ -350,6 +350,14 @@ class Usuario extends CI_Controller {
     }
 
     function valorarUsuario(){
-        $this->load->view('valoraciones.php');
+        $res = $this->Usuario_model->listarUsuarios();
+        if(isset($res)){
+            $arr = array('usuarios' => $res);
+            $this->load->view('valoraciones.php', $arr);
+        }
+        else{
+            $this->load->view('error.php');
+        }
+        
     }
 }
