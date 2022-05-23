@@ -148,7 +148,14 @@ i{
     display: flex;
     justify-content: center;
 }
-
+/*ESTILOS PARA VER PEDIDOS*/
+.scroll_text_pedidos{
+    border-color: #389393;
+    border-radius: 5px;
+    color: white;
+    width: 700px;
+    height: auto;
+}
 </style>
 </head>
 <body>

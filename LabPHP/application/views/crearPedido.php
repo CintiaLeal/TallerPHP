@@ -1,6 +1,6 @@
-<?php
+[<?php
 session_start();
-if(isset($_SESSION)){
+if(isset($_SESSION['usuario'])){
     include ('headerLogueado.php');
 }
 else{
@@ -275,7 +275,7 @@ success: function(resp){
                         </div>
                         <div class="c2p">
                             <div class="c2p">
-                            <p>origen:</p>
+                            <p>Origen:</p>
                                 <select name="estado" id="estado" onchange="buscar()">
                                 <option value="">Pais</option>
                                     <?php foreach ($Lugar as $row) {?>
@@ -295,7 +295,7 @@ success: function(resp){
                             </div>
                             
                             <div class="c2p">
-                                <p>destino:</p>
+                                <p>Destino:</p>
                                 <select name="est" id="est" onchange="buscarx()">
                                 <option value="">Pais</option>
                                     <?php foreach ($Lugar as $row) {?>
@@ -327,7 +327,7 @@ success: function(resp){
                         </div>
                         <div class="c2p">
                             <p>Imagen:</p>
-                            <button  type="button" class="file-select btn" id="btn">
+                            <button  type="button" class="file-select btn" id="btn" style="background-color:#606060; color:white; opacity:50%; max-width:fit-content;">
                             Seleccionar Archivo
                             </button>
                             <input name="imagen" id="imagen" class="d-none" />
@@ -345,6 +345,7 @@ success: function(resp){
                             <textarea id = "descripcion" name="descripcion" rows="5" cols="100"></textarea>
                             <p class="amini">Incluir detalles sobre tu pedido</p>
                         </div>
+                        <input name="precio" type="text" id="precio" class="d-none"/>
                     </div>
                 </div>
 
@@ -410,6 +411,7 @@ success: function(resp){
         document.getElementById('comis').value = comi;
         document.getElementById('pneto').value = ne;
         document.getElementById('total').value = total;
+        document.getElementById("precio").value = total;
     }
 </SCRIPT>
 

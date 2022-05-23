@@ -20,41 +20,36 @@ class Usuario extends CI_Controller {
         $this->load->view('inicio.php');
     }
 
-    function enviarMail($email){
+    function enviarMail($email,$usuario){
 
-        // $mail = new PHPMailer(true);
+        $mail = new PHPMailer(true);
+            // Configuracion SMTP
+            $mail->SMTPDebug = 0;                         // Mostrar salida (Desactivar en producción)
+            $mail->isSMTP();                                               // Activar envio SMTP
+            $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
+            $mail->SMTPAuth  = true;                                       // Identificacion SMTP
+            $mail->Username  = 'telollevolabphp@gmail.com';                  // Usuario SMTP
+            $mail->Password  = 'telollevoLavphp2022';	          // Contraseña SMTP
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port  = 587;
+            $mail->setFrom('telollevolabphp@gmail.com', 'TeLoLlevo');                // Remitente del correo
 
-        // try {
-        //     // Configuracion SMTP
-        //     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                         // Mostrar salida (Desactivar en producción)
-        //     $mail->isSMTP();                                               // Activar envio SMTP
-        //     $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
-        //     $mail->SMTPAuth  = true;                                       // Identificacion SMTP
-        //     $mail->Username  = '';                  // Usuario SMTP
-        //     $mail->Password  = '';	          // Contraseña SMTP
-        //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        //     $mail->Port  = 587;
-        //     $mail->setFrom('romias141916@gmail.com', 'Romina');                // Remitente del correo
+            // Destinatarios
+            $mail->addAddress($email, $usuario);  // Email y nombre del destinatario traerlos del que se registró
 
-        //     // Destinatarios
-        //     $mail->addAddress('romilopez1@hotmail.es', 'Romina');  // Email y nombre del destinatario
+            // Contenido del correo
+            $numero_aleatorio = mt_rand();
+            $mail->isHTML(true);
+            $mail->Subject = 'VERIFICACION DE EMAIL';
+            $mail->Body  = 'Hola! Necesitamos que verifique su correo, por favor introduzca este codigo de verificacion: '.$numero_aleatorio;
+            // $mail->AltBody = 'Hola! Necesitamos que verifique su correo';
+            if($mail->send()){
+                return $numero_aleatorio;
+            }
+            else{
+                $this->load->view('error.php');
+            }
 
-        //     // Contenido del correo
-        //     $mail->isHTML(true);
-        //     $mail->Subject = 'Asunto del correo';
-        //     $mail->Body  = 'Contenido del correo <b>en HTML!</b>';
-        //     $mail->AltBody = 'Contenido del correo en texto plano para los clientes de correo que no soporten HTML';
-        //     $mail->send();
-        //     echo 'El mensaje se ha enviado';
-        // } catch (Exception $e) {
-        //     echo "El mensaje no se ha enviado. Mailer Error: {$mail->ErrorInfo}";
-        // }
-        // if($mail->send()){
-        //     return true;
-        // }
-        // else{
-        //     print_r($this->email->print_debugger());
-        // }
     }
 
     function registro(){
@@ -78,17 +73,52 @@ class Usuario extends CI_Controller {
                 'password' => $password,
                 'unido' => $fechaActual
             );
-            if($this->Usuario_model->registrarUsuario($data)){
-                $this->load->view('exito.php');
+            //enviar el mail y cargar la vista para verificar el codigo
+            $code = $this->enviarMail($email,$name);
+            $arr = array(
+                'data' => $data,
+                'code' => $code
+            );
+            if($code!=false){
+                $this->load->view('verificacion.php',$arr);
             }
-            else{
+            else{ //es decir que no se pudo mandar el mail
                 $this->load->view('error.php');
             }   
     }
 
+    function validar(){
+        $name = $_POST['nombre'];
+        $username = $_POST['username'];
+        $apellido = $_POST['apellido'];
+        $telefono = $_POST['telefono'];
+        $img = $_POST['imagen'];
+        $email = $_POST['email'];
+        $bio = $_POST['biografia'];
+        $password = $_POST['password'];
+        $fechaActual = $_POST['unido'];
+        $data = array(
+            'nombre' => $name, 
+            'username' => $username,
+            'apellido' => $apellido,
+            'telefono' => $telefono,
+            'img' => $img,
+            'email' => $email,
+            'biografia' => $bio,
+            'password' => $password,
+            'unido' => $fechaActual
+        );
+        if($this->Usuario_model->registrarUsuario($data)){
+            $this->load->view('exito.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
     function iniciarSesion(){
-        $username = $_GET['username'];
-        $password = $_GET['password'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
         $data = array(
             'nick' => $username,
             'pwd' => $password
@@ -105,6 +135,7 @@ class Usuario extends CI_Controller {
     }
 
     function cerrarSesion(){
+        session_start();
         session_unset();
         if(!isset($_SESSION["usuario"])){
             $this->load->view('inicio.php');
@@ -181,6 +212,109 @@ class Usuario extends CI_Controller {
 
     function editarUsuario(){
         session_start();
-        $this->load->view('editarUsuario.php');
+        if(isset($_SESSION["usuario"])){
+            $this->load->view('editarUsuario.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
     }
+
+    function verViajes(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverVaijes($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verViajes.php',$res);
+            }
+            else{
+                $this->load->view('verVaijes.php', $res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
+    function verPedidos(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidos($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
+    function verPedidosActivos(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosActivos($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+    function verPedidosPendientes(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosPendientes($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+    function verPedidosEnTransito(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosEnTransito($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+    function verPedidosEntregados(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverPedidosEntregados($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verPedidos.php',$res);
+            }
+            else{
+                $this->load->view('verPedidos.php',$res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }  
+    }
+
+
 }
