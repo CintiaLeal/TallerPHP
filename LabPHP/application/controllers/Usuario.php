@@ -211,7 +211,29 @@ class Usuario extends CI_Controller {
     }
 
     function editarUsuario(){
-        $this->load->view('editarUsuario.php');
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $this->load->view('editarUsuario.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
+    function verViajes(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->devolverVaijes($_SESSION["usuario"]);
+            if($res!=null){
+                $this->load->view('verViajes.php',$res);
+            }
+            else{
+                $this->load->view('verVaijes.php', $res);
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }
     }
 
     function verPedidos(){
