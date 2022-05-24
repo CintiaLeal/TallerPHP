@@ -2,13 +2,7 @@
 <html lang="en">
 <header>
 <?php
-session_start();
-if(isset($_SESSION["usuario"])){
     include ('headerLogueado.php');
-}
-else{
-    include ('header.php');
-}
 ?>
 </header>
 
