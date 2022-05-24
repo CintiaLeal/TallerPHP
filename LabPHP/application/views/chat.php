@@ -52,7 +52,7 @@
         max-width: 100%;
         min-height: 300px;
         padding: 10px 15px;
-        width: 70%;
+        width: 80%;
         border: 1px solid rgba(0, 0, 0, 0.5)
     }
 
@@ -64,7 +64,7 @@
         max-width: 100%;
         min-height: 300px;
         padding: 10px 15px;
-        width: 30%;
+        width: 20%;
         border: 1px solid rgba(0, 0, 0, 0.5);
 
     }
@@ -77,7 +77,7 @@
         opacity: 80%;
         position: relative;
         overflow: hidden;
-        opacity: 70%;
+     
         max-width: 100%;
         min-height: 100px;
         padding: 10px 15px;
