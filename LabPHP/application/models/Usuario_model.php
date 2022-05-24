@@ -312,17 +312,21 @@ class Usuario_model extends CI_Model {
     }
     public function valorar($data){
         $valora = $this->db->query("select id from usuarios where nick = '".$data['valora']."'")->result();
+        foreach($valora as $v){
+            $id_valora = $v->id;
+        }
         $recibe = $this->db->query("select id from usuarios where nick = '".$data['recibe']."'")->result();
-        print_r($valora);
-        print_r ($recibe);
+        foreach($recibe as $r){
+            $id_recibe = $r->id;
+        }
         $this->db->insert('valoraciones',array(
-            'valora' => $valora,
-            'recibe' => $recibe,
+            'valora' => $id_valora,
+            'recibe' => $id_recibe,
             'comentario' => $data['comentario'],
             'estrellas' => $data['estrellas'],
             'tipo' => $data['tipo']
         ));
-        $p = this->db->query("select * from valoraciones where valora = '".$data['valora']."' and recibe = '".$data['recibe']." and estrellas = '".$data['estrellas'] ."' and tipo = '".$data['tipo'] ."' and comentario = '".$data['comentario']."'");
+        $p = $this->db->query("select * from valoraciones where valora = '".$id_valora."' and recibe = '".$id_recibe."' and estrellas = '".$data['estrellas'] ."' and tipo = '".$data['tipo'] ."' and comentario = '".$data['comentario']."'");
         if(isset($p)){
             return true;
         }

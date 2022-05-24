@@ -353,7 +353,7 @@ footer {
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="" method="POST">
+            <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">
                 <h1>Login</h1>
                 <div class="social-container">
                     <button onclick="onLogin();" class="social"><i class="fab fa-facebook-f"></i></button>
@@ -389,7 +389,6 @@ footer {
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-<<<<<<< HEAD
 
 <script>
   window.fbAsyncInit = function() {
@@ -424,9 +423,6 @@ footer {
 
 </script>
 
-=======
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
->>>>>>> 1fda8846593d27e9cb17b211c297f04e2d047d13
 <SCRIPT LANGUAGE="JavaScript">
 
 const signUpButton = document.getElementById('signUp');
