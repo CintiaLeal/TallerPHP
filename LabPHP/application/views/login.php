@@ -330,11 +330,11 @@ footer {
                         <input type="text" placeholder="Telefono" name="telefono" />
                     </div>
                     <div class="c2">
-                    <button  type="button" class="file-select btn" id="btn" style="border-color:#389393; border-radius:5px; background-color:#389393; opacity:70%; color: white;">
+                        <button  type="button" class="file-select btn" id="btn" style="border-color:#389393; border-radius:5px; background-color:#389393; opacity:70%; color: white;">
                         Agregar imagen
-                    </button>
-                    <input name="imagen" id="imagen" class="d-none" />
-                </div>
+                        </button>
+                        <input name="imagen" id="imagen" class="d-none" />
+                    </div>
                 </div>
                 <input type="text" placeholder="Email" name="email" />
                 <input type="text" placeholder="Biografia" name="biografia" />
@@ -344,12 +344,10 @@ footer {
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">
+            <form action="" method="POST">
                 <h1>Login</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <button onclick="onLogin();" class="social"><i class="fab fa-facebook-f"></i></button>
                 </div>
                 <!-- <span>or use your account</span> -->
                 <input class="inputlogin" type="user" placeholder="User Name" name="username" />
@@ -381,7 +379,42 @@ footer {
 </body>
 </html>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1057209118558332',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v8.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   function onLogin(){
+    FB.login((response) => {
+        if(response.authResponse){
+            FB.api('/me?fields=email,name,picture',(response)=>{
+                console.log(response)
+            })
+        }
+        })
+    }
+
+</script>
+
 <SCRIPT LANGUAGE="JavaScript">
+
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
