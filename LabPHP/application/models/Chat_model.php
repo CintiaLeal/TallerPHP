@@ -32,9 +32,9 @@ public function datosTodosPerfiles(){
         }
 }
 */
-public function Perfiles(){
+public function Perfiles($username){
 
-    return  $this->db->query("select * from usuarios")->result();
+    return  $this->db->query("select * from usuarios where nick != '$username'")->result();
 }
 
 public function buscarPerfil($id){

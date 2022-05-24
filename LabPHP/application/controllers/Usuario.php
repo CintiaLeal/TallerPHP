@@ -223,7 +223,7 @@ class Usuario extends CI_Controller {
     function verViajes(){
         session_start();
         if(isset($_SESSION["usuario"])){
-            $res = $this->Usuario_model->devolverVaijes($_SESSION["usuario"]);
+            $res = $this->Usuario_model->devolverViajes($_SESSION["usuario"]);
             if($res!=null){
                 $this->load->view('verViajes.php',$res);
             }
@@ -316,5 +316,48 @@ class Usuario extends CI_Controller {
         }  
     }
 
+    function existeNick(){
+        $username = $_POST['username'];
 
+        $existe = $this->Usuario_model->existeNick($username);
+        if($existe != false){
+        
+            $data = array('existe' => $existe); 
+            
+        }
+        else{
+            $data = array('existe' => $existe); 
+        }
+        echo json_encode($data);
+
+
+    }
+    function existeEmail(){
+        $email = $_POST['email'];
+
+        $existeEmail = $this->Usuario_model->existeEmail($email);
+        if($existeEmail != false){
+        
+            $data = array('existeEmail' => $existeEmail); 
+            
+        }
+        else{
+            $data = array('existeEmail' => $existeEmail); 
+        }
+        echo json_encode($data);
+
+
+    }
+
+    function valorarUsuario(){
+        $res = $this->Usuario_model->listarUsuarios();
+        if(isset($res)){
+            $arr = array('usuarios' => $res);
+            $this->load->view('valoraciones.php', $arr);
+        }
+        else{
+            $this->load->view('error.php');
+        }
+        
+    }
 }

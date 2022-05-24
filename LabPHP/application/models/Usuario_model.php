@@ -168,21 +168,14 @@ class Usuario_model extends CI_Model {
     }
 
     function devolverViajes($nick){
-        $id = $this->db->query("select id from usuarios where nick ="."'".$nick."'")->result();
-        if(isset($id)){
-            $num = 0;
-            foreach($id as $r){
-                $num = $r->id;
-            }
-            $q = $this->db->query("select * from viajes p where p.usuario = $num")->result();
-        }
+        $q = $this->db->query("SELECT v.viaje_id, v.fechaI, v.fechaV, c.name AS origen, c1.name AS destino FROM viaje v INNER JOIN cities c ON v.citiesD_id = c.id 
+        INNER JOIN cities c1 ON v.citiesH_id = c1.id where v.nick = "."'".$nick."'")->result(); //devuelve el viaje y el origen
         if(isset($q)){
             $res = array();
             foreach($q as $row){
-                $res["pedido".$row->numero] = $row;
+                $res["viaje".$row->viaje_id] = $row;
             }
-            $res2 = array('arreglo' => $res);
-            return $res2;
+            return array('res' => $res);
         }
         else{
             return null;
@@ -297,5 +290,24 @@ class Usuario_model extends CI_Model {
         else{
             return null;
         }
+    }
+    public function existeNick($username){
+        $p = $this->db->query("select nick from usuarios where nick = '$username'")->result();
+        if($p){
+            return $existe = 1;
+        }
+        return $existe = 0;
+    } 
+    public function existeEmail($email){
+        $p = $this->db->query("select email from usuarios where email = '$email'")->result();
+        if($p){
+            return $existe = 1;
+        }
+        return $existe = 0;
+    }
+    
+    function listarUsuarios(){
+        session_start();
+        return $this->db->query("select nick from usuarios where nick <>'".$_SESSION["usuario"]."'")->result();
     }
 }

@@ -1,16 +1,12 @@
-
-<?php
-session_start();
-if(isset($_SESSION["usuario"])){
-    include ('headerLogueado.php');
-}
-else{
-    include ('header.php');
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
+<header>
+<?php
+    include ('headerLogueado.php');
+?>
+</header>
+
+
 
 <head>
     <meta charset="utf-8">
@@ -19,6 +15,7 @@ else{
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>   
     <style type="text/css">
     /* Some custom styles to beautify this example */
 
@@ -26,8 +23,25 @@ else{
 
     .row {
         margin-top: 1rem;
+        
         background: #ffffff;
         border: none;
+       
+    }
+    html,body{ margin: 0;}
+    .div_contenedor{
+        
+        height: 100vh;       
+    }
+    .div_centrado{
+       
+        width: 80%;       
+        height: 100%;
+        position: absolute;
+        top:20%;
+        left: 10%;           
+        margin-top: -10px;
+        margin-left: -10px;
     }
 
     .col {
@@ -38,7 +52,7 @@ else{
         max-width: 100%;
         min-height: 300px;
         padding: 10px 15px;
-        width: 70%;
+        width: 80%;
         border: 1px solid rgba(0, 0, 0, 0.5)
     }
 
@@ -50,17 +64,20 @@ else{
         max-width: 100%;
         min-height: 300px;
         padding: 10px 15px;
-        width: 30%;
+        width: 20%;
         border: 1px solid rgba(0, 0, 0, 0.5);
 
     }
 
+    header{
+        width: 1300px;
+    }
     .col3 {
         background: linear-gradient(90deg, #389393, #f5a25d);
         opacity: 80%;
         position: relative;
         overflow: hidden;
-        opacity: 70%;
+     
         max-width: 100%;
         min-height: 100px;
         padding: 10px 15px;
@@ -84,9 +101,6 @@ else{
     .cont {
         display: flex;
         flex-wrap: wrap;
-
-
-
     }
 
     .c1p {
@@ -103,23 +117,15 @@ else{
         width: 19%;
     }
 
-
-
-
-
-
-    body {
-        margin: 0 auto;
-        max-width: 800px;
-        padding: 0 20px;
-    }
-
-    .container {
+  
+    .containerc {
         border: none;
         background-color: #f1f1f1;
         border-radius: 5px;
-        padding: 10px;
+        
         margin: 10px 0;
+        
+ 
     }
 
     .containerperfil {
@@ -209,9 +215,16 @@ else{
         background-color: #c0c0c0;
         border: none;
     }
-    </style>
+    footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}
 
-</head>
+</style>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
 let nickAnterior = "";
@@ -361,10 +374,10 @@ function enviar() {
 }
 </script>
 
-
-
 <body>
-    <div class="container">
+
+<div class="div_contenedor">
+<div class="div_centrado">
         <!--Row with two equal columns-->
         <div class="row">
             <div class="col3">
@@ -418,12 +431,14 @@ function enviar() {
                 </div>
             </div>
         </div>
-
-
+        </div>
     </div>
+  
 </body>
-
-<?php
+<footer>
+    <?php
     include ('footer.php');
 ?>
+
+</footer>
 </html>

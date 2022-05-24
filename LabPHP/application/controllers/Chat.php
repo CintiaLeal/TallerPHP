@@ -11,10 +11,13 @@ class Chat extends CI_Controller {
 
 
 public function verChat(){
+    session_start();
+    $username = $_SESSION["usuario"];
+    
     $this->load->model("Chat_model");
-    $Perfiles =  $this->Chat_model->Perfiles();
+    $Perfiles =  $this->Chat_model->Perfiles($username);
     $this->load->view('chat.php', compact("Perfiles"));
-
+    
 }
 
 public function buscarPerfil(){
@@ -56,5 +59,3 @@ public function enviarMensaje(){
 } 
 
 }
-
-
