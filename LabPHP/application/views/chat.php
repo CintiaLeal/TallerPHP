@@ -2,13 +2,7 @@
 <html lang="en">
 <header>
 <?php
-session_start();
-if(isset($_SESSION["usuario"])){
     include ('headerLogueado.php');
-}
-else{
-    include ('header.php');
-}
 ?>
 </header>
 
@@ -58,7 +52,7 @@ else{
         max-width: 100%;
         min-height: 300px;
         padding: 10px 15px;
-        width: 70%;
+        width: 80%;
         border: 1px solid rgba(0, 0, 0, 0.5)
     }
 
@@ -70,7 +64,7 @@ else{
         max-width: 100%;
         min-height: 300px;
         padding: 10px 15px;
-        width: 30%;
+        width: 20%;
         border: 1px solid rgba(0, 0, 0, 0.5);
 
     }
@@ -83,7 +77,7 @@ else{
         opacity: 80%;
         position: relative;
         overflow: hidden;
-        opacity: 70%;
+     
         max-width: 100%;
         min-height: 100px;
         padding: 10px 15px;

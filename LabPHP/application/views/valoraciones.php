@@ -71,6 +71,7 @@ p.clasificacion input:checked ~ label {
     <form action="<?= base_url().'/index.php/usuario/valorar
     '?>" id="form" method="POST">
 
+<<<<<<< HEAD
         <div style="justify-content: center; text-align:center;">
             <u><p class="nombre">Nickname:</p></u>
             <select name = "nickname" id = "nickname"style="font-family: 'Sen', sans-serif; font-size:x-large; background-color:lightseagreen; color: white; border-radius: 10px;">
@@ -83,6 +84,16 @@ p.clasificacion input:checked ~ label {
         </div>
             
         <div style="justify-content: center;">
+=======
+<div style="justify-content: center; text-align:center;">
+    <u><p class="nombre">Nickname:</p></u>
+    <select id="usuario" name="usuario" style="font-family: 'Sen', sans-serif; font-size:x-large; background-color:lightseagreen; color: white; border-radius: 10px;">
+        <?foreach($usuarios as $user){?>
+            <option value="<?=$user->nick;?>">
+                <?=$user->nick;?>
+            </option>
+        <?}?>
+>>>>>>> 1858d2632f0f89c379ad6517452a08a65f899a35
 
             <div style="justify-content: center; text-align:center;">
                     <p class="clasificacion">
@@ -107,9 +118,19 @@ p.clasificacion input:checked ~ label {
                 </select>
             </div>
 
+<<<<<<< HEAD
             <div style="justify-content: center; text-align:center; margin: 10px;">
                 <u><p class="nombre">Comentarios:</p></u>
                 <textarea id="comentarios" name="comentarios" style="border-radius: 10px; background-color:#aaaaaa; color: white; width: 400px; height: 200px;">
+=======
+    <div style="justify-content: center; text-align:center; margin: 3%;">
+        <u><p class="nombre">VALORAR COMO:</p></u>
+        <select id="tipo" name="tipo" style="font-family: 'Sen', sans-serif; background-color:lightseagreen; border-radius: 10px; color: white; border-color:#606060; font-size:x-large;">
+            <option value="comprador">Comprador</option>
+            <option value="viajero">Viajero</option>
+        </select>
+    </div>
+>>>>>>> 1858d2632f0f89c379ad6517452a08a65f899a35
 
                 </textarea>
             </div>
@@ -118,8 +139,16 @@ p.clasificacion input:checked ~ label {
                 <button class="Cal" id = "Cal" name="Cal"> Calificar</button>
             </div>
 
+<<<<<<< HEAD
         </div>
     </form>
+=======
+    <div style="justify-content: center; text-align:center;">
+        <button class="Cal" id="calificar"> Calificar</button>
+    </div>
+
+</div>
+>>>>>>> 1858d2632f0f89c379ad6517452a08a65f899a35
 </body>
 
 <?php
@@ -127,8 +156,16 @@ p.clasificacion input:checked ~ label {
 ?>
 
 <script>
+<<<<<<< HEAD
 //     let btn = document.getElementById("Cal");
 //     btn.addEventListener("click", e => {
 //     e.preventDefault();
 // });
+=======
+    let btn = document.getElementById("calificar");
+    btn.addEventListener("click", e => {
+        e.preventDefault();
+        console.log(document.getElementsByName("estrellas").value);
+    });
+>>>>>>> 1858d2632f0f89c379ad6517452a08a65f899a35
 </script>
