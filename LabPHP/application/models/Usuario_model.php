@@ -47,10 +47,16 @@ class Usuario_model extends CI_Model {
 
     public function datosPerfil($nick){
         $p = $this->db->query("select * from usuarios where nick = '".$nick."'")->result();
-        $estrellasC = $this->db->query("select estrellas from valoraciones where tipo='comprador' and recibe = '$nick'")->result();
-        $estrellasV = $this->db->query("select estrellas from valoraciones where tipo='viajero' and recibe = '$nick'")->result();
-        $valoraciones = $this->db->query("select comentario from valoraciones where recibe = '$nick'")->result();
-        if(isset($p)){
+        $idR = $this->db->query("select id from usuarios where nick = '".$nick."'")->result();
+        if(!empty($idR)){
+            foreach($idR as $row){
+                $id_recibe = $row->id;
+            }
+        }
+        $estrellasC = $this->db->query("select estrellas from valoraciones where tipo='comprador' and recibe = '$id_recibe'")->result();
+        $estrellasV = $this->db->query("select estrellas from valoraciones where tipo='viajero' and recibe = '$id_recibe'")->result();
+        $valoraciones = $this->db->query("select comentario from valoraciones where recibe = '$id_recibe'")->result();
+        if(!empty($p)){
             foreach($p as $row){
                 $nombre = $row->nombre;
                 $apellido = $row->apellido;
@@ -64,7 +70,7 @@ class Usuario_model extends CI_Model {
             $cuatro = 0;
             $cinco = 0;
             //ESTRELLAS COMO COMPRADOR
-            if(isset($estrellasC)){
+            if(!empty($estrellasC)){
                 foreach($estrellasC as $row){
                     if($row->estrellas == 1){
                         $una +=1;
@@ -83,7 +89,7 @@ class Usuario_model extends CI_Model {
                     }
                 }
                 $cant = $una+$dos+$tres+$cuatro+$cinco;
-                if($cant != 0){
+                if($cant > 0){
                     $promedioC = ((1*$una)+(2*$dos)+(3*$tres)+(4*$cuatro)+(5*$cinco))/($cant);
                 }
                 else{
@@ -94,7 +100,7 @@ class Usuario_model extends CI_Model {
                 $promedioC = 0;
             }
             //ESTRELLAS COMO VIAJERO
-            if(isset($estrellasV)){
+            if(!empty($estrellasV)){
                 foreach($estrellasV as $row){
                     if($row->estrellas == 1){
                         $una +=1;
@@ -113,7 +119,7 @@ class Usuario_model extends CI_Model {
                     }
                 }
                 $cant = $una+$dos+$tres+$cuatro+$cinco;
-                if($cant != 0){
+                if($cant > 0){
                     $promedioV = ((1*$una)+(2*$dos)+(3*$tres)+(4*$cuatro)+(5*$cinco))/($cant);
                 }
                 else{
@@ -123,7 +129,7 @@ class Usuario_model extends CI_Model {
             else{
                 $promedioV = 0;
             }
-            if(isset($valoraciones)){
+            if(!empty($valoraciones)){
                 $comentarios = array();
                 foreach($valoraciones as $row){
                     array_push($comentarios,$row->comentario);

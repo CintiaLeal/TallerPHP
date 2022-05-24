@@ -18,7 +18,8 @@
                     </u>
                 </label>
                 <br>
-                <?if($promedioC == 0){?>
+                <?
+                if($promedioC == 0){?>
                         <i style='font-size:15px; color:#fa7f72;' class='far'>&#xf004;</i>
                         <i style='font-size:15px; color:#fa7f72;' class='far'>&#xf004;</i>
                         <i style='font-size:15px; color:#fa7f72;' class='far'>&#xf004;</i>
@@ -126,7 +127,7 @@
         </div>
 
         <div class="c_bio_val">
-            <label style="margin-right: 50%;">
+            <label style="margin-right: 40%;">
                 <u class="bio_title">
                     Biografía:
                 </u>
@@ -141,15 +142,19 @@
 
         <div class="c_textarea">
             <!-- texto de la biografia -->
-            <textarea class="scroll_text_bio" style="margin-right: 20%;"> 
+            <div class="scroll_text_bio" style="text-align: center;"> 
                 <?=$biografia?>
-            </textarea>
+            </div>
             <!-- comentarios de las valoraciones -->
-            <textarea class="scroll_text_val"> 
-                <? foreach($comentarios as $c){
-                    echo "•'$c'.\n &#09&#09";
-                }?>
-            </textarea>
+            <div class="scroll_text_val" style="margin-left:10px;"> 
+            <ul>
+                <? foreach($comentarios as $c){?>
+                    <li>
+                        <?="'$c.'";?>
+                    </li>
+                <?}?>
+                </ul>
+                </div>
         </div>
     </div>
 </div>
