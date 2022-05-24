@@ -310,4 +310,24 @@ class Usuario_model extends CI_Model {
         session_start();
         return $this->db->query("select nick from usuarios where nick <>'".$_SESSION["usuario"]."'")->result();
     }
+    public function valorar($data){
+        $valora = $this->db->query("select id from usuarios where nick = '".$data['valora']."'")->result();
+        $recibe = $this->db->query("select id from usuarios where nick = '".$data['recibe']."'")->result();
+        print_r($valora);
+        print_r ($recibe);
+        $this->db->insert('valoraciones',array(
+            'valora' => $valora,
+            'recibe' => $recibe,
+            'comentario' => $data['comentario'],
+            'estrellas' => $data['estrellas'],
+            'tipo' => $data['tipo']
+        ));
+        $p = this->db->query("select * from valoraciones where valora = '".$data['valora']."' and recibe = '".$data['recibe']." and estrellas = '".$data['estrellas'] ."' and tipo = '".$data['tipo'] ."' and comentario = '".$data['comentario']."'");
+        if(isset($p)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }   
 }

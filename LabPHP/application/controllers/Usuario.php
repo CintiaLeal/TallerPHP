@@ -360,4 +360,21 @@ class Usuario extends CI_Controller {
         }
         
     }
+    function valorar(){
+        session_start();
+        $data = array(
+            'valora' => $_SESSION["usuario"],
+            'recibe' => $_POST['nickname'],
+            'comentario' => $_POST['comentarios'],
+            'estrellas' => $_POST['estrellas'],
+            'tipo'=> $_POST['tipo'],
+        );
+        if($this->Usuario_model->valorar($data)){
+            $this->load->view('exito.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
+        
+    }
 }
