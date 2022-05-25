@@ -176,7 +176,7 @@ i{
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color:white}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -263,12 +263,12 @@ i{
                         </svg>
                     </button>   
                     <div class="dropdown-content prioridad">
-                        <a href="<?= base_url().'/index.php/usuario/verPerfil'?>">Ver perfil</a>
-                        <a href="<?= base_url().'/index.php/usuario/editarUsuario'?>">Editar perfil</a>
-                        <a href="<?= base_url().'/index.php/usuario/verViajes'?>">Ver viajes</a>
-                        <a href="<?= base_url().'/index.php/usuario/verPedidos'?>">Ver pedidos</a>
-                        <a href="<?= base_url().'/index.php/usuario/valorarUsuario'?>">Calificar usuario</a>
-                        <a href="<?= base_url().'/index.php/usuario/cerrarSesion'?>">Cerrar sesión</a>
+                        <a href="<?= base_url().'/index.php/usuario/verPerfil'?>" style="background-color: white;">Ver perfil</a>
+                        <a href="<?= base_url().'/index.php/usuario/editarUsuario'?>" style="background-color: white;">Editar perfil</a>
+                        <a href="<?= base_url().'/index.php/usuario/verViajes'?>" style="background-color: white;">Ver viajes</a>
+                        <a href="<?= base_url().'/index.php/usuario/verPedidos'?>" style="background-color: white;">Ver pedidos</a>
+                        <a href="<?= base_url().'/index.php/usuario/valorarUsuario'?>" style="background-color: white;">Calificar usuario</a>
+                        <a href="<?= base_url().'/index.php/usuario/cerrarSesion'?>" style="background-color: white;">Cerrar sesión</a>
                     </div>
                 </div>   
             </div>

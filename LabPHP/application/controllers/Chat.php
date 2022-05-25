@@ -12,12 +12,15 @@ class Chat extends CI_Controller {
 
 public function verChat(){
     session_start();
-    $username = $_SESSION["usuario"];
-    
-    $this->load->model("Chat_model");
-    $Perfiles =  $this->Chat_model->Perfiles($username);
-    $this->load->view('chat.php', compact("Perfiles"));
-    
+    if(isset($_SESSION["usuario"])){//PARA QUE NO PUEDAN INGRESAR VISITANTES
+        $username = $_SESSION["usuario"];
+        $this->load->model("Chat_model");
+        $Perfiles =  $this->Chat_model->Perfiles($username);
+        $this->load->view('chat.php', compact("Perfiles"));
+    }
+    else{
+        $this->load->view('error.php');
+    }
 }
 
 public function buscarPerfil(){
@@ -32,30 +35,41 @@ public function buscarPerfil(){
 
 public function buscarChat(){
    session_start();
-   $username = $_SESSION["usuario"];
-   $nick = $_POST['nick'];
-
-   $infochat = $this->Chat_model->buscarChat($nick,$username);
-
-   $data = array('infochat' => $infochat); 
+   if(isset( $_SESSION["usuario"])){ //PARA QUE NO PUEDAN INGRESAR VISITANTES
+        $username = $_SESSION["usuario"];
+        $nick = $_POST['nick'];
+    
+        $infochat = $this->Chat_model->buscarChat($nick,$username);
+    
+        $data = array('infochat' => $infochat); 
+        
+        echo json_encode($data);
+   }
+   else{
+        $this->load->view('error.php');
+    }
    
-    echo json_encode($data);
 }
 
 public function enviarMensaje(){
     session_start();
-    $username = $_SESSION["usuario"];
-    $receptor = $_POST['receptor'];
-    $contenido = $_POST['contenido'];
-    $time = date("Y-m-d H:i:s"); 
-    $data = array(
-        'username' => $username,
-        'receptor' => $receptor, 
-        'contenido' => $contenido, 
-       
-        'time' => $time,
-    );
-   $this->Chat_model->enviarMensaje($data);      
+    if(isset( $_SESSION["usuario"])){//PARA QUE NO PUEDAN INGRESAR VISITANTES
+        $username = $_SESSION["usuario"];
+        $receptor = $_POST['receptor'];
+        $contenido = $_POST['contenido'];
+        $time = date("Y-m-d H:i:s"); 
+        $data = array(
+            'username' => $username,
+            'receptor' => $receptor, 
+            'contenido' => $contenido, 
+           
+            'time' => $time,
+        );
+       $this->Chat_model->enviarMensaje($data);    
+    }
+    else{
+        $this->load->view('error.php');
+    }
 } 
 
 }
