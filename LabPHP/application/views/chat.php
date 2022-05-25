@@ -11,7 +11,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Auto-layout Columns</title>
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -28,13 +27,16 @@
         border: none;
        
     }
-    html,body{ margin: 0;}
+    body{
+        margin: 0;
+    }
+    html{
+        margin: 0;
+    }
     .div_contenedor{
-        
         height: 100vh;       
     }
     .div_centrado{
-       
         width: 80%;       
         height: 100%;
         position: absolute;
@@ -73,6 +75,7 @@
         width: 1300px;
     }
     .col3 {
+        z-index: 1;
         background: linear-gradient(90deg, #389393, #f5a25d);
         opacity: 80%;
         position: relative;
@@ -377,7 +380,7 @@ function enviar() {
 <body>
 
 <div class="div_contenedor">
-<div class="div_centrado">
+    <div class="div_centrado">
         <!--Row with two equal columns-->
         <div class="row">
             <div class="col3">
@@ -433,7 +436,7 @@ function enviar() {
         </div>
         </div>
     </div>
-  
+</div>
 </body>
 <footer>
     <?php
