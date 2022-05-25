@@ -316,6 +316,22 @@ class Usuario_model extends CI_Model {
         session_start();
         return $this->db->query("select nick from usuarios where nick <>'".$_SESSION["usuario"]."'")->result();
     }
+
+    function listarUsuariosNoValorados(){
+        session_start();
+        $id = $this->db->query("select id from usuarios where nick ='".$_SESSION["usuario"]."'")->result();
+        if(!empty($id)){
+            foreach($id as $row){
+                $id_recibe = $row->id;
+            }
+            return $this->db->query("SELECT u.nick FROM usuarios u WHERE u.id NOT IN 
+            (SELECT v.recibe FROM valoraciones v WHERE v.valora = $id_recibe) AND u.nick != '".$_SESSION["usuario"]."'")->result();
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
     public function valorar($data){
         $valora = $this->db->query("select id from usuarios where nick = '".$data['valora']."'")->result();
         foreach($valora as $v){
