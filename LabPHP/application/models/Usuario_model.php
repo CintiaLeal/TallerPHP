@@ -129,8 +129,8 @@ class Usuario_model extends CI_Model {
             else{
                 $promedioV = 0;
             }
+            $comentarios = array();
             if(!empty($valoraciones)){
-                $comentarios = array();
                 foreach($valoraciones as $row){
                     array_push($comentarios,$row->comentario);
                 }
