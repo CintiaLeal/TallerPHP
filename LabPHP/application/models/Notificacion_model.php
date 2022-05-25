@@ -14,11 +14,11 @@ public function verNotificacion($username){
 
 public function nuevaNotificacion($username){
     //UPDATE notificaciones SET leida = 0
-    $this->db->query("UPDATE notificaciones SET leida = 0");
+    $this->db->query("UPDATE notificaciones SET leida = 1");
     return  $this->db->query("select * from notificaciones n JOIN usuarios u ON u.id = n.id_usuario where u.nick = '$username' ORDER BY time DESC LIMIT 3")->result();
 }
 public function alerta($username){
-    return  $this->db->query("select * from notificaciones n JOIN usuarios u ON u.id = n.id_usuario where u.nick = '$username' and n.leida ='1' ORDER BY time DESC LIMIT 3")->result();
+    return  $this->db->query("select * from notificaciones n JOIN usuarios u ON u.id = n.id_usuario where u.nick = '$username' and n.leida ='0' ORDER BY time DESC LIMIT 3")->result();
 
 
 }

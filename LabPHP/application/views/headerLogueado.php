@@ -253,7 +253,7 @@ let timerId;
             
             $.each(valor, function(index, element) {
                 console.log(element.leida); 
-            if(element.leida == 1){
+            if(element.leida == 0){
                 spanalerta.setAttribute("class", "position-absolute top-10 start-20 translate-middle p-2 bg-success border border-light rounded-circle");
             }
             else{
