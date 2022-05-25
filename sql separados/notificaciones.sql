@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:8889
--- Tiempo de generación: 24-05-2022 a las 16:39:12
--- Versión del servidor: 5.7.24
--- Versión de PHP: 8.0.1
+-- Host: localhost:8889
+-- Generation Time: May 25, 2022 at 07:23 PM
+-- Server version: 5.7.24
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,28 +18,44 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tallerphp`
+-- Database: `tallerphp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `notificaciones`
+-- Table structure for table `notificaciones`
 --
 
 CREATE TABLE `notificaciones` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_usuario` bigint(20) NOT NULL,
   `leida` tinyint(1) NOT NULL,
-  `contenido` varchar(256) NOT NULL
+  `contenido` varchar(256) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Índices para tablas volcadas
+-- Dumping data for table `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`id`, `id_usuario`, `leida`, `contenido`, `time`) VALUES
+(1, 16, 0, 'Hola nueva notificacioens', '2022-05-25 18:23:23'),
+(2, 16, 0, 'Tiene una oferta', '2022-05-25 18:23:23'),
+(3, 16, 0, 'NUEVA NOTIFICACIONES DE OFERTA', '2022-05-25 18:23:23'),
+(4, 16, 0, 'DGSFGFG', '2022-05-25 18:23:23'),
+(5, 16, 0, 'este es nuevo', '2022-05-25 18:23:23'),
+(6, 16, 0, 'nueva', '2022-05-25 18:23:23'),
+(7, 16, 0, 'nuevo', '2022-05-25 18:24:52'),
+(8, 16, 0, 'dgsfg', '2022-05-25 18:35:45'),
+(9, 16, 0, 'rr', '2022-05-25 18:36:44');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `notificaciones`
+-- Indexes for table `notificaciones`
 --
 ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`id`),
@@ -47,21 +63,21 @@ ALTER TABLE `notificaciones`
   ADD KEY `notificacion_usuario` (`id_usuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `notificaciones`
+-- AUTO_INCREMENT for table `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `notificaciones`
+-- Constraints for table `notificaciones`
 --
 ALTER TABLE `notificaciones`
   ADD CONSTRAINT `notificacion_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
