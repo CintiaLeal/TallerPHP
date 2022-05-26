@@ -31,7 +31,7 @@ function registro(){
 }
 
 function verViaje($_id){
-    return $this->Viaje_model->devolverViaje($_id);
+    $viaje = $this->Viaje_model->devolverViaje($_id);
 }
 
 }

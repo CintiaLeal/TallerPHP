@@ -221,6 +221,12 @@ i {
 
 .texto {
     font-family: 'Sen', sans-serif;
+    color: white;
+    margin: 5px;
+    background-color:#389393;
+    opacity: 70%;
+    border-radius: 10px;
+    border-color: #aaaaaa;
 }
 
 .prioridad {
