@@ -25,6 +25,10 @@ class Viaje_model extends CI_Model {
         }
     }
 
+    function devolverViaje($_id){
+        return $this->db->query("select * from viaje where id ='".$_id."'")->result();
+    }
+
 /*$ciudadH = $_POST['c'];
     $ciudadD = $_POST['ciudades'];
     $fechaI = $_POST['fechaI'];
