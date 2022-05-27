@@ -46,4 +46,22 @@ function verViaje(){
     $this->load->view('viajeParticular.php',$data);
 }
 
+function ofertar(){
+    session_start();
+    if(isset($_SESSION["usuario"])){
+        $id_pedido = $_POST['idPedido'];
+        $id_viaje = $_POST['idViaje'];
+        $comision = $_POST['comision'];
+        if($this->Viaje_model->ofertar($id_pedido,$id_viaje,$comision)){
+            $this->load->view('exito.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+    else{
+        $this->load->view('error.php');
+    }
+}
+
 }

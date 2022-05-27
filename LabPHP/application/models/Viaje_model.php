@@ -39,4 +39,19 @@ class Viaje_model extends CI_Model {
         AND ".$viaje->fechaI)->result(); //FALTA PONER EL FILTRO DE LAS FECHAS
     }
 
+    function ofertar($id_pedido,$id_viaje,$comision){
+        if($this->db->insert(
+            'ofertas',array(
+                'viaje' => $id_viaje,
+                'pedido' => $id_pedido,
+                'comision' => $comision
+            )
+        )){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }
