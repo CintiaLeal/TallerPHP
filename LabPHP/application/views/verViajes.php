@@ -7,7 +7,7 @@ else{
 }
 
 ?>
-<form action="<?=base_url().'/index.php/viaje/verViaje'?>">
+<form action="<?=base_url().'/index.php/viaje/verViaje'?>" id="form" method="POST">
     <div class="conteiner">
         <div style="margin-bottom:3%; text-align: center;">
             <h1 style="font-family: 'Unica One', cursive;"><u>VIAJES</u></h1>
@@ -18,7 +18,7 @@ else{
         <div class="scroll_text_pedidos">
             <?foreach($res as $viaje){?>
                 <div style="width:200px;">
-                <?echo "<button type = 'submit' value ='".$viaje->viaje_id."' name ='viaje".$viaje->viaje_id."' class="."'texto'"."> Viaje: ".$viaje->viaje_id."<br>";
+                <?echo "<button type = 'button' class="."'texto'"." onClick = 'verId(".$viaje->viaje_id.")'> Viaje: ".$viaje->viaje_id."<br>";
                 echo "Fecha ida: ".$viaje->fechaI."<br>";
                 echo "Origen: ".$viaje->origen."<br>";
                 echo "Destino: ".$viaje->destino."<br></button>";
@@ -26,8 +26,16 @@ else{
                 </div>
             <?}?>
         </div>
+        <input id="idViaje" name="idViaje" class="d-none">
     </div>
 </form>
 <?php
     include ('footer.php');
 ?>
+
+<script>
+    function verId(id){
+        document.getElementById("idViaje").value = id;
+        document.getElementById("form").submit();
+    }
+</script>

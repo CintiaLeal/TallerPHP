@@ -26,18 +26,17 @@ class Viaje_model extends CI_Model {
     }
 
     function devolverViaje($_id){
-        return $this->db->query("select * from viaje where id ='".$_id."'")->result();
+        return $this->db->query("select * from viaje where viaje_id = ".$_id)->result();
     }
 
-/*$ciudadH = $_POST['c'];
-    $ciudadD = $_POST['ciudades'];
-    $fechaI = $_POST['fechaI'];
-    $fechaV = $_POST['element1'];
-    $data = array(
-        'ciudadH' => $ciudadH, 
-        'ciudadD' => $ciudadD,
-        'fechaI' => $fechaI,
-        'fechaV' => $fechaV,     
-);*/
+    function devolverPedidosOferta($viaje){
+        session_start();
+        $_id = $this->db->query("select id from usuarios where nick ='".$_SESSION["usuario"]."'")->result();
+        foreach($_id as $row){
+            $user = $row->id;
+        }
+        return $this->db->query("SELECT p.titulo, p.numero FROM pedidos p WHERE p.origen ='".$viaje->citiesD_id."' AND p.destino ='".$viaje->citiesH_id."'
+        AND ".$viaje->fechaI)->result(); //FALTA PONER EL FILTRO DE LAS FECHAS
+    }
 
 }

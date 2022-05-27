@@ -156,6 +156,35 @@ i{
     width: 700px;
     height: auto;
 }
+
+/*ESTILOS PARA VER VIAJE PARTICULAR */
+
+.atributosV{
+    margin: 5px;
+    font-family: 'Sen', sans-serif;
+}
+
+.contenedorAtributos{
+    justify-content:start;
+}
+
+.contenedorParticular{
+    margin: 10px; 
+    justify-content:center;
+}
+
+.contenedorImagen{
+    border-radius: 10px;
+    border-color: #389393;
+    border-width: 1px;
+}
+
+.listaPedidos{
+    background-color: #fa7f72;
+    color: white;
+    opacity: 50%;
+    border-radius: 10px;
+}
 </style>
 </head>
 <body>

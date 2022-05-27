@@ -17,7 +17,7 @@ class Pedido extends CI_Controller {
         $ciudadH = $_POST['c'];
         $ciudadD = $_POST['ciudades'];
         $fechamin =  $_POST['min'];
-        $fechamax =  $_POST['max']; //date('d-m-Y');
+        $fechamax =  $_POST['max'];
         $precio = $_POST['precio'];
         $data = array(
             'username' =>$username,

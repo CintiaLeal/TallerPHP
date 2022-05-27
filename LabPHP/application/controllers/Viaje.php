@@ -30,8 +30,20 @@ function registro(){
     }   
 }
 
-function verViaje($_id){
-    $viaje = $this->Viaje_model->devolverViaje($_id);
+function verViaje(){
+    $_id = $_POST["idViaje"];
+    $res = $this->Viaje_model->devolverViaje($_id);
+    if(!empty($res)){
+        foreach($res as $row){
+            $viaje = $row;
+        }
+    }
+    $pedidos = $this->Viaje_model->devolverPedidosOferta($viaje);
+    $data = array(
+        'viaje' => $viaje,
+        'pedidos' => $pedidos
+    );
+    $this->load->view('viajeParticular.php',$data);
 }
 
 }
