@@ -221,10 +221,59 @@ i {
 
 .texto {
     font-family: 'Sen', sans-serif;
+    color: white;
+    margin: 5px;
+    background-color:#389393;
+    opacity: 70%;
+    border-radius: 10px;
+    border-color: #aaaaaa;
 }
 
 .prioridad {
     z-index: 50;
+}
+
+/*ESTILOS PARA VER VIAJE PARTICULAR */
+
+.atributosV{
+    margin: 5px;
+}
+
+.contenedorAtributos{
+    justify-content:start;
+}
+
+.contenedorParticular{
+    margin: 10px; 
+    justify-content:center;
+}
+
+.contenedorImagen{
+    border-radius: 10px;
+    border-color: #389393;
+    border-width: 1px;
+}
+
+.listaPedidos{
+    background-color: #fa7f72;
+    color: white;
+    opacity: 50%;
+    border-radius: 10px;
+}
+
+.btnViaje{
+    background-color: #389393;
+    color: white;
+    opacity: 50%;
+    border-radius: 10px;
+    border-color: #389393;
+}
+
+.comision{
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    color:white;
+    width: 100px;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
