@@ -185,6 +185,21 @@ i{
     opacity: 50%;
     border-radius: 10px;
 }
+
+.btnViaje{
+    background-color: #389393;
+    color: white;
+    opacity: 50%;
+    border-radius: 10px;
+    border-color: #389393;
+}
+
+.comision{
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    color:white;
+    width: 100px;
+}
 </style>
 </head>
 <body>
