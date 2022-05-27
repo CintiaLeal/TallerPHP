@@ -14,6 +14,13 @@ class Busqueda extends CI_Controller {
 	function buscar(){
         $pedidos = $this->Busqueda_model->pedidos();
 		$viajes = $this->Busqueda_model->viajes();
-		$this->load->view('busqueda.php',$pedidos,$viajes);
+		$data = array(
+			'Pedidos' => $pedidos,
+			'Viajes' => $viajes
+		);
+
+		print_r($data);
+		
+		$this->load->view('busqueda.php',$data);
     }
 }

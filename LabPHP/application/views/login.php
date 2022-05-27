@@ -353,17 +353,17 @@ footer {
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">
-                <h1>Login</h1>
-                <div class="social-container">
-                    <button onclick="onLogin();" class="social"><i class="fab fa-facebook-f"></i></button>
-                </div>
-                <!-- <span>or use your account</span> -->
-                <input class="inputlogin" type="user" placeholder="User Name" name="username" />
-                <input class="inputlogin" type="password" placeholder="Password" name="password" />
+            <h1>Login</h1>
+            <div class="social-container">
+                <button type="click" onclick="onLogin();" class="social"><i class="fab fa-facebook-f"></i></button>
+            </div>
+            <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">        
+            <!-- <span>or use your account</span> -->
+            <input class="inputlogin" type="user" placeholder="User Name" name="username" />
+            <input class="inputlogin" type="password" placeholder="Password" name="password" />
 
-                <button>Iniciar</button>
-            </form>
+            <button type="submit" >Iniciar</button>
+        </form>
         </div>
         <div class="overlay-container">
             <div class="overlay">
@@ -393,10 +393,10 @@ footer {
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1057209118558332',
+      appId      : '414719280503214',
       cookie     : true,
       xfbml      : true,
-      version    : 'v8.0'
+      version    : 'v14.0'
     });
       
     FB.AppEvents.logPageView();   
@@ -415,7 +415,8 @@ footer {
     FB.login((response) => {
         if(response.authResponse){
             FB.api('/me?fields=email,name,picture',(response)=>{
-                console.log(response)
+                console.log(response);
+                alert('consola')
             })
         }
         })

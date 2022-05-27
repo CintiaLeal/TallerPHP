@@ -10,13 +10,15 @@
     <link href='https://css.gg/phone.css' rel='stylesheet'>
     <link href='https://css.gg/mail.css' rel='stylesheet'>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
+
 /*ESTILOS DEL HEADER*/
-.af{
+.af {
     font-family: 'Sen', sans-serif;
     color: #fa7f72;
 }
+
 .conteiner {
     display: flex;
     flex-wrap: wrap;
@@ -36,11 +38,12 @@
 
 }
 
-.c3{
+.c3 {
     width: 15%;
     margin: 1.5%;
 }
-.c4{
+
+.c4 {
     width: 15%;
     margin: 2%;
     display: flex;
@@ -66,59 +69,62 @@
     padding: 1%;
     margin: 1%;
 }
-i{
-    height:50px; 
+
+i {
+    height: 50px;
     width: auto;
     opacity: 50%;
 }
-.buscar{
+
+.buscar {
     max-height: 40px;
 }
 
-.iconos{
+.iconos {
     max-height: 40px;
     max-width: 40px;
     margin: 3%;
     border: none;
     background-color: white;
 }
+
 /*ESTILOS DE PERFILES*/
-.comprador{
+.comprador {
     font-family: 'Unica One', cursive;
     font-size: x-large;
     color: #aaaaaa;
 }
 
-.viajero{
+.viajero {
     font-family: 'Unica One', cursive;
     font-size: x-large;
     color: #aaaaaa;
 }
 
-.c_perfiles{
+.c_perfiles {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.bio_title{
+.bio_title {
     font-family: 'Unica One', cursive;
     font-size: medium;
     color: #aaaaaa;
 }
 
-.valoraciones_title{
+.valoraciones_title {
     font-family: 'Unica One', cursive;
     font-size: medium;
     color: #aaaaaa;
 }
 
-.c_bio_val{
+.c_bio_val {
     margin: 2%;
     display: flex;
 }
 
-.scroll_text_bio{
+.scroll_text_bio {
     background-color: #389393;
     opacity: 50%;
     border-radius: 5px;
@@ -127,7 +133,7 @@ i{
     height: 150px;
 }
 
-.scroll_text_val{
+.scroll_text_val {
     background-color: #fa7f72;
     opacity: 50%;
     border-radius: 5px;
@@ -136,32 +142,98 @@ i{
     height: 150px;
 }
 
-.c_textarea{
+.c_textarea {
     width: 100%;
     display: flex;
 }
 
+/*PARA DESPLEGAR EL BOTON*/
+/* Dropdown Button */
+.dropbtn {
+    background-color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: white
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: white;
+}
+
 /*ESTILOS PARA EDITAR USUARIO*/
-.cU{
+.cU {
     width: 15%;
     margin: 20px;
     display: flex;
     justify-content: center;
 }
+
 /*ESTILOS PARA VER PEDIDOS*/
-.scroll_text_pedidos{
+.scroll_text_pedidos {
     border-color: #389393;
     border-radius: 5px;
+    color: black;
+    width: 500px;
+    max-height: 250px;
+    overflow-y: scroll;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.texto {
+    font-family: 'Sen', sans-serif;
     color: white;
-    width: 700px;
-    height: auto;
+    margin: 5px;
+    background-color:#389393;
+    opacity: 70%;
+    border-radius: 10px;
+    border-color: #aaaaaa;
+}
+
+.prioridad {
+    z-index: 50;
 }
 
 /*ESTILOS PARA VER VIAJE PARTICULAR */
 
 .atributosV{
     margin: 5px;
-    font-family: 'Sen', sans-serif;
 }
 
 .contenedorAtributos{
