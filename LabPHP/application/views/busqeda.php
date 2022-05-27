@@ -19,7 +19,11 @@ else{
             </div>
         <?}?>
     </div>
+    </div>
+
     
+
+<div class="conteiner">
     <div class="scroll_text_pedidos">
         <?foreach($arreglo as $row){?>
             <div style="width:200px;">
