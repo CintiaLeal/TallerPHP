@@ -19,7 +19,7 @@ class Busqueda extends CI_Controller {
 			'Viajes' => $viajes
 		);
 
-		print_r($data);
+		//print_r($data);
 		
 		$this->load->view('busqueda.php',$data);
     }

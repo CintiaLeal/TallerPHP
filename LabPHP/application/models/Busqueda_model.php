@@ -9,7 +9,7 @@ class Busqueda_model extends CI_Model {
         
     }
      public function pedidos(){
-        $q = $this->db->query("select * from pedidos p where p.estado = 'activo'")->result();
+        $q = $this->db->query("SELECT * FROM pedidos p WHERE p.estado = 'activo' ")->result(); //devuelve el viaje y el origen //AND p.fecha_max > date(now())
         if(isset($q)){
         $res = array();
         foreach($q as $row){
@@ -25,7 +25,7 @@ class Busqueda_model extends CI_Model {
         public function viajes(){
             $format = "d/m/Y"; 
             $q = $this->db->query("SELECT v.viaje_id, v.fechaI, v.fechaV, c.name AS origen, c1.name AS destino FROM viaje v INNER JOIN cities c ON v.citiesD_id = c.id 
-            INNER JOIN cities c1 ON v.citiesH_id = c1.id where v.fechaI > date(now()) or v.fechaV > date(now())")->result(); //devuelve el viaje y el origen
+            INNER JOIN cities c1 ON v.citiesH_id = c1.id")->result(); //devuelve el viaje y el origen // where v.fechaI > date(now()) OR v.fechaV > date(now())
             if(isset($q)){
             $res = array();
             foreach($q as $row){

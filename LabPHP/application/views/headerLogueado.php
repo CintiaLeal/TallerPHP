@@ -387,8 +387,7 @@ function buscarNotificacion() {
             <u><a href="<?= base_url().'/index.php/welcome/publicarViajes'?>" style="color:lightcoral">Viaje</a></u>
         </div>
         <div class="c1">
-            <form action="<?= base_url().'/index.php/Busqueda/buscar'?>" method="POST">
-                <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">
+                <form action="<?= base_url().'/index.php/Busqueda/buscar'?>" method="POST">
                 <button type="button" style="background-color:dimgray; border-radius:5px;" class="buscar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search"
                         viewBox="0 0 16 16" style="margin: 3%;">
