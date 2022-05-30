@@ -378,13 +378,13 @@ function buscarNotificacion() {
                 alt="Logo" height="80px" width="auto">
         </div>
         <div class="c2">
-            <u><a href="<?= base_url().'/index.php/welcome/crearPedido'?>" style="color:lightcoral">Comprar</a></u>
+            <u><a href="<?= base_url().'/index.php/pedido/crearPedido'?>" style="color:lightcoral">Comprar</a></u>
         </div>
         <div class="c2">
             <label style="color: #389393">|</label>
         </div>
         <div class="c2">
-            <u><a href="<?= base_url().'/index.php/welcome/publicarViajes'?>" style="color:lightcoral">Viaje</a></u>
+            <u><a href="<?= base_url().'/index.php/viaje/publicarViajes'?>" style="color:lightcoral">Viaje</a></u>
         </div>
         <div class="c1">
                 <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">

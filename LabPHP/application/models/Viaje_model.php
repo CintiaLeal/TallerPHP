@@ -25,7 +25,8 @@ class Viaje_model extends CI_Model {
     }
 
     function devolverViaje($_id){
-        return $this->db->query("select * from viaje where viaje_id = ".$_id)->result();
+        return $this->db->query("select v.viaje_id, v.fechaI, v.fechaV, c.name as origen, c1.name as destino from viaje v inner join cities c on c.id = v.citiesD_id
+         inner join cities c1 on c1.id = v.citiesH_id where viaje_id = ".$_id)->result();
     }
 
     function devolverPedidosOferta($viaje){

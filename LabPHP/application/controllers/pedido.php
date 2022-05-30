@@ -18,7 +18,7 @@ class Pedido extends CI_Controller {
         $ciudadD = $_POST['ciudades'];
         $fechamin =  $_POST['min'];
         $fechamax =  $_POST['max'];
-        $precio = $_POST['precio'];
+        $precio = $_POST["precio"];
         $data = array(
             'username' =>$username,
             'titulo'=>$nombre,
@@ -33,12 +33,33 @@ class Pedido extends CI_Controller {
             'destino' => $ciudadH,
         );
         if($this->Pedido_model->registrar($data)){
-            $this->load->view('inicio.php');
+            $this->load->model('Cupon_model');
+            if($this->Cupon_model->usarCupon($_POST["cupon"])){
+                $this->load->view('exito.php');
+            }
+            else{
+                $this->load->view('error.php');
+            }
         }
         else{
             $this->load->view('error.php');
         }
     }
+
+    public function crearPedido(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $this->load->model("Lugar_model");
+            $this->load->model("Cupon_model");
+            $cupones = $this->Cupon_model->devolverCupones($_SESSION["usuario"]);
+            $Lugar =  $this->Lugar_model->getLugar();
+            $data = array(
+                'Lugar' => $Lugar,
+                'cupones' => $cupones
+            );
+            $this->load->view('crearPedido.php', $data);
+        }
+	}
 
     function verPedido(){
         session_start();
