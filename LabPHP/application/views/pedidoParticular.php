@@ -7,7 +7,7 @@ else{
 }
 
 ?>
-<form action="<?= base_url().'/index.php/viaje/ofertar'?>" method="POST" id="form">
+<form action="<?= base_url().'/index.php/pedido/aceptarOferta'?>" method="POST" id="form">
     <div class="conteiner">
         <div style="margin-bottom:3%; text-align: center; display: flex;">
             <h1 style="font-family: 'Unica One', cursive;"><u>PEDIDO</u></h1>
@@ -71,11 +71,17 @@ else{
                 </div>
 
                 <div class="contenedorParticular">
-                    <button type="button" class="btnViaje" id="btn">Aceptar</button>
+                    <button type="submit" class="btnViaje" id="btn">Aceptar</button>
                 </div>
             <?}?>
-    </div>
 </form>
+        <form id="form1" action="<?= base_url().'/index.php/pedido/pedidoRecibido'?>" method="POST">
+                <div class="contenedorParticular">
+                        <button type="button" class="btnViaje" id="marcar" onclick="enviar(<?=$pedido->numero?>)">Marcar como recibido</button>
+                </div>
+                <input class="d-none" id="pedido" name="pedido">            
+    </div>
+        </form>
     <div>
         <img src="<?=$pedido->imagen?>" alt="Imagen" class="contenedorImagen" style="margin-left:5%; max-width:220px;">
     </div>
@@ -84,3 +90,12 @@ else{
 <?php
     include ('footer.php');
 ?>
+
+<script>
+let form2 = document.getElementById("form1");
+
+function enviar(pedido){
+    document.getElementById("pedido").value = pedido;
+    form2.submit();
+}
+</script>

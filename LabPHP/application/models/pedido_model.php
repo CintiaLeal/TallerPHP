@@ -49,4 +49,22 @@ class Pedido_model extends CI_Model {
     function devolverOfertas($idPedido){
         return $this->db->query("select * from ofertas where pedido ='".$idPedido."' and aceptada = 0")->result();
     }
+
+    function aceptarOferta($idOferta){
+        if($this->db->query("update ofertas set aceptada = 1 where id =".$idOferta)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function pedidoRecibido($idPedido){
+        if($this->db->query("update pedidos set estado = 'recibido' where numero =".$idPedido)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

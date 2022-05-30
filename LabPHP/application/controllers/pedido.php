@@ -68,4 +68,36 @@ class Pedido extends CI_Controller {
         }
     }
 
+    function aceptarOferta(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $idOferta = $_POST['idOferta'];
+            if($this->Pedido_model->aceptarOferta($idOferta)){
+                $this->load->view('exito.php');
+            }
+            else{
+                $this->load->view('error.php');
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
+    function pedidoRecibido(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $idPedido = $_POST['pedido'];
+            if($this->Pedido_model->pedidoRecibido($idPedido)){
+                $this->load->view('exito.php');
+            }
+            else{
+                $this->load->view('error.php');
+            }
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
 }
