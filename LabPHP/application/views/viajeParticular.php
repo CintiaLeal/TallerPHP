@@ -7,7 +7,7 @@ else{
 }
 
 ?>
-<form action="<?= base_url().'/index.php/viaje/ofertar'?>" method="POST">
+<form action="<?= base_url().'/index.php/viaje/ofertar'?>" method="POST" id="form">
     <div class="conteiner">
         <div style="margin-bottom:3%; text-align: center; display: flex;">
             <h1 style="font-family: 'Unica One', cursive;"><u>VIAJE</u></h1>
@@ -47,6 +47,7 @@ else{
                 </p>
             </div>
             <?}?>
+            <?if(!empty($pedidos)){?>
                 <div class="contenedorParticular">
                     <p class="atributosV"><u>Ofertar sobre:</u></p>
                     <select class="listaPedidos" id="idPedido" name="idPedido">
@@ -60,9 +61,9 @@ else{
                 </div>
 
                 <div class="contenedorParticular">
-                    <button type="submit" class="btnViaje">Confirmar</button>
+                    <button type="button" class="btnViaje" id="btn">Confirmar</button>
                 </div>
-
+            <?}?>
     </div>
 </form>
     <div>
@@ -73,3 +74,21 @@ else{
 <?php
     include ('footer.php');
 ?>
+
+<script>
+    function validarCampo(){
+        if((document.getElementById("comision".value == null)) || (document.getElementById("comision".value == undefined)) || (document.getElementById("comision").value <= 0)){
+            alert('Error, debe completar todos los campos');
+            return false;
+        }
+        return true;
+    }
+    let form = document.getElementById("form");
+    let btn = document.getElementById("btn");
+    btn.addEventListener('click', e =>{
+        e.preventDefault();
+        if(validarCampo()){
+            form.submit();
+        }
+    })
+</script>
