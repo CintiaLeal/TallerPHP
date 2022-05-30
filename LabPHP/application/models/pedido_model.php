@@ -36,4 +36,17 @@ class Pedido_model extends CI_Model {
             return false;
         }
     }
+
+    function devolverPedido($idPedido){
+        return $this->db->query("select * from pedidos p where numero ='".$idPedido."'")->result();
+    }
+
+    function devolverOrigenDestino($idPedido){
+        return $this->db->query("select c.name as origen, c1.name as destino from pedidos p inner join cities c on c.id = p.origen
+        inner join cities c1 on c1.id = p.destino where p.numero ='".$idPedido."'")->result();
+    }
+
+    function devolverOfertas($idPedido){
+        return $this->db->query("select * from ofertas where pedido ='".$idPedido."' and aceptada = 0")->result();
+    }
 }

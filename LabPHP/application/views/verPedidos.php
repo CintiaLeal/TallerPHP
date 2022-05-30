@@ -7,7 +7,7 @@ else{
 }
 
 ?>
-
+<form action="<?=base_url().'/index.php/pedido/verPedido'?>" id="form" method="POST">
 <div class="conteiner">
     <div style="margin-bottom:3%; text-align: center;">
         <h1 style="font-family: 'Unica One', cursive;"><u>PEDIDOS</u></h1>
@@ -33,14 +33,22 @@ else{
         <?foreach($arreglo as $row){?>
             <div style="width:200px;">
             <img src="<?=$row->imagen?>" style="max-width: 50px;">
-            <?echo "<br>"."<p class="."'texto'".">Titulo: ".$row->titulo."<br>";
+            <?echo "<br>"."<button class="."'texto'"." onClick = 'verId(".$row->numero.")'>Titulo: ".$row->titulo."<br>";
             echo "Descripcion: ".$row->descripcion."<br>";
-            echo "Precio: $".$row->precio."<br></p>";?>
+            echo "Precio: $".$row->precio."<br></button>";?>
             </div>
         <?}?>
+        <input id="idPedido" name="idPedido" class="d-none">
     </div>
 </div>
-
+</form>
 <?php
     include ('footer.php');
 ?>
+
+<script>
+    function verId(id){
+        document.getElementById("idPedido").value = id;
+        document.getElementById("form").submit();
+    }
+</script>

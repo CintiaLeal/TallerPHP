@@ -40,4 +40,32 @@ class Pedido extends CI_Controller {
         }
     }
 
+    function verPedido(){
+        session_start();
+        if(isset($_SESSION['usuario'])){
+            //devolver los datos del pedido y cargarlos a la vista con las ofertas
+            $idPedido = $_POST['idPedido'];
+            $pedido = $this->Pedido_model->devolverPedido($idPedido);
+            $ofertas = $this->Pedido_model->devolverOfertas($idPedido);
+            $origenDestino = $this->Pedido_model->devolverOrigenDestino($idPedido);
+            foreach($pedido as $row){
+                $p = $row;
+            }
+            foreach($origenDestino as $row){
+                $destino = $row->destino;
+                $origen = $row->origen;
+            }
+            $data = array(
+                'pedido' => $p,
+                'ofertas' => $ofertas,
+                'origen' => $origen,
+                'destino' => $destino
+            );
+            $this->load->view('pedidoParticular.php',$data);
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
 }
