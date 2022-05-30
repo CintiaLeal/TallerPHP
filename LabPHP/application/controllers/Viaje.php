@@ -30,6 +30,12 @@ function registro(){
     }   
 }
 
+public function publicarViajes(){
+    $this->load->model("Lugar_model");
+    $Lugar =  $this->Lugar_model->getLugar();
+    $this->load->view('publicarViajes.php', compact("Lugar"));
+}
+
 function verViaje(){
     $_id = $_POST["idViaje"];
     $res = $this->Viaje_model->devolverViaje($_id);

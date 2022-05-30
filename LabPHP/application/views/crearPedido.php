@@ -1,5 +1,4 @@
 [<?php
-session_start();
 if(isset($_SESSION['usuario'])){
     include ('headerLogueado.php');
 }
@@ -344,8 +343,19 @@ success: function(resp){
                             <p>Descripcion</p>
                             <textarea id = "descripcion" name="descripcion" rows="5" cols="100"></textarea>
                             <p class="amini">Incluir detalles sobre tu pedido</p>
+                            <?if(!empty($cupones)){?>
+                            <p>Seleccionar cupon:</p>
+                            <select class="listaPedidos" id="cupones" name="cupones">
+                                <?foreach($cupones as $cupon){?>
+                                <option value="<?=$cupon->descuento?>">
+                                    $<?=$cupon->descuento?>
+                                </option>
+                            </select>
+                            <input class="d-none" name="idCupon" id="idCupon" value="<?=$cupon->id?>"> 
+                            <?}}?>
                         </div>
                         <input name="precio" type="text" id="precio" class="d-none"/>
+                        <input class="d-none" name="cupon" id="cupon">
                     </div>
                 </div>
 
@@ -355,8 +365,10 @@ success: function(resp){
                     <div class="">
                         <p class="pmini" value="neto">Precio: $ <input type="text" class="inputCalculados" id="pneto" disabled="disabled" /> </p>
                         <p class="pmini" id="comiTeloLLevo">Tasa de TeloLLevo: $ <input type="text" class="inputCalculados" id="comisTeloLLevo" disabled="disabled" /></p>
-                        <p class="pmini" id="comi">Recompensa del viajero: $ <input type="text" class="inputCalculados" id="comis" disabled="disabled" /></p>
-                        <p class="pnegrita"><b>Pago total:  $ <input type="text" id="total" name="total" class="inputCalculados" disabled="disabled" /> </b></p>
+                        <?if(!empty($cupones)){?>
+                        <p class="pmini" id="desc">Descuento: $ <input type="text" class="inputCalculados" id="descuento" disabled="disabled" /></p>
+                        <?}?>
+                        <p class="pnegrita"><b>Total estimado:  $ <input type="text" id="total" name="total" class="inputCalculados" disabled="disabled" /> </b></p>
                     </div>
 
                 </div>
@@ -402,16 +414,14 @@ success: function(resp){
     function calcular() {
         ne = eval(document.getElementById('neto').value);
 
-
+        document.getElementById("cupon").value = document.getElementById("idCupon").value;
         comiTeloLLevo = ne * 0.1;
-        comi = ne * 0.15;
-        total = ne + comi + comiTeloLLevo;
-
+        total = ne + comiTeloLLevo;
         document.getElementById('comisTeloLLevo').value = comiTeloLLevo;
-        document.getElementById('comis').value = comi;
+        document.getElementById('descuento').value = document.getElementById("cupones").value;
         document.getElementById('pneto').value = ne;
-        document.getElementById('total').value = total;
-        document.getElementById("precio").value = total;
+        document.getElementById('total').value = total - document.getElementById("cupones").value;
+        document.getElementById("precio").value = total - document.getElementById("cupones").value;
     }
 </SCRIPT>
 
