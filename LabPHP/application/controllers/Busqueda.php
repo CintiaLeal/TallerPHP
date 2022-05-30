@@ -15,12 +15,24 @@ class Busqueda extends CI_Controller {
         $pedidos = $this->Busqueda_model->pedidos();
 		$viajes = $this->Busqueda_model->viajes();
 		$data = array(
-			'Pedidos' => $pedidos,
-			'Viajes' => $viajes
+			'pedidos' => $pedidos,
+			'viajes' => $viajes
 		);
 
 		//print_r($data);
 		
 		$this->load->view('busqueda.php',$data);
     }
+
+	function busqueda(){
+		$c = $_POST['contenido'];
+		
+		$pedidos = $this->Busqueda_model->buscarpedidos($c);
+		$viajes = $this->Busqueda_model->buscarviajes($c);
+		$data = array(
+			'pedidos' => $pedidos,
+			'viajes' => $viajes
+		);
+		echo json_encode($data);
+	}
 }

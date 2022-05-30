@@ -353,11 +353,12 @@ footer {
             </form>
         </div>
         <div class="form-container sign-in-container">
+            
+        <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">        
             <h1>Login</h1>
             <div class="social-container">
-                <button type="click" onclick="onLogin();" class="social"><i class="fab fa-facebook-f"></i></button>
+                <button type="button" onclick="onLogin();" class="social"><i class="fab fa-facebook-f"></i></button>
             </div>
-            <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">        
             <!-- <span>or use your account</span> -->
             <input class="inputlogin" type="user" placeholder="User Name" name="username" />
             <input class="inputlogin" type="password" placeholder="Password" name="password" />
@@ -389,6 +390,7 @@ footer {
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
 <script>
   window.fbAsyncInit = function() {
