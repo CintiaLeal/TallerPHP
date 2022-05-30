@@ -40,13 +40,13 @@ else{
                     <u>Fecha ida:</u>  <?=$viaje->fechaI?>
                 </p>
             </div>
-            
+            <?if($viaje->fechaV != '0000-00-00'){?>
             <div class="contenedorParticular">
                 <p class="atributosV">
                     <u>Fecha vuelta:</u>  <?=$viaje->fechaV?>
                 </p>
             </div>
-            
+            <?}?>
                 <div class="contenedorParticular">
                     <p class="atributosV"><u>Ofertar sobre:</u></p>
                     <select class="listaPedidos" id="idPedido" name="idPedido">
