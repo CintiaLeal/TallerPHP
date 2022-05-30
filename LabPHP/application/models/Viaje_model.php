@@ -1,7 +1,6 @@
 <?php
 
 class Viaje_model extends CI_Model {
-
     function __construct(){
         parent::__construct();
         $this->load->database();
@@ -36,7 +35,7 @@ class Viaje_model extends CI_Model {
             $user = $row->id;
         }
         return $this->db->query("SELECT p.titulo, p.numero FROM pedidos p WHERE p.origen ='".$viaje->citiesD_id."' AND p.destino ='".$viaje->citiesH_id."'
-        AND ".$viaje->fechaI)->result(); //FALTA PONER EL FILTRO DE LAS FECHAS
+        AND ".$viaje->fechaI." AND p.numero NOT IN (SELECT pedido FROM ofertas WHERE viaje = $viaje->viaje_id)")->result(); //FALTAN LOS FILTROS DE LAS FECHAS
     }
 
     function ofertar($id_pedido,$id_viaje,$comision){
