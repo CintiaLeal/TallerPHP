@@ -25,13 +25,13 @@ else{
 
             <div class="contenedorParticular">
                 <p class="atributosV">
-                    <u>Origen:</u>  <?=$viaje->citiesD_id?>
+                    <u>Origen:</u>  <?=$viaje->origen?>
                 </p>
             </div>
             
             <div class="contenedorParticular">
                 <p class="atributosV">
-                    <u>Destino:</u>  <?=$viaje->citiesH_id?>
+                    <u>Destino:</u>  <?=$viaje->destino?>
                 </p>
             </div>
             
