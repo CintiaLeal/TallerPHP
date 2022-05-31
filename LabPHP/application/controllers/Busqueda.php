@@ -26,7 +26,7 @@ class Busqueda extends CI_Controller {
 
 	function busqueda(){
 		$c = $_POST['contenido'];
-		
+		console.log("function busqueda");
 		$pedidos = $this->Busqueda_model->buscarpedidos($c);
 		$viajes = $this->Busqueda_model->buscarviajes($c);
 		$data = array(

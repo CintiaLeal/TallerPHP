@@ -7,10 +7,27 @@ else{
 }
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    function buscar() {
+        var contenido = document.getElementById("busqueda").value;
+        $.ajax({
+        type: 'POST',
+        data: {contenido: contenido},
+        url: '<?php echo base_url() . 'index.php/Busqueda/busqueda'; ?>', 
+        dataType: "json",
+        success: function(resp) {
+            console.log("llega 1");
+            $('divpedidos').empty();
+            $('divviajes').empty();
+        }
+        })
+    }   
+</script>
 
 <div class="conteiner">
     <br>    
-    <input id="busqueda" name="busqueda" type="search" id="form1" class="form-control buscar" placeholder="Buscar" oninput="buscar()">
+    <input  oninput="buscar()" id="busqueda" name="busqueda" type="search" class="form-control buscar">
     <br><br><br>
     <p> Pedidos: </p>
     <div class="conteiner">
@@ -40,23 +57,7 @@ else{
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-    buscar(){
-        console.log("llega 1");
-        var contenido = document.getElementById("busqueda").value
-        $.ajax({
-        type: 'POST',
-        data: {contenido: contenido},
-        url: '<?php echo base_url() . 'index.php/buscar/busqueda'; ?>', 
-        dataType: "json",
-        success: function(resp) {
-            $('divpedidos').empty();
-            $('divviajes').empty();
-        }
-        })
-    }   
-</script>
+
 
 <?php
     include ('footer.php');
