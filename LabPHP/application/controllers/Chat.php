@@ -19,7 +19,7 @@ public function verChat(){
         $this->load->view('chat.php', compact("Perfiles"));
     }
     else{
-        $this->load->view('errorPermiso.php');
+        $this->load->view('error.php');
     }
 }
 
@@ -46,7 +46,7 @@ public function buscarChat(){
         echo json_encode($data);
    }
    else{
-        $this->load->view('errorPermiso.php');
+        $this->load->view('error.php');
     }
    
 }
@@ -68,7 +68,7 @@ public function enviarMensaje(){
        $this->Chat_model->enviarMensaje($data);    
     }
     else{
-        $this->load->view('errorPermiso.php');
+        $this->load->view('error.php');
     }
 } 
 
