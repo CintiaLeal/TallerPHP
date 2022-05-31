@@ -23,7 +23,7 @@ class Usuario_model extends CI_Model {
             )
         );
         if($data['nickReferido']!=null){
-           $res = $this->db->query("select id from usuarios where nick = '".$data['nickreferido']."'")->result();
+           $res = $this->db->query("select id from usuarios where nick = '".$data['nickReferido']."'")->result();
            $res2 = $this->db->query("select id from usuarios where nick = '".$data['username']."'")->result();
            foreach($res as $row){
                $idComparte = $row->id;

@@ -21,17 +21,21 @@ else{
     <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
         <button type="button" id="validar" style="border-radius: 15px; background-color:darksalmon; color:white;">Verificar</button>
     </div>
-
+    <?if(!empty($usuarios)){?>
     <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
     <select id="listaUsuarios">
         <?foreach($usuarios as $usuario){?>
         <option id="nickUsuario" value="<?=$usuario->nick?>">
-            <?$usuario->nick;?>
+            <?=$usuario->nick;?>
         </option>
         <?}?>
     </select>
+    </div>
+    
+    <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
         <button type="button" onclick="referido()" id="invitado" style="border-radius: 15px; background-color:lightseagreen; color:white;">Seleccionar referido</button>
     </div>
+    <?}?>
     <input class="d-none" id="nombre" name="nombre" value="<?=$data['nombre']?>">
     <input class="d-none" id="apellido" name="apellido" value="<?=$data['apellido']?>">
     <input class="d-none" id="username" name="username" value="<?=$data['username']?>">
