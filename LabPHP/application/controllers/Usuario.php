@@ -232,7 +232,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('errorPermiso.php')
+            $this->load->view('errorPermiso.php');
         }
     }
 
