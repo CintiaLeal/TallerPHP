@@ -75,9 +75,11 @@ class Usuario extends CI_Controller {
             );
             //enviar el mail y cargar la vista para verificar el codigo
             $code = $this->enviarMail($email,$name);
+            $usuarios = $this->Usuario_model->listarUsuarios();
             $arr = array(
                 'data' => $data,
-                'code' => $code
+                'code' => $code,
+                'usuarios' => $usuarios
             );
             if($code!=false){
                 $this->load->view('verificacion.php',$arr);
@@ -97,17 +99,35 @@ class Usuario extends CI_Controller {
         $bio = $_POST['biografia'];
         $password = $_POST['password'];
         $fechaActual = $_POST['unido'];
-        $data = array(
-            'nombre' => $name, 
-            'username' => $username,
-            'apellido' => $apellido,
-            'telefono' => $telefono,
-            'img' => $img,
-            'email' => $email,
-            'biografia' => $bio,
-            'password' => $password,
-            'unido' => $fechaActual
-        );
+        if($_POST['nickReferido']!=null){
+            $nickReferido = $_POST['nickReferido'];
+            $data = array(
+                'nombre' => $name, 
+                'username' => $username,
+                'apellido' => $apellido,
+                'telefono' => $telefono,
+                'img' => $img,
+                'email' => $email,
+                'biografia' => $bio,
+                'password' => $password,
+                'unido' => $fechaActual,
+                'nickReferido' => $nickReferido
+            );
+        }
+        else{
+            $data = array(
+                'nombre' => $name, 
+                'username' => $username,
+                'apellido' => $apellido,
+                'telefono' => $telefono,
+                'img' => $img,
+                'email' => $email,
+                'biografia' => $bio,
+                'password' => $password,
+                'unido' => $fechaActual,
+                'nickReferido' => null
+            );
+        }
         if($this->Usuario_model->registrarUsuario($data)){
             $this->load->view('exito.php');
         }

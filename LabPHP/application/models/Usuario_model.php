@@ -22,6 +22,25 @@ class Usuario_model extends CI_Model {
             'unido' => $data['unido']
             )
         );
+        if($data['nickReferido']!=null){
+           $res = $this->db->query("select id from usuarios where nick = '".$data['nickreferido']."'")->result();
+           $res2 = $this->db->query("select id from usuarios where nick = '".$data['username']."'")->result();
+           foreach($res as $row){
+               $idComparte = $row->id;
+           }
+           foreach($res2 as $row){
+               $idRecibe = $row->id;
+           }
+           $this->db->insert('cupones', array(
+               'descuento' => 10,
+               'vencimiento' => date('d-m-Y',strtotime(date('d-m-Y')."+ 1 month")),
+               'u_recibe' => $idRecibe
+           ));
+           $this->db->insert('cupones', array(
+            'vencimiento' => date('d-m-Y',strtotime(date('d-m-Y')."+ 1 month")),
+            'u_recibe' => $idComparte
+        ));
+        }
         /*PARA VERIFICAR QUE LO HAYA GUARDADO EN LA BASE SIN TENER QUE IR A CHEQUEAR*/
         $p = $this->db->query("select nick from usuarios where nick = '".$data['username']."'")->result();
         if(isset($p)){
@@ -313,8 +332,7 @@ class Usuario_model extends CI_Model {
     }
     
     function listarUsuarios(){
-        session_start();
-        return $this->db->query("select nick from usuarios where nick <>'".$_SESSION["usuario"]."'")->result();
+        return $this->db->query("select nick from usuarios")->result();
     }
 
     function listarUsuariosNoValorados(){
