@@ -7,6 +7,7 @@ else{
 }
 
 ?>
+<link href='https://css.gg/twitter.css' rel='stylesheet'>
 <form action="<?= base_url().'/index.php/pedido/aceptarOferta'?>" method="POST" id="form">
     <div class="conteiner">
         <div style="margin-bottom:3%; text-align: center; display: flex;">
@@ -85,7 +86,11 @@ else{
     <div>
         <img src="<?=$pedido->imagen?>" alt="Imagen" class="contenedorImagen" style="margin-left:5%; max-width:220px;">
     </div>
-
+    <div style="position: relative;">
+            <div style=" position: absolute;top: 100%;left: 10%;">
+            <a class="btn btn-primary" style="background-color: #389393; border: none;" href="https://twitter.com/intent/tweet?text=Hola%20soy%20<?= $n = $_SESSION["usuario"]?>%20👋%20%2C%20quiero%20comprar%20<?=$pedido->titulo?>.%20Me%20gustaría%20que%20llegara%20como  mínimo el día:%20<?=$pedido->fecha_min?>,%20en la ciudad de%20<?=$destino?>%20desde%20<?=$origen?>.%20Comunícate%20conmigo%20&hashtags=Telollevo" target="_blank"><i class="gg-twitter"></i></a>
+        </div>
+    </div>
 </div>
 <?php
     include ('footer.php');

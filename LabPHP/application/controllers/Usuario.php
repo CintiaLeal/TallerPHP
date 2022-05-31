@@ -75,9 +75,11 @@ class Usuario extends CI_Controller {
             );
             //enviar el mail y cargar la vista para verificar el codigo
             $code = $this->enviarMail($email,$name);
+            $usuarios = $this->Usuario_model->listarUsuarios();
             $arr = array(
                 'data' => $data,
-                'code' => $code
+                'code' => $code,
+                'usuarios' => $usuarios
             );
             if($code!=false){
                 $this->load->view('verificacion.php',$arr);
@@ -97,17 +99,35 @@ class Usuario extends CI_Controller {
         $bio = $_POST['biografia'];
         $password = $_POST['password'];
         $fechaActual = $_POST['unido'];
-        $data = array(
-            'nombre' => $name, 
-            'username' => $username,
-            'apellido' => $apellido,
-            'telefono' => $telefono,
-            'img' => $img,
-            'email' => $email,
-            'biografia' => $bio,
-            'password' => $password,
-            'unido' => $fechaActual
-        );
+        if($_POST['nickReferido']!=null){
+            $nickReferido = $_POST['nickReferido'];
+            $data = array(
+                'nombre' => $name, 
+                'username' => $username,
+                'apellido' => $apellido,
+                'telefono' => $telefono,
+                'img' => $img,
+                'email' => $email,
+                'biografia' => $bio,
+                'password' => $password,
+                'unido' => $fechaActual,
+                'nickReferido' => $nickReferido
+            );
+        }
+        else{
+            $data = array(
+                'nombre' => $name, 
+                'username' => $username,
+                'apellido' => $apellido,
+                'telefono' => $telefono,
+                'img' => $img,
+                'email' => $email,
+                'biografia' => $bio,
+                'password' => $password,
+                'unido' => $fechaActual,
+                'nickReferido' => null
+            );
+        }
         if($this->Usuario_model->registrarUsuario($data)){
             $this->load->view('exito.php');
         }
@@ -159,54 +179,60 @@ class Usuario extends CI_Controller {
         }
         else{
             //SIGNIFICA QUE NO HAY SESION INICIADA
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
         
     }
 
     function editar(){
-        if(isset($_POST['nombre'])){
-            $nombre = $_POST['nombre'];
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            if(isset($_POST['nombre'])){
+                $nombre = $_POST['nombre'];
+            }
+            else{
+                $nombre = null;
+            }
+            if(isset($_POST['apellido'])){
+                $apellido = $_POST['apellido'];
+            }
+            else{
+                $apellido = null;
+            }
+            if(isset($_POST['biografia'])){
+                $biografia = $_POST['biografia'];
+            }
+            else{
+                $biografia = null;
+            }
+            if(isset($_POST['telefono'])){
+                $telefono = $_POST['telefono'];
+            }
+            else{
+                $telefono = null;
+            }
+            if(isset($_POST['imagen'])){
+                $imagen = $_POST['imagen'];
+            }
+            else{
+                $imagen = null;
+            }
+            $data = array(
+                'nombre' => $nombre,
+                'apellido' => $apellido,
+                'biografia' => $biografia,
+                'telefono' => $telefono,
+                'imagen'=> $imagen
+            );
+            if($this->Usuario_model->editar($data)){
+                $this->load->view('exito.php');
+            }
+            else{
+                $this->load->view('error.php');
+            }
         }
         else{
-            $nombre = null;
-        }
-        if(isset($_POST['apellido'])){
-            $apellido = $_POST['apellido'];
-        }
-        else{
-            $apellido = null;
-        }
-        if(isset($_POST['biografia'])){
-            $biografia = $_POST['biografia'];
-        }
-        else{
-            $biografia = null;
-        }
-        if(isset($_POST['telefono'])){
-            $telefono = $_POST['telefono'];
-        }
-        else{
-            $telefono = null;
-        }
-        if(isset($_POST['imagen'])){
-            $imagen = $_POST['imagen'];
-        }
-        else{
-            $imagen = null;
-        }
-        $data = array(
-            'nombre' => $nombre,
-            'apellido' => $apellido,
-            'biografia' => $biografia,
-            'telefono' => $telefono,
-            'imagen'=> $imagen
-        );
-        if($this->Usuario_model->editar($data)){
-            $this->load->view('exito.php');
-        }
-        else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -216,7 +242,7 @@ class Usuario extends CI_Controller {
             $this->load->view('editarUsuario.php');
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -232,7 +258,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -248,7 +274,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -264,7 +290,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -280,7 +306,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -296,7 +322,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -312,7 +338,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -350,31 +376,39 @@ class Usuario extends CI_Controller {
     }
 
     function valorarUsuario(){
-        $res = $this->Usuario_model->listarUsuariosNoValorados();
-        if(isset($res)){
-            $arr = array('usuarios' => $res);
-            $this->load->view('valoraciones.php', $arr);
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->listarUsuariosNoValorados();
+            if(isset($res)){
+                $arr = array('usuarios' => $res);
+                $this->load->view('valoraciones.php', $arr);
+            }
+            else{
+                $this->load->view('error.php');
+            }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
-        
     }
     function valorar(){
         session_start();
-        $data = array(
-            'valora' => $_SESSION["usuario"],
-            'recibe' => $_POST['nickname'],
-            'comentario' => $_POST['comentarios'],
-            'estrellas' => $_POST['estrellas'],
-            'tipo'=> $_POST['tipo'],
-        );
-        if($this->Usuario_model->valorar($data)){
-            $this->load->view('exito.php');
+        if(isset($_SESSION["usuario"])){
+            $data = array(
+                'valora' => $_SESSION["usuario"],
+                'recibe' => $_POST['nickname'],
+                'comentario' => $_POST['comentarios'],
+                'estrellas' => $_POST['estrellas'],
+                'tipo'=> $_POST['tipo'],
+            );
+            if($this->Usuario_model->valorar($data)){
+                $this->load->view('exito.php');
+            }
+            else{
+                $this->load->view('error.php');
+            }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
-        
     }
 }

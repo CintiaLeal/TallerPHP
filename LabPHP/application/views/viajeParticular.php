@@ -7,6 +7,7 @@ else{
 }
 
 ?>
+<link href='https://css.gg/twitter.css' rel='stylesheet'>
 <form action="<?= base_url().'/index.php/viaje/ofertar'?>" method="POST" id="form">
     <div class="conteiner">
         <div style="margin-bottom:3%; text-align: center; display: flex;">
@@ -69,7 +70,11 @@ else{
     <div>
         <img src="https://i.pinimg.com/564x/1a/aa/61/1aaa6165855063bb63caf5d608ca8859.jpg" alt="Imagen" class="contenedorImagen" style="margin-left:5%; max-width:220px;">
     </div>
-
+    <div style="position: relative;">
+        <div style=" position: absolute;top: 100%;left: 10%;">
+            <a class="btn btn-primary" style="background-color: #389393; border: none;" href="https://twitter.com/intent/tweet?text=Hola%20soy%20<?= $n = $_SESSION["usuario"]?>%20👋%20%2C%20estoy%20viajando%20desde%20✈%20<?=$viaje->origen?>%20hasta%20✈%20<?=$viaje->destino?>%20%2C%20el%20la%20fecha%20<?=$viaje->fechaI?>.%20Si%20necesitas%20mi%20servicio%20comunicate&hashtags=Telollevo" target="_blank"><i class="gg-twitter"></i></a>
+        </div>                        
+    </div>
 </div>
 <?php
     include ('footer.php');

@@ -19,18 +19,25 @@ public function verChat(){
         $this->load->view('chat.php', compact("Perfiles"));
     }
     else{
-        $this->load->view('error.php');
+        $this->load->view('errorPermiso.php');
     }
 }
 
 public function buscarPerfil(){
-    $id = $_POST['nick'];
-   
-    $Perfil =  $this->Chat_model->buscarPerfil($id);
-
+    session_start();
+    if(isset($_SESSION["usuario"])){
+        $id = $_POST['nick'];
     
-    $data = array('perfil' => $Perfil); 
-    echo json_encode($data);
+        $Perfil =  $this->Chat_model->buscarPerfil($id);
+
+        
+        $data = array('perfil' => $Perfil); 
+        
+        echo json_encode($data);
+    }
+    else{
+        $this->load->view('errorPermiso.php');
+    }
 }
 
 public function buscarChat(){
@@ -46,7 +53,7 @@ public function buscarChat(){
         echo json_encode($data);
    }
    else{
-        $this->load->view('error.php');
+        $this->load->view('errorPermiso.php');
     }
    
 }
@@ -68,7 +75,7 @@ public function enviarMensaje(){
        $this->Chat_model->enviarMensaje($data);    
     }
     else{
-        $this->load->view('error.php');
+        $this->load->view('errorPermiso.php');
     }
 } 
 

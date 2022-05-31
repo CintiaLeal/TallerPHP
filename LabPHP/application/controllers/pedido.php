@@ -59,6 +59,9 @@ class Pedido extends CI_Controller {
             );
             $this->load->view('crearPedido.php', $data);
         }
+        else{
+            $this->load->view('errorPermiso.php');
+        }
 	}
 
     function verPedido(){
@@ -85,7 +88,7 @@ class Pedido extends CI_Controller {
             $this->load->view('pedidoParticular.php',$data);
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -101,7 +104,7 @@ class Pedido extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -117,7 +120,7 @@ class Pedido extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
