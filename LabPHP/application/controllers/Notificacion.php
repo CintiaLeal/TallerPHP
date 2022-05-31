@@ -12,33 +12,43 @@ class Notificacion extends CI_Controller {
 
 public function verNotificacion(){
     session_start();
-    $username = $_SESSION["usuario"];
-    
-
-    $Notificaciones = $this->Notificacion_model->verNotificacion($username);
-    $this->load->view('notificacion.php',compact("Notificaciones"));
-    
+    if(isset($_SESSION["usuario"])){
+        $username = $_SESSION["usuario"];
+        $Notificaciones = $this->Notificacion_model->verNotificacion($username);
+        $this->load->view('notificacion.php',compact("Notificaciones"));
+    }
+    else{
+        $this->load->view('errorPermiso.php');
+    }
 }
 
 public function nuevaNotificacion(){
     session_start();
-   $username = $_SESSION["usuario"];
-  
+    if(isset($_SESSION["usuario"])){
+        $username = $_SESSION["usuario"];
+        $nuevaNotificaciones = $this->Notificacion_model->nuevaNotificacion($username);
 
-   $nuevaNotificaciones = $this->Notificacion_model->nuevaNotificacion($username);
-
-   $data = array('nuevaNotificaciones' => $nuevaNotificaciones); 
-   
-    echo json_encode($data);
+        $data = array('nuevaNotificaciones' => $nuevaNotificaciones); 
+        
+        echo json_encode($data);
+    }
+    else{
+        $this->load->view('errorPermiso.php');
+    }
 }
 public function alerta(){
     session_start();
-   $username = $_SESSION["usuario"];
+    if(isset($_SESSION["usuario"])){
+        $username = $_SESSION["usuario"];
 
-   $alerta = $this->Notificacion_model->alerta($username);
-   $data = array('alerta' => $alerta); 
-   
-   echo json_encode($data);
+        $alerta = $this->Notificacion_model->alerta($username);
+        $data = array('alerta' => $alerta); 
+        
+        echo json_encode($data);
+        }
+    else{
+        $this->load->view('errorPermiso.php');
+    }
 }
 
 

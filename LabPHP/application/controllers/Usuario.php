@@ -159,7 +159,7 @@ class Usuario extends CI_Controller {
         }
         else{
             //SIGNIFICA QUE NO HAY SESION INICIADA
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
         
     }
@@ -216,7 +216,7 @@ class Usuario extends CI_Controller {
             $this->load->view('editarUsuario.php');
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -232,7 +232,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -248,7 +248,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
     }
 
@@ -264,7 +264,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -280,7 +280,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -296,7 +296,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -312,7 +312,7 @@ class Usuario extends CI_Controller {
             }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }  
     }
 
@@ -350,31 +350,41 @@ class Usuario extends CI_Controller {
     }
 
     function valorarUsuario(){
-        $res = $this->Usuario_model->listarUsuariosNoValorados();
-        if(isset($res)){
-            $arr = array('usuarios' => $res);
-            $this->load->view('valoraciones.php', $arr);
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $res = $this->Usuario_model->listarUsuariosNoValorados();
+            if(isset($res)){
+                $arr = array('usuarios' => $res);
+                $this->load->view('valoraciones.php', $arr);
+            }
+            else{
+                $this->load->view('error.php');
+            }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
-        
     }
+
     function valorar(){
         session_start();
-        $data = array(
-            'valora' => $_SESSION["usuario"],
-            'recibe' => $_POST['nickname'],
-            'comentario' => $_POST['comentarios'],
-            'estrellas' => $_POST['estrellas'],
-            'tipo'=> $_POST['tipo'],
-        );
-        if($this->Usuario_model->valorar($data)){
-            $this->load->view('exito.php');
+        if(isset($_SESSION["usuario"])){
+            $data = array(
+                'valora' => $_SESSION["usuario"],
+                'recibe' => $_POST['nickname'],
+                'comentario' => $_POST['comentarios'],
+                'estrellas' => $_POST['estrellas'],
+                'tipo'=> $_POST['tipo'],
+            );
+            if($this->Usuario_model->valorar($data)){
+                $this->load->view('exito.php');
+            }
+            else{
+                $this->load->view('error.php');
+            }
         }
         else{
-            $this->load->view('error.php');
+            $this->load->view('errorPermiso.php');
         }
-        
     }
 }
