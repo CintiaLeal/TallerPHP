@@ -9,45 +9,40 @@ class Pedido extends CI_Controller {
 
     function registro(){        
         session_start();
-        if(isset($_SESSION["usuario"])){
-            $username = $_SESSION["usuario"];
-            $nombre = $_POST["nombre"];
-            $descripcion = $_POST["descripcion"];
-            $imagen = $_POST["imagen"];
-            $link = $_POST["link"];
-            $ciudadH = $_POST['c'];
-            $ciudadD = $_POST['ciudades'];
-            $fechamin =  $_POST['min'];
-            $fechamax =  $_POST['max'];
-            $precio = $_POST["precio"];
-            $data = array(
-                'username' =>$username,
-                'titulo'=>$nombre,
-                'descripcion'=>$descripcion,
-                'precio'=>$precio,
-                'imagen'=>$imagen,
-                'link' => $link,
-                'fecha_min' => $fechamin,
-                'fecha_max' => $fechamax,
-                'estado' => "activo",
-                'origen' => $ciudadD, 
-                'destino' => $ciudadH,
-            );
-            if($this->Pedido_model->registrar($data)){
-                $this->load->model('Cupon_model');
-                if($this->Cupon_model->usarCupon($_POST["cupon"])){
-                    $this->load->view('exito.php');
-                }
-                else{
-                    $this->load->view('error.php');
-                }
+        $username = $_SESSION["usuario"];
+        $nombre = $_POST["nombre"];
+        $descripcion = $_POST["descripcion"];
+        $imagen = $_POST["imagen"];
+        $link = $_POST["link"];
+        $ciudadH = $_POST['c'];
+        $ciudadD = $_POST['ciudades'];
+        $fechamin =  $_POST['min'];
+        $fechamax =  $_POST['max'];
+        $precio = $_POST["precio"];
+        $data = array(
+            'username' =>$username,
+            'titulo'=>$nombre,
+            'descripcion'=>$descripcion,
+            'precio'=>$precio,
+            'imagen'=>$imagen,
+            'link' => $link,
+            'fecha_min' => $fechamin,
+            'fecha_max' => $fechamax,
+            'estado' => "activo",
+            'origen' => $ciudadD, 
+            'destino' => $ciudadH,
+        );
+        if($this->Pedido_model->registrar($data)){
+            $this->load->model('Cupon_model');
+            if($this->Cupon_model->usarCupon($_POST["cupon"])){
+                $this->load->view('exito.php');
             }
             else{
                 $this->load->view('error.php');
             }
         }
         else{
-            $this->load->view('errorPermiso.php');
+            $this->load->view('error.php');
         }
     }
 
@@ -63,9 +58,6 @@ class Pedido extends CI_Controller {
                 'cupones' => $cupones
             );
             $this->load->view('crearPedido.php', $data);
-        }
-        else{
-            $this->load->view('errorPermiso.php');
         }
 	}
 
@@ -93,7 +85,7 @@ class Pedido extends CI_Controller {
             $this->load->view('pedidoParticular.php',$data);
         }
         else{
-            $this->load->view('errorPermiso.php');
+            $this->load->view('error.php');
         }
     }
 
@@ -109,7 +101,7 @@ class Pedido extends CI_Controller {
             }
         }
         else{
-            $this->load->view('errorPermiso.php');
+            $this->load->view('error.php');
         }
     }
 
@@ -125,7 +117,7 @@ class Pedido extends CI_Controller {
             }
         }
         else{
-            $this->load->view('errorPermiso.php');
+            $this->load->view('error.php');
         }
     }
 
