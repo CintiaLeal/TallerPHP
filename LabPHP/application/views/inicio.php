@@ -15,7 +15,8 @@ else{
         </div>
         <div style="margin: 10%;">
             <p style="font-family: 'Sen', sans-serif; color: gray; text-align: center;">Consigue esos productos que siempre quisiste, al precio más bajo y entregados por viajeros a tu ciudad.</p>
-        </div>     
+        </div> 
+        <button> Vincular con Facebook</button>    
     </div>
 </div>
 
