@@ -31,13 +31,16 @@ class Usuario_model extends CI_Model {
            foreach($res2 as $row){
                $idRecibe = $row->id;
            }
+           $fecha = date_create('now');
+           date_add($fecha, date_interval_create_from_date_string("1 months"));
            $this->db->insert('cupones', array(
-               'descuento' => 10,
-               'vencimiento' => date('d-m-Y',strtotime(date('d-m-Y')."+ 1 month")),
-               'u_recibe' => $idRecibe
+               'descuento' => 420,
+               'vencimiento' => date_format($fecha,"d-m-Y"),
+               'u_recibe' => $idRecibe,
+               'u_from' => $idComparte
            ));
            $this->db->insert('cupones', array(
-            'vencimiento' => date('d-m-Y',strtotime(date('d-m-Y')."+ 1 month")),
+            'vencimiento' => date_format($fecha,"d-m-Y"),
             'u_recibe' => $idComparte
         ));
         }

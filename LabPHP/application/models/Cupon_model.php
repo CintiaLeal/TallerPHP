@@ -13,7 +13,7 @@ class Cupon_model extends CI_Model {
         foreach($us as $row){
             $idUsuario = $row->id;
         }
-        return $this->db->query("select * from cupones c where c.usado = 0 and (c.u_recibe =".$idUsuario." or c.u_comparte =".$idUsuario.")")->result();
+        return $this->db->query("select * from cupones c where c.usado = 0 and c.u_recibe =".$idUsuario)->result();
     }
 
     function usarCupon($idCupon){
