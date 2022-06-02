@@ -111,6 +111,7 @@
                         <i style='font-size:15px; color:#f5a25d;' class='fas'>&#xf004;</i>
                     <?}?>
             </div>
+            
 
             <div style="display: flex; margin-left: 30%;">
                 <h3 style="font-family: 'Unica One', cursive;">
@@ -119,6 +120,10 @@
                 <img src="<?=$imagen?>" alt="Foto de perfil" style="margin-bottom: 15%; margin-left:15%; max-width: 200px; max-height: auto;">
             </div>
 
+        </div>
+
+        <div style="margin-bottom:5%;">
+                <button style="border-radius: 5px; background-color:#f5a25d; opacity:50%; color:white; margin-left:5%;">Vincular con Facebook</button>
         </div>
 
         <div style="margin-left: 60%; margin-bottom: 10%;"> 
