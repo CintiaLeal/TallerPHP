@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 25-05-2022 a las 15:39:39
+-- Tiempo de generación: 02-06-2022 a las 23:39:20
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 8.0.1
 
@@ -97857,12 +97857,33 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 
 CREATE TABLE `cupones` (
   `id` bigint(20) NOT NULL,
-  `descuento` int(11) NOT NULL,
+  `descuento` int(11) NOT NULL DEFAULT '0',
   `vencimiento` varchar(20) NOT NULL,
   `usado` tinyint(1) NOT NULL DEFAULT '0',
-  `u_comparte` bigint(20) NOT NULL,
-  `u_recibe` bigint(20) NOT NULL
+  `u_recibe` bigint(20) NOT NULL,
+  `u_from` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cupones`
+--
+
+INSERT INTO `cupones` (`id`, `descuento`, `vencimiento`, `usado`, `u_recibe`, `u_from`) VALUES
+(20, 420, '01-07-2022', 0, 57, 31),
+(21, 2100, '01-07-2022', 0, 31, NULL),
+(22, 500, '30-05-2022', 0, 57, NULL),
+(23, 420, '02-07-2022', 0, 58, 31),
+(24, 2100, '02-07-2022', 0, 31, NULL);
+
+--
+-- Disparadores `cupones`
+--
+DELIMITER $$
+CREATE TRIGGER `notificacion_cupon` AFTER INSERT ON `cupones` FOR EACH ROW BEGIN
+INSERT INTO notificaciones (id_usuario,contenido) VALUES (NEW.u_recibe,'Has recibido un cupon!');
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -97897,11 +97918,44 @@ INSERT INTO `mensaje` (`time`, `id`, `envio`, `recibio`, `contenido`) VALUES
 --
 
 CREATE TABLE `notificaciones` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) NOT NULL,
   `id_usuario` bigint(20) NOT NULL,
-  `leida` tinyint(1) NOT NULL,
-  `contenido` varchar(256) NOT NULL
+  `leida` tinyint(1) NOT NULL DEFAULT '0',
+  `contenido` varchar(256) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`id`, `id_usuario`, `leida`, `contenido`, `time`) VALUES
+(10, 31, 1, 'Ha sido valorado', '2022-05-25 19:55:49'),
+(13, 31, 1, 'Tiene una oferta sobre uno de sus pedidos', '2022-05-25 20:34:24'),
+(14, 33, 1, 'Tiene una oferta sobre uno de sus pedidos', '2022-05-27 16:18:38'),
+(15, 32, 1, 'Has sido valorado por33', '2022-05-30 01:27:19'),
+(16, 33, 1, 'Has sido valorado por nico', '2022-05-30 01:30:27'),
+(17, 33, 1, 'Su pedido 18 tiene una nueva oferta', '2022-05-30 01:52:41'),
+(18, 33, 1, 'Su pedido 18 tiene una nueva oferta', '2022-05-30 14:33:11'),
+(19, 33, 1, 'Su pedido 18 tiene una nueva oferta', '2022-05-30 14:33:11'),
+(20, 33, 1, 'Su pedido 18 tiene una nueva oferta', '2022-05-30 14:33:11'),
+(21, 31, 1, 'Su oferta sobre el pedido 18 ha sido aceptada', '2022-05-30 14:48:55'),
+(22, 31, 1, 'Su oferta sobre el pedido 18 ha sido aceptada', '2022-05-30 21:43:02'),
+(23, 31, 1, 'Has recibido un cupon!', '2022-05-30 21:43:02'),
+(24, 33, 1, 'Has recibido un cupon!', '2022-05-30 21:43:02'),
+(28, 33, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(30, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(32, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(34, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(36, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(38, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(40, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(42, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:09:06'),
+(43, 57, 1, 'Has recibido un cupon!', '2022-06-01 00:32:20'),
+(44, 31, 1, 'Has recibido un cupon!', '2022-06-01 00:32:20'),
+(45, 57, 1, 'Has recibido un cupon!', '2022-06-01 00:51:14'),
+(46, 58, 1, 'Has recibido un cupon!', '2022-06-02 21:55:19'),
+(47, 31, 1, 'Has recibido un cupon!', '2022-06-02 21:55:19');
 
 -- --------------------------------------------------------
 
@@ -97911,11 +97965,46 @@ CREATE TABLE `notificaciones` (
 
 CREATE TABLE `ofertas` (
   `id` bigint(20) NOT NULL,
-  `viajero` bigint(20) NOT NULL,
+  `viaje` bigint(20) NOT NULL,
   `pedido` bigint(11) NOT NULL,
   `comision` int(11) NOT NULL,
   `aceptada` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `ofertas`
+--
+
+INSERT INTO `ofertas` (`id`, `viaje`, `pedido`, `comision`, `aceptada`) VALUES
+(1, 5, 18, 200, 1);
+
+--
+-- Disparadores `ofertas`
+--
+DELIMITER $$
+CREATE TRIGGER `notificacion_nueva_oferta` AFTER INSERT ON `ofertas` FOR EACH ROW BEGIN
+DECLARE _id BIGINT;
+DECLARE cont VARCHAR(256);
+SET _id := (SELECT p.usuario FROM ofertas o JOIN pedidos p ON p.numero = o.pedido WHERE o.pedido=NEW.pedido);
+SET cont = CONCAT('Su pedido ',NEW.pedido,' tiene una nueva oferta');
+INSERT INTO notificaciones (id_usuario,contenido) VALUES(_id,cont);
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `notificacion_oferta_aceptada` AFTER UPDATE ON `ofertas` FOR EACH ROW BEGIN
+IF NEW.aceptada = 1 THEN BEGIN
+    DECLARE cont VARCHAR(256);
+    DECLARE viajero VARCHAR(20);
+    SET cont = CONCAT('Su oferta sobre el pedido ',NEW.pedido,' ha sido aceptada');
+    SET viajero = (SELECT u.id FROM 		viaje v JOIN usuarios u WHERE 			v.nick=u.nick AND v.viaje_id = 			NEW.viaje);
+    INSERT INTO notificaciones 				(id_usuario,contenido) 					VALUES(viajero,cont);
+    UPDATE pedidos p SET p.estado = 'pendiente' WHERE p.numero = NEW.pedido;
+    END;
+END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -97930,8 +98019,8 @@ CREATE TABLE `pedidos` (
   `precio` int(11) NOT NULL,
   `imagen` varchar(256) NOT NULL,
   `link` varchar(256) DEFAULT NULL,
-  `fecha_min` varchar(10) NOT NULL,
-  `fecha_max` varchar(10) NOT NULL,
+  `fecha_min` date NOT NULL,
+  `fecha_max` date NOT NULL,
   `origen` int(11) NOT NULL,
   `destino` int(11) NOT NULL,
   `estado` enum('activo','recibido','transito','pendiente') NOT NULL DEFAULT 'activo',
@@ -97943,14 +98032,9 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`numero`, `titulo`, `descripcion`, `precio`, `imagen`, `link`, `fecha_min`, `fecha_max`, `origen`, `destino`, `estado`, `usuario`) VALUES
-(2, 'mouse', 'Mouse gamer', 500, 'https://media.nidux.net/pull/599/800/14355/24-product-611d2b61b7563-mouse-gamer-wcibo.png', NULL, '20-06-2022', '20-08-2022', 1, 4, 'transito', 31),
-(3, 'teclado', 'Teclado gamer', 1000, 'https://grpro.com.uy/wp-content/uploads/2021/03/9320.png', NULL, '20-06-2022', '20-08-2022', 1, 4, 'recibido', 31),
-(4, 'monitor', 'Monitor gamer', 2000, 'https://http2.mlstatic.com/D_NQ_NP_624285-MLA45720896221_042021-O.jpg', NULL, '20-06-2022', '20-08-2022', 1, 4, 'pendiente', 31),
-(5, 'auriculares', 'Auriculares gamer', 1500, 'https://http2.mlstatic.com/D_NQ_NP_775523-MLA47762527431_102021-O.jpg', NULL, '20-06-2022', '20-08-2022', 1, 4, 'activo', 31),
-(6, 'torre', 'Torre gamer', 5000, 'https://http2.mlstatic.com/D_NQ_NP_760204-MLU43473795382_092020-O.jpg', NULL, '20-06-2022', '20-08-2022', 1, 4, 'activo', 31),
-(8, 'Mousepad', 'Mousepad gamer', 1125, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652984257/v05onkibta7m6fv5ijhg.jpg', '', '2022-05-26', '2022-06-02', 565283, 130268, 'activo', 31),
-(9, 'cafe', 'cafecito op', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652984479/wjfasfkh1g7bfs7dseis.png', '', '2022-05-26', '2022-06-02', 553890, 439471, 'activo', 31),
-(10, 'cafe', 'Cafesuli', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653006930/v5pdu59dkwjl5iaev843.png', '', '2022-05-20', '2022-05-26', 607044, 439313, 'activo', 32);
+(16, 'cafe', 'cafe', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653662408/wewq8yeyznfsz5seb1pi.png', '', '2022-05-27', '2022-06-03', 173976, 606452, 'activo', 31),
+(18, 'cafe', 'cafecito', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653663523/a5wky89436nksfmfn7wo.png', '', '2022-05-27', '2022-06-03', 606538, 132960, 'recibido', 33),
+(23, 'cafe', 'grtgr', 120, '', '', '2022-05-30', '2022-06-02', 132751, 766051, 'activo', 33);
 
 -- --------------------------------------------------------
 
@@ -99985,19 +100069,49 @@ CREATE TABLE `usuarios` (
   `img` varchar(256) DEFAULT NULL,
   `biografia` varchar(256) DEFAULT NULL,
   `password` varchar(20) NOT NULL,
-  `unido` varchar(20) NOT NULL
+  `unido` varchar(20) NOT NULL,
+  `accion` int(11) NOT NULL DEFAULT '0' COMMENT 'para ver que hace primero el usuario\r\n1 = viaje\r\n2 = compra\r\n\r\n0 = ninguno'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nick`, `email`, `telefono`, `nombre`, `apellido`, `img`, `biografia`, `password`, `unido`) VALUES
-(16, 'Fran', 'franco.valentino@est', 12345678, 'Franco', 'Cuesta', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652801685/Declaration_of_War_zgazzn.jpg', 'holi soy franco', '123456', '17-05-2022'),
-(31, 'johnny', 'johnny@gmail.com', 123456789, 'johnny', 'deep', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652897862/lgvzr5tckatuyovjfqtt.webp', 'hola soy johnny', '123456', '17-05-2022'),
-(32, 'nico', 'nico.escobar@utec.ed', 12345678, 'Xavier', 'Escobar', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653006548/lw9run7i62bcztj1e36v.jpg', 'El Xavi', '123456', '20-05-2022'),
-(33, 'rous', 'romilopez1@hotmail.e', 92956049, 'Romina', 'Lopez', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653315237/spfgbppzewo6c6swjnyf.jpg', 'rous', '123456', '23-05-2022'),
-(35, 'romina', 'romina.lopez@estudia', 92956049, 'Romina', 'Lopez', '', 'holiwis', '123456', '23-05-2022');
+INSERT INTO `usuarios` (`id`, `nick`, `email`, `telefono`, `nombre`, `apellido`, `img`, `biografia`, `password`, `unido`, `accion`) VALUES
+(16, 'Fran', 'franco.valentino@est', 12345678, 'Franco', 'Cuesta', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652801685/Declaration_of_War_zgazzn.jpg', 'holi soy franco', '123456', '17-05-2022', 0),
+(31, 'johnny', 'johnny@gmail.com', 123456789, 'johnny', 'deep', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652897862/lgvzr5tckatuyovjfqtt.webp', 'hola soy johnny', '123456', '17-05-2022', 0),
+(32, 'nico', 'nico.escobar@utec.ed', 12345678, 'Xavier', 'Escobar', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653006548/lw9run7i62bcztj1e36v.jpg', 'El Xavi', '123456', '20-05-2022', 0),
+(33, 'rous', 'romilopez1@hotmail.e', 92956049, 'Romina', 'Lopez', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653315237/spfgbppzewo6c6swjnyf.jpg', 'rous', '123456', '23-05-2022', 0),
+(57, 'romina', 'romina.lopez@estudia', 92956049, 'Romina', 'Lopez', '', 'romina', '123456', '01-06-2022', 2),
+(58, 'lea', 'leandro.marrero03@gm', 12345678, 'Leandro', 'Marrero', '', '', '123456', '02-06-2022', 2);
+
+--
+-- Disparadores `usuarios`
+--
+DELIMITER $$
+CREATE TRIGGER `valor_cupon_pedido` AFTER UPDATE ON `usuarios` FOR EACH ROW BEGIN
+IF NEW.accion = 1 THEN
+BEGIN
+DECLARE _id BIGINT;
+SET _id = (SELECT u_from FROM cupones where u_recibe = NEW.id);
+UPDATE cupones SET descuento = 420 WHERE u_recibe = _id;
+END;
+END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `valor_cupon_viaje` AFTER UPDATE ON `usuarios` FOR EACH ROW BEGIN
+IF NEW.accion = 2 THEN
+BEGIN
+DECLARE _id BIGINT;
+SET _id = (SELECT u_from FROM cupones where u_recibe = NEW.id);
+UPDATE cupones SET descuento = 2100 WHERE u_recibe = _id;
+END;
+END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -100019,7 +100133,23 @@ CREATE TABLE `valoraciones` (
 --
 
 INSERT INTO `valoraciones` (`id`, `valora`, `recibe`, `comentario`, `estrellas`, `tipo`) VALUES
-(1, 31, 35, '\r\n                Muy buena compradora', 3, 'comprador');
+(4, 31, 33, '\r\n                La mejor', 5, 'comprador'),
+(5, 33, 31, '\r\n                sos un capo', 5, 'viajero'),
+(7, 32, 33, '\r\n                Genia', 5, 'comprador');
+
+--
+-- Disparadores `valoraciones`
+--
+DELIMITER $$
+CREATE TRIGGER `notificacion_valoraciones` AFTER INSERT ON `valoraciones` FOR EACH ROW BEGIN
+DECLARE usu VARCHAR(20);
+DECLARE cont VARCHAR(256);
+SET usu = (SELECT nick FROM usuarios WHERE id = NEW.valora);
+SET cont = CONCAT('Has sido valorado por',' ',usu);
+INSERT INTO notificaciones (id_usuario,contenido) VALUES(NEW.recibe, cont);
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -100032,8 +100162,8 @@ CREATE TABLE `viaje` (
   `nick` varchar(255) NOT NULL,
   `citiesD_id` int(11) NOT NULL,
   `citiesH_id` int(11) NOT NULL,
-  `fechaI` varchar(255) NOT NULL,
-  `fechaV` varchar(255) DEFAULT NULL
+  `fechaI` date NOT NULL,
+  `fechaV` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -100041,10 +100171,9 @@ CREATE TABLE `viaje` (
 --
 
 INSERT INTO `viaje` (`viaje_id`, `nick`, `citiesD_id`, `citiesH_id`, `fechaI`, `fechaV`) VALUES
-(1, 'johnny', 1, 4, '23-05-2022', NULL),
-(2, 'johnny', 1, 10, '22-05-2022', NULL),
-(3, 'johnny', 769190, 439471, '2022-05-27', ''),
-(4, 'johnny', 769183, 606832, '2022-05-24', '');
+(5, 'johnny', 606538, 132960, '2022-05-30', '0000-00-00'),
+(12, 'romina', 766051, 241, '2022-06-04', '0000-00-00'),
+(13, 'lea', 564752, 130371, '2022-06-10', '0000-00-00');
 
 --
 -- Índices para tablas volcadas
@@ -100069,8 +100198,8 @@ ALTER TABLE `countries`
 ALTER TABLE `cupones`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `fk_usuario_comparte` (`u_comparte`),
-  ADD KEY `fk_usuario_recibe` (`u_recibe`);
+  ADD KEY `fk_usuario_recibe` (`u_recibe`),
+  ADD KEY `fk_usuario_from` (`u_from`);
 
 --
 -- Indices de la tabla `mensaje`
@@ -100094,7 +100223,7 @@ ALTER TABLE `ofertas`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `fk_pedido` (`pedido`),
-  ADD KEY `fk_viajero` (`viajero`);
+  ADD KEY `fk_viaje` (`viaje`);
 
 --
 -- Indices de la tabla `pedidos`
@@ -100102,7 +100231,9 @@ ALTER TABLE `ofertas`
 ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`numero`),
   ADD UNIQUE KEY `numero` (`numero`),
-  ADD KEY `fk_usuario` (`usuario`);
+  ADD KEY `fk_usuario` (`usuario`),
+  ADD KEY `fkorigen` (`origen`),
+  ADD KEY `fkdestino` (`destino`);
 
 --
 -- Indices de la tabla `states`
@@ -100159,7 +100290,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT de la tabla `cupones`
 --
 ALTER TABLE `cupones`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `mensaje`
@@ -100171,19 +100302,19 @@ ALTER TABLE `mensaje`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `numero` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `numero` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `states`
@@ -100195,19 +100326,19 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `valoraciones`
 --
 ALTER TABLE `valoraciones`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `viaje`
 --
 ALTER TABLE `viaje`
-  MODIFY `viaje_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `viaje_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
@@ -100223,7 +100354,7 @@ ALTER TABLE `cities`
 -- Filtros para la tabla `cupones`
 --
 ALTER TABLE `cupones`
-  ADD CONSTRAINT `fk_usuario_comparte` FOREIGN KEY (`u_comparte`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_usuario_from` FOREIGN KEY (`u_from`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_usuario_recibe` FOREIGN KEY (`u_recibe`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -100237,13 +100368,15 @@ ALTER TABLE `notificaciones`
 --
 ALTER TABLE `ofertas`
   ADD CONSTRAINT `fk_pedido` FOREIGN KEY (`pedido`) REFERENCES `pedidos` (`numero`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_viajero` FOREIGN KEY (`viajero`) REFERENCES `usuarios` (`id`);
+  ADD CONSTRAINT `fk_viaje` FOREIGN KEY (`viaje`) REFERENCES `viaje` (`viaje_id`);
 
 --
 -- Filtros para la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fkdestino` FOREIGN KEY (`destino`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fkorigen` FOREIGN KEY (`origen`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `states`
