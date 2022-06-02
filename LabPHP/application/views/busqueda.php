@@ -40,38 +40,30 @@ else{
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-function buscar(){
+<script>
+    function buscar(){
     var contenido = document.getElementById("busqueda").value;
     $('divpedidos').empty();
-    console.log('llega function');
     $.ajax({
         type: 'POST',
-        url: '<?php echo base_url() . 'index.php/Busqueda/busqueda'; ?>',
+        url: '<?=base_url() . '/index.php/Busqueda/busqueda'?>',
         data: {contenido: contenido}, 
-        dataType: "json",
+        // dataType: "json",
         success: function(resp) {
-            let p = resp.pedidos;
-            console.log('llega');
+            consol.log("haoos");
+          /*  let p = resp.pedidos;
             var micapa = document.getElementById('divpedidos');
             $.each(valorFinal, function(index, element){
             div.setAttribute("id", "div");
             div.setAttribute("style", "width:200px;");
             img.setAttribute("src", element.imagen);
             div.textContent = "nombre:" + element.name;
-            });
+            });*/
         }
     });
 }
-
-var btn = document.getElementById("buscar");
-btn.addEventListener("click", e =>({
-    e.preventDefault();
-    buscar();
-}))
-
-
 </script>
 
 
