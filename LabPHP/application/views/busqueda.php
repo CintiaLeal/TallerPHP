@@ -7,39 +7,20 @@ else{
 }
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-    function buscar() {
-        var contenido = document.getElementById("busqueda").value;
-        $.ajax({
-        type: 'POST',
-        data: {contenido: contenido},
-        url: '<?php echo base_url() . 'index.php/Busqueda/busqueda'; ?>', 
-        dataType: "json",
-        success: function(resp) {
-            console.log("llega 1");
-            $('divpedidos').empty();
-            $('divviajes').empty();
-        }
-        })
-    }   
-</script>
-
 <div class="conteiner">
-    <br>    
-    <input  oninput="buscar()" id="busqueda" name="busqueda" type="search" class="form-control buscar">
+    <br>
+    <div class="conteiner">    
+        <input  id="busqueda" name="busqueda" type="search" class="form-control buscar">
+        <button onclick = "buscar()" type="button"></button>
+    </div>
     <br><br><br>
+    
     <p> Pedidos: </p>
     <div class="conteiner">
         <div id = "divpedidos" class="scroll_text_pedidos">
-            <?foreach($pedidos as $row){?>
-                <div style="width:200px;">
-                <img src="<?=$row->imagen?>" style="max-width: 50px;">
-                <?echo "<br> <p> Titulo: ".$row->titulo."<br>";
-                echo "Descripcion: ".$row->descripcion."<br>";
-                echo "Precio: $".$row->precio."<br></p>";?>
+                <div id = "div" style="width:200px;">
+                
                 </div>
-            <?}?>
         </div>
     </div>
     <div class="conteiner">
@@ -58,6 +39,30 @@ else{
     </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    function buscar() {
+        var contenido = document.getElementById("busqueda").value;
+        $('divpedidos').empty();
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url() . 'index.php/Busqueda/busqueda'; ?>',
+            data: {contenido: contenido}, 
+            dataType: "json",
+            success: function(resp) {
+                let p = resp.pedidos;
+                console.log('llega');
+                var micapa = document.getElementById('divpedidos');
+                $.each(p, function(index, element) {
+                div.setAttribute("id", "div");
+                div.setAttribute("style", "width:200px;");
+                img.setAttribute("src", element.imagen);
+                div.textContent = "nombre:" element.name;
+                }
+            }
+        })
+    }   
+</script>
 
 <?php
     include ('footer.php');

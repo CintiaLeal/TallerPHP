@@ -360,19 +360,14 @@ class Usuario extends CI_Controller {
     }
     function existeEmail(){
         $email = $_POST['email'];
-
         $existeEmail = $this->Usuario_model->existeEmail($email);
         if($existeEmail != false){
-        
             $data = array('existeEmail' => $existeEmail); 
-            
         }
         else{
             $data = array('existeEmail' => $existeEmail); 
         }
         echo json_encode($data);
-
-
     }
 
     function valorarUsuario(){
@@ -410,5 +405,12 @@ class Usuario extends CI_Controller {
         else{
             $this->load->view('errorPermiso.php');
         }
+    }
+
+    function registrofacebook(){
+        $data = array(
+            'idFacebok' => $_POST['idFacebok']
+        );
+        $this->Usuario_model->registrofacebook($data);
     }
 }

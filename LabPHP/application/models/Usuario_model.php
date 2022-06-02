@@ -377,4 +377,12 @@ class Usuario_model extends CI_Model {
             return false;
         }
     }   
+
+    function registrofacebook($data){
+        session_start();
+        if($data['idFacebok']!=null){
+            $this->db->query("update usuarios set idFacebok = "."'".$data["idFacebok"]."'"."where nick ="."'".$_SESSION["usuario"]."'");
+        }
+    }
+
 }
