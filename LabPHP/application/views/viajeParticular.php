@@ -73,6 +73,7 @@ else{
     <div style="position: relative;">
         <div style=" position: absolute;top: 100%;left: 10%;">
             <a class="btn btn-primary" style="background-color: #389393; border: none;" href="https://twitter.com/intent/tweet?text=Hola%20soy%20<?= $n = $_SESSION["usuario"]?>%20👋%20%2C%20estoy%20viajando%20desde%20✈%20<?=$viaje->origen?>%20hasta%20✈%20<?=$viaje->destino?>%20%2C%20el%20la%20fecha%20<?=$viaje->fechaI?>.%20Si%20necesitas%20mi%20servicio%20comunicate&hashtags=Telollevo" target="_blank"><i class="gg-twitter"></i></a>
+            <a class="btn btn-primary" style="background-color: #389393; border: none;" href="https://www.facebook.com/sharer/sharer.php?u=www.telollevo.com&quote=Hola%20soy%20<?= $n = $_SESSION["usuario"]?>%20👋%20%2C%20estoy%20viajando%20desde%20✈%20<?=$viaje->origen?>%20hasta%20✈%20<?=$viaje->destino?>%20%2C%20el%20la%20fecha%20<?=$viaje->fechaI?>.%20Si%20necesitas%20mi%20servicio%20comunicate&hashtags=Telollevo" target="_blank"><i class="fab fa-facebook-square"></i></a>
         </div>                        
     </div>
 </div>

@@ -7,11 +7,12 @@ else{
 }
 ?>
 
+
 <div class="conteiner">
     <br>
     <div class="conteiner">    
         <input  id="busqueda" name="busqueda" type="search" class="form-control buscar">
-        <button onclick = "buscar()" type="button"></button>
+        <button id = "busca" type="button" onclick = "buscar()"></button>
     </div>
     <br><br><br>
     
@@ -39,30 +40,40 @@ else{
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-    function buscar() {
-        var contenido = document.getElementById("busqueda").value;
-        $('divpedidos').empty();
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url() . 'index.php/Busqueda/busqueda'; ?>',
-            data: {contenido: contenido}, 
-            dataType: "json",
-            success: function(resp) {
-                let p = resp.pedidos;
-                console.log('llega');
-                var micapa = document.getElementById('divpedidos');
-                $.each(p, function(index, element) {
-                div.setAttribute("id", "div");
-                div.setAttribute("style", "width:200px;");
-                img.setAttribute("src", element.imagen);
-                div.textContent = "nombre:" element.name;
-                }
-            }
-        })
-    }   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+
+function buscar(){
+    var contenido = document.getElementById("busqueda").value;
+    $('divpedidos').empty();
+    console.log('llega function');
+    $.ajax({
+        type: 'POST',
+        url: '<?php echo base_url() . 'index.php/Busqueda/busqueda'; ?>',
+        data: {contenido: contenido}, 
+        dataType: "json",
+        success: function(resp) {
+            let p = resp.pedidos;
+            console.log('llega');
+            var micapa = document.getElementById('divpedidos');
+            $.each(valorFinal, function(index, element){
+            div.setAttribute("id", "div");
+            div.setAttribute("style", "width:200px;");
+            img.setAttribute("src", element.imagen);
+            div.textContent = "nombre:" + element.name;
+            });
+        }
+    });
+}
+
+var btn = document.getElementById("buscar");
+btn.addEventListener("click", e =>({
+    e.preventDefault();
+    buscar();
+}))
+
+
 </script>
+
 
 <?php
     include ('footer.php');
