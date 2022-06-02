@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-<?php
+    <?php
     include ('headerLogueado.php');
 ?>
 </header>
@@ -14,224 +14,230 @@
     <script src="https://code.jquery.com/jquery-git.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>   
-    <style type="text/css">
-    /* Some custom styles to beautify this example */
+</head>
+<link href='https://css.gg/arrow-up-o.css' rel='stylesheet'>
+<style type="text/css">
+/* Some custom styles to beautify this example */
 
-    @import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sen&family=Unica+One&display=swap');
 
-    .row {
-        margin-top: 1rem;
-        
-        background: #ffffff;
-        border: none;
-       
-    }
-    body{
-        margin: 0;
-    }
-    html{
-        margin: 0;
-    }
-    .div_contenedor{
-        height: 100vh;       
-    }
-    .div_centrado{
-        width: 80%;       
-        height: 100%;
-        position: absolute;
-        top:20%;
-        left: 10%;           
-        margin-top: -10px;
-        margin-left: -10px;
-    }
+.row {
+    margin-top: -0.5rem;
+    margin-left: 0%;
+    height: 640px;
+    background: #ffffff;
+    border: none;
 
-    .col {
-        background-color: #fff;
-        position: relative;
-        overflow: hidden;
+}
 
-        max-width: 100%;
-        min-height: 300px;
-        padding: 10px 15px;
-        width: 80%;
-        border: 1px solid rgba(0, 0, 0, 0.5)
-    }
+body {
+    margin: 0;
+}
 
-    .col2 {
-        background-color: #fff;
-        position: relative;
-        overflow: hidden;
+html {
+    margin: 0;
+}
 
-        max-width: 100%;
-        min-height: 300px;
-        padding: 10px 15px;
-        width: 20%;
-        border: 1px solid rgba(0, 0, 0, 0.5);
+.div_contenedor {
+    height: 100vh;
+}
 
-    }
+.div_centrado {
+    width: 80%;
+    height: 100vh;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    
+}
 
-    header{
-        width: 1300px;
-    }
-    .col3 {
-        z-index: 1;
-        background: linear-gradient(90deg, #389393, #f5a25d);
-        opacity: 80%;
-        position: relative;
-        overflow: hidden;
-     
-        max-width: 100%;
-        min-height: 100px;
-        padding: 10px 15px;
-        width: 100%;
-        border: 1px solid rgba(0, 0, 0, 0.5)
-    }
+.col {
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
 
-    .col4 {
-        background-color: #389393;
-        opacity: 80%;
-        position: relative;
-        overflow: hidden;
-        width: 600px;
-        max-width: 100%;
-        min-height: 100px;
-        padding: 10px 15px;
-        width: 100%;
-        border: 1px solid rgba(0, 0, 0, 0.5)
-    }
+    max-width: 100%;
+    min-height: 300px;
+    padding: 10px 15px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5)
+}
 
-    .cont {
-        display: flex;
-        flex-wrap: wrap;
-    }
+.col2 {
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
 
-    .c1p {
-        width: 78%;
-        padding: 1%;
-    }
+    max-width: 100%;
+    min-height: 300px;
+    padding: 10px 15px;
+    width: 10%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 
-    .c2p {
-        width: 50%;
-        padding: 1%;
-    }
+}
 
-    .c3p {
-        width: 19%;
-    }
+header {
+    width: 1300px;
+}
 
-  
-    .containerc {
-        border: none;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        
-        margin: 10px 0;
-        
- 
-    }
+.col3 {
+    z-index: 1;
+    background: linear-gradient(90deg, #389393, white);
+    opacity: 80%;
+    position: relative;
+    overflow: hidden;
 
-    .containerperfil {
-        border: 1px solid rgba(0, 0, 0, 0.5);
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-    }
+    max-width: 100%;
+    min-height: 40px;
+    padding: 10px 15px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5)
+}
 
-    .darker {
+.col4 {
+    background-color:#fff;
+    opacity: 80%;
+    position: relative;
+    overflow: hidden;
+    width: 600px;
+    max-width: 100%;
+    min-height: 20px;
+    padding: 10px 15px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5)
+}
 
-        float: right;
-        background-color: #389393;
-        width: 90%;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-        border-color: #389393;
-        opacity: 70%;
-    }
+.cont {
+    display: flex;
+    flex-wrap: wrap;
+}
 
-    .darkerv {
-        float: left;
-        background-color: #f5a25d;
-        width: 90%;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-        border-color: #f5a25d;
-        opacity: 50%;
-    }
+.c1p {
+    width: 89%;
+    padding: 1%;
+}
 
-    .enviobtn {
-        background-color: #f5a25d;
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        font-family: 'Sen', sans-serif;
-        font-size: 16px;
-        color: black;
-        border-color: #f5a25d;
-        opacity: 50%;
-    }
+.c2p {
+    width: 50%;
+    padding: 1%;
+}
 
-    .perfilbtn {
-        background-color: #f5a25d;
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        font-family: 'Sen', sans-serif;
-        font-size: 16px;
-        color: black;
-        border-color: #f5a25d;
-        opacity: 50%;
-    }
+.c3p {
+    width: 9%;
+}
 
-    #global {
-        height: 300px;
-        width: 100%;
-        overflow-y: scroll;
-    }
 
-    #global2 {
-        height: 300px;
-        width: 100%;
-        overflow-y: scroll;
-    }
+.containerc {
+    border: none;
+    background-color: #f1f1f1;
+    border-radius: 5px;
 
-    .demo {}
+    margin: 10px 0;
 
-    input {
-        width: 100%;
-    }
 
-    .inputInfo {
-        font-family: 'Sen', sans-serif;
-        font-size: 50px;
-        color: black;
-        display: flex;
+}
 
-        border: none;
-        background-color: transparent;
-    }
+.containerperfil {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
 
-    .inputEnvio {
-        background-color: #c0c0c0;
-        border: none;
-    }
-    footer {
+.darker {
+
+    float: right;
+    background-color: #389393;
+    width: 90%;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    border-color: #389393;
+    opacity: 70%;
+}
+
+.darkerv {
+    float: left;
+    background-color: #f5a25d;
+    width: 90%;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    border-color: #f5a25d;
+    opacity: 50%;
+}
+
+.enviobtn {
+    background-color: #f5a25d;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    
+    font-size: 30px;
+    color: black;
+    border-color: #f5a25d;
+    
+}
+
+.perfilbtn {
+    background-color: #f5a25d;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    font-family: 'Sen', sans-serif;
+    font-size: 16px;
+    color: black;
+    border-color: #f5a25d;
+    opacity: 50%;
+}
+
+#global {
+    height: 600px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+#global2 {
+    height: 300px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.demo {}
+
+input {
+    width: 100%;
+}
+
+.inputInfo {
+    font-family: 'Sen', sans-serif;
+    font-size: 50px;
+    color: black;
+    display: flex;
+    
+    border: none;
+    background-color: transparent;
+}
+
+.inputEnvio {
+    background-color: #c0c0c0;
+    border: none;
+}
+
+footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 30px;
 }
-
 </style>
 
-
+<link href='https://css.gg/user.css' rel='stylesheet'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
 let nickAnterior = "";
-let timerId;
+let timerIdx;
 
 let ocultarSpiner = false;
 
@@ -241,8 +247,8 @@ function llamada(nick) {
 
 
     if (nickAnterior != "" && nickAnterior != nick) {
-        clearTimeout(timerId);
-        timerId = null;
+        clearTimeout(timerIdx);
+        timerIdx = null;
     }
 
     nickAnterior = nick;
@@ -253,7 +259,7 @@ function llamada(nick) {
 
 
     spiner.style.visibility = "visible";
-    timerId = setInterval(() => {
+    timerIdx = setInterval(() => {
         spiner.style.visibility = "hidden";
         buscarChat(nick);
     }, 5000);
@@ -285,9 +291,9 @@ function buscarPerfil(nick) {
 
 
                 document.getElementById('nickU').value = element.nick;
+                document.getElementById('img').src = element.img;
+                document.getElementById('nombreApellido').value = element.nombre + " " + element.apellido;
 
-                document.getElementById('nombreApellido').value = element.nombre + " " + element
-                    .apellido;
 
 
             });
@@ -321,18 +327,17 @@ function buscarChat(nick) {
                     div.setAttribute("class", "darker");
                     div.textContent = element.contenido;
                     micapa.appendChild(div);
-                    $('#global2').scrollTop( $('#global2').prop('scrollHeight') ); 
+                    $('#global2').scrollTop($('#global2').prop('scrollHeight'));
 
-                }
-                else{
+                } else {
                     var div = document.createElement("div");
                     div.setAttribute("id", "div");
                     div.setAttribute("class", "darkerv");
                     div.textContent = element.contenido;
                     micapa.appendChild(div);
-                    $('#global2').scrollTop( $('#global2').prop('scrollHeight') );      
+                    $('#global2').scrollTop($('#global2').prop('scrollHeight'));
                 }
-                
+
                 //scroll siemrpe abajo
 
 
@@ -349,7 +354,9 @@ function buscarChat(nick) {
 
 function enviar() {
     console.log("llego");
+
     var contenido = document.getElementById('contenidoMensaje').value;
+    
     var receptor = document.getElementById('nickU').value;
 
     console.log(contenido);
@@ -364,8 +371,9 @@ function enviar() {
         },
         dataType: "json",
     });
+    document.getElementById('contenidoMensaje').value = "";
 
-    var micapa = document.getElementById('demo');
+   /* var micapa = document.getElementById('demo');
 
 
     var div = document.createElement("div");
@@ -373,70 +381,76 @@ function enviar() {
     div.setAttribute("class", "darkerv")
     div.textContent = contenido;
     micapa.appendChild(div);
-    $('#global2').scrollTop( $('#global2').prop('scrollHeight') ); 
+    $('#global2').scrollTop($('#global2').prop('scrollHeight'));*/
 }
 </script>
 
 <body>
 
-<div class="div_contenedor">
-    <div class="div_centrado">
-        <!--Row with two equal columns-->
-        <div class="row">
-            <div class="col3">
-                <div class="cont">
-                    <div class="c1p">
-                        <input type="hidden" id="nickU" name="nickU" disabled="disabled" />
-                        <input type="text" class="inputInfo" id="nombreApellido" name="nombreApellido"
-                            disabled="disabled" />
-                    </div>
-
+   
+        <div class="col2">
+            <div><i class="gg-user" style="width: 30px;"></i></div>
+            <div id="global">
+                <?php foreach ($Perfiles as $row) {?>
+                <div class="containerperfil">
+                    <img src="<?=$row->img;?>" alt="Foto de perfil"
+                        style="margin-bottom: 15%; margin-left:15%; max-width: 100px; max-height: auto; width:90px; height:90px; border-radius:150px;">
+                    <button class="perfilbtn" name="xPerfil" value="<?=$row->nick;?>"
+                        onclick="llamada('<?=$row->nick;?>')"> <?=$row->nick;?></button>
                 </div>
-            </div>
-            <div class="col2">
-                <div id="global">
-                    <?php foreach ($Perfiles as $row) {?>
-                    <div class="containerperfil">
-                        <img src="<?=$row->img;?>" alt="Foto de perfil"
-                            style="margin-bottom: 15%; margin-left:15%; max-width: 100px; max-height: auto;">
-                        <button class="perfilbtn" name="xPerfil" value="<?=$row->nick;?>"
-                            onclick="llamada('<?=$row->nick;?>')"> <?=$row->nick;?></button>
-                    </div>
-                    <?php 
+                <?php 
             } ?>
-                </div>
             </div>
-            <div class="col">
-                <div id="global2" name="global2">
+        </div>
+     
+        <div class="div_centrado">
+        
+            <!--Row with two equal columns-->
+            <div class="row">
+                <div class="col3">
                     <div class="cont">
-                        <div class="spinner-border ocultar" style="visibility:hidden; width: 15rem; height: 15rem; margin: auto; font-size: 50px"
-                            id="spiner" name="spiner" role="status">
-                            <span class="sr-only"></span>
+                        <div class="c1p">
+                            <input type="hidden" id="nickU" name="nickU" disabled="disabled" />
+                            <input type="text" class="inputInfo" id="nombreApellido" name="nombreApellido" disabled="disabled" />             
                         </div>
+                        <div class="c3p">   
+                            <img src="img" id="img"alt="Foto de perfil" style="width:100px; height:auto;">
+                        </div>
+                    </div>
+                </div>
 
-                        <div id="demo">
-                            <div id="div">
+                <div class="col">
+                    <div id="global2" name="global2">
+                        <div class="cont">
+                            <div class="spinner-border ocultar"
+                                style="visibility:hidden; width: 15rem; height: 15rem; margin: auto; font-size: 50px"
+                                id="spiner" name="spiner" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+
+                            <div id="demo">
+                                <div id="div">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col4">
-                <div class="cont">
+                <div class="col4">
+                    <div class="cont">
 
-                    <div class="c1p">
-                        <input type="textarea" class="inputEnvio" id="contenidoMensaje" name="contenidoMensaje">
-                        </input>
-                    </div>
-                    <div class="c3p">
-                        <button class="enviobtn" onclick="enviar()">Enviar</button>
+                        <div class="c1p">
+                            <input type="text" size="300" class="inputEnvio" id="contenidoMensaje" name="contenidoMensaje">
+                            </input>
+                        </div>
+                        <div class="c3p">
+                            <button class="enviobtn" onclick="enviar()"><i class="gg-arrow-up-o"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+  
     </div>
-</div>
 </body>
 <footer>
     <?php
@@ -444,4 +458,5 @@ function enviar() {
 ?>
 
 </footer>
+
 </html>
