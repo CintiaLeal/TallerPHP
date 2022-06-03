@@ -34,7 +34,7 @@ public function datosTodosPerfiles(){
 */
 public function Perfiles($username){
 
-    return  $this->db->query("select * from usuarios where nick != '$username'")->result();
+    return  $this->db->query("select DISTINCT(u.nick) as nick, u.nombre as nombre,u.apellido as apellido, u.img as img from usuarios u, mensaje m where (u.nick = m.envio or m.recibio = u.nick) and u.nick !='$username'")->result();
 }
 
 public function buscarPerfil($id){
