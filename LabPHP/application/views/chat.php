@@ -48,31 +48,35 @@ html {
     position: absolute;
     top: 15%;
     left: 15%;
-    
+
 }
 
 .col {
-    background-color: #fff;
+    background: linear-gradient(90deg, #d6d6d6,white);
+    background-color: #d6d6d6;
     position: relative;
     overflow: hidden;
-
+  
     max-width: 100%;
-    min-height: 300px;
+    min-height: 430px;
     padding: 10px 15px;
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.5)
+    border-color: #d6d6d6;
+    border-top: solid;
 }
 
 .col2 {
-    background-color: #fff;
+    background-color: #d6d6d6;
     position: relative;
     overflow: hidden;
-
+   
+    border-right: solid;
     max-width: 100%;
-    min-height: 300px;
+    min-height: 400px;
     padding: 10px 15px;
-    width: 10%;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 15%;
+  
+  
 
 }
 
@@ -82,34 +86,38 @@ header {
 
 .col3 {
     z-index: 1;
-    background: linear-gradient(90deg, #389393, white);
+    /*  background: linear-gradient(90deg, #389393, white);*/
     opacity: 80%;
     position: relative;
     overflow: hidden;
-
     max-width: 100%;
-    min-height: 40px;
+    height: 100px;
     padding: 10px 15px;
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.5)
+    
+    border-color: #d6d6d6;
 }
 
 .col4 {
-    background-color:#fff;
+    background-color: #d6d6d6;
     opacity: 80%;
-    position: relative;
-    overflow: hidden;
-    width: 600px;
-    max-width: 100%;
-    min-height: 20px;
+    height: 100px;
     padding: 10px 15px;
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.5)
+    
+  
+    
 }
 
 .cont {
     display: flex;
     flex-wrap: wrap;
+}
+
+.contt {
+    display: flex;
+    left: 50%;
+    margin-top: 10px;
 }
 
 .c1p {
@@ -123,6 +131,8 @@ header {
 }
 
 .c3p {
+    padding: 8px 8px;
+
     width: 9%;
 }
 
@@ -140,6 +150,8 @@ header {
 .containerperfil {
     border: 1px solid rgba(0, 0, 0, 0.5);
     background-color: #f1f1f1;
+    
+    width: 90%;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
@@ -170,14 +182,12 @@ header {
 
 .enviobtn {
     background-color: #f5a25d;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     border-radius: 5px;
-    
-    font-size: 30px;
     color: black;
     border-color: #f5a25d;
-    
+
 }
 
 .perfilbtn {
@@ -188,6 +198,7 @@ header {
     font-family: 'Sen', sans-serif;
     font-size: 16px;
     color: black;
+    border-right: black;
     border-color: #f5a25d;
     opacity: 50%;
 }
@@ -199,7 +210,7 @@ header {
 }
 
 #global2 {
-    height: 300px;
+    height: 400px;
     width: 100%;
     overflow-y: scroll;
 }
@@ -215,7 +226,7 @@ input {
     font-size: 50px;
     color: black;
     display: flex;
-    
+
     border: none;
     background-color: transparent;
 }
@@ -223,6 +234,7 @@ input {
 .inputEnvio {
     background-color: #c0c0c0;
     border: none;
+
 }
 
 footer {
@@ -292,7 +304,8 @@ function buscarPerfil(nick) {
 
                 document.getElementById('nickU').value = element.nick;
                 document.getElementById('img').src = element.img;
-                document.getElementById('nombreApellido').value = element.nombre + " " + element.apellido;
+                document.getElementById('nombreApellido').value = element.nombre + " " + element
+                    .apellido;
 
 
 
@@ -356,7 +369,7 @@ function enviar() {
     console.log("llego");
 
     var contenido = document.getElementById('contenidoMensaje').value;
-    
+
     var receptor = document.getElementById('nickU').value;
 
     console.log(contenido);
@@ -373,83 +386,91 @@ function enviar() {
     });
     document.getElementById('contenidoMensaje').value = "";
 
-   /* var micapa = document.getElementById('demo');
+    /* var micapa = document.getElementById('demo');
 
 
-    var div = document.createElement("div");
-    div.setAttribute("id", "div");
-    div.setAttribute("class", "darkerv")
-    div.textContent = contenido;
-    micapa.appendChild(div);
-    $('#global2').scrollTop($('#global2').prop('scrollHeight'));*/
+     var div = document.createElement("div");
+     div.setAttribute("id", "div");
+     div.setAttribute("class", "darkerv")
+     div.textContent = contenido;
+     micapa.appendChild(div);
+     $('#global2').scrollTop($('#global2').prop('scrollHeight'));*/
 }
 </script>
+<link href='https://css.gg/mail.css' rel='stylesheet'>
 
 <body>
 
-   
-        <div class="col2">
-            <div><i class="gg-user" style="width: 30px;"></i></div>
-            <div id="global">
-                <?php foreach ($Perfiles as $row) {?>
-                <div class="containerperfil">
+
+    <div class="col2">
+        <div><i class="gg-user" style="width: 30px;"></i></div>
+        <div id="global">
+            <?php foreach ($Perfiles as $row) {?>
+            <div class="containerperfil">
+                <div style="width:70%">
                     <img src="<?=$row->img;?>" alt="Foto de perfil"
-                        style="margin-bottom: 15%; margin-left:15%; max-width: 100px; max-height: auto; width:90px; height:90px; border-radius:150px;">
-                    <button class="perfilbtn" name="xPerfil" value="<?=$row->nick;?>"
-                        onclick="llamada('<?=$row->nick;?>')"> <?=$row->nick;?></button>
+                        style="width:70px; height:70px; border-radius:70px;"> <a><?=$row->nick;?></a>
                 </div>
-                <?php 
+                <div style="width:100%">
+                    <a><?=$row->nombre;?> <?=$row->apellido;?></a>
+                </div>
+                <button class="perfilbtn" name="xPerfil" value="<?=$row->nick;?>" onclick="llamada('<?=$row->nick;?>')">
+                    <i class="gg-mail"></i></button>
+            </div>
+            <?php 
             } ?>
-            </div>
         </div>
-     
-        <div class="div_centrado">
-        
-            <!--Row with two equal columns-->
-            <div class="row">
-                <div class="col3">
-                    <div class="cont">
-                        <div class="c1p">
-                            <input type="hidden" id="nickU" name="nickU" disabled="disabled" />
-                            <input type="text" class="inputInfo" id="nombreApellido" name="nombreApellido" disabled="disabled" />             
-                        </div>
-                        <div class="c3p">   
-                            <img src="img" id="img"alt="Foto de perfil" style="width:100px; height:auto;">
-                        </div>
+    </div>
+
+    <div class="div_centrado">
+
+        <!--Row with two equal columns-->
+        <div class="row">
+            <div class="col3">
+                <div class="cont">
+                    <div class="c1p">
+                        <input type="hidden" id="nickU" name="nickU" disabled="disabled" />
+                        <input type="text" class="inputInfo" id="nombreApellido" name="nombreApellido"
+                            disabled="disabled" />
+                    </div>
+                    <div class="c3p">
+                        <img src="img" id="img" alt="Foto de perfil" style="width:70px; height:70px; border-radius:70px;">
                     </div>
                 </div>
+            </div>
 
-                <div class="col">
-                    <div id="global2" name="global2">
-                        <div class="cont">
-                            <div class="spinner-border ocultar"
-                                style="visibility:hidden; width: 15rem; height: 15rem; margin: auto; font-size: 50px"
-                                id="spiner" name="spiner" role="status">
-                                <span class="sr-only"></span>
-                            </div>
-
-                            <div id="demo">
-                                <div id="div">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col4">
+            <div class="col">
+                <div id="global2" name="global2">
                     <div class="cont">
-
-                        <div class="c1p">
-                            <input type="text" size="300" class="inputEnvio" id="contenidoMensaje" name="contenidoMensaje">
-                            </input>
+                        <div class="spinner-border ocultar"
+                            style="visibility:hidden; width: 15rem; height: 15rem; margin: auto; font-size: 50px"
+                            id="spiner" name="spiner" role="status">
+                            <span class="sr-only"></span>
                         </div>
-                        <div class="c3p">
-                            <button class="enviobtn" onclick="enviar()"><i class="gg-arrow-up-o"></i></button>
+
+                        <div id="demo">
+                            <div id="div">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col4">
+                <div class="contt">
+
+                    <div class="c1p">
+                        <textarea id="contenidoMensaje" name="contenidoMensaje" rows="2" cols="172"></textarea>
+                    </div>
+                    <div class="c3p">
+                        <button class="enviobtn" onclick="enviar()"><a style="font-size:16px;">Enviar</a></button>
+                    </div>
+                </div>
+            
         </div>
-  
+    </div>
+    </div>
+
     </div>
 </body>
 <footer>
