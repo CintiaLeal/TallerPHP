@@ -378,11 +378,32 @@ class Usuario_model extends CI_Model {
         }
     }   
 
-    function registrofacebook($data){
+    public function registrofacebook($data){
         session_start();
         if($data['idFacebok']!=null){
             $this->db->query("update usuarios set idFacebok = "."'".$data["idFacebok"]."'"."where nick ="."'".$_SESSION["usuario"]."'");
+            return true;
         }
+            else{
+                return false;
+            }
+    }
+
+    public function iniciofacebook($data){
+        session_start();
+        if($data['idFacebok']!=null){
+            $nick = $this->db->query("SELECT nick FROM usuarios WHERE idFacebok = '".$data['idFacebok']."'");
+            if(!empty($nick)){
+                foreach($nick as $row){
+                    $username = $row->id;
+                }
+            session_start();
+            $_SESSION["usuario"] = $username;
+            return true;
+        }
+            else{
+                return false;
+            }
     }
 
 }

@@ -418,7 +418,22 @@ footer {
         if(response.authResponse){
             FB.api('/me?fields=email,name,picture',(response)=>{
                 console.log(response);
-                alert('consola')
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        idFacebok: response.id,
+                    },
+                    url: '<?= base_url().'/index.php/usuario/iniciofacebook'; ?>',
+                    dataType: "json",
+                    success : function(data){
+                        data !== "error" ? window.location.href = data : 
+                        Swal.fire({
+                            title: 'Este usuario no existe',
+                            icon: 'error',
+                            confirmButtonText: 'Registrarse'
+                        }).then((result) => {  window.location.href = "http://localhost/Labphp/users/register" }); 
+                    }
+                });
             })
         }
         })

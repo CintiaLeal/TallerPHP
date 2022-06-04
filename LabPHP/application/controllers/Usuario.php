@@ -409,8 +409,30 @@ class Usuario extends CI_Controller {
 
     function registrofacebook(){
         $data = array(
-            'idFacebok' => $_POST['idFacebok']
+            'idFacebok' => $_POST['idFacebok'],
         );
-        $this->Usuario_model->registrofacebook($data);
+        if($this->Usuario_model->registrofacebook($data)){
+            $this->load->view('exito.php');
+        }
+        else{
+            $this->load->view('error.php');
+        }
+    }
+
+    function iniciofacebook(){
+        $data = array(
+            'idFacebok' => $_POST['idFacebok'],
+        );
+        if($this->Usuario_model->iniciofacebook($data)){
+            echo "EXITO";
+            echo json_encode("EXITO");
+            $this->load->view('inicio.php');
+        }
+        else{
+            echo "ERROR";
+            echo json_encode("ERROR");
+            $this->load->view('error.php');
+            
+        }
     }
 }

@@ -12,12 +12,12 @@ else{
     <br>
     <div class="conteiner">    
         <input  id="busqueda" name="busqueda" type="search" class="form-control buscar">
-        <button id = "busca" type="button" onclick = "buscar()"></button>
+        <button id = "busca" type="button" onclick = "buscar()"> </button>
     </div>
     <br><br><br>
     
     <p> Pedidos: </p>
-    <div class="conteiner">
+    <div class="conteiner">  
         <div id = "divpedidos" class="scroll_text_pedidos">
                 <div id = "div" style="width:200px;">
                 

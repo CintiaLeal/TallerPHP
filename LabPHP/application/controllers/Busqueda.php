@@ -31,12 +31,12 @@ class Busqueda extends CI_Controller {
 
 		echo $c;
 		
-		$pedidos = $this->Busqueda_model->buscarpedidos($c);
+		//$pedidos = $this->Busqueda_model->buscarpedidos($c);
 		$viajes = $this->Busqueda_model->buscarviajes($c);
 		$data = array(
-			'pedidos' => $pedidos,
+		//	'pedidos' => $pedidos,
 			'viajes' => $viajes
 		);
-		echo json_encode($data);
+		echo json_encode();
 	}
 }

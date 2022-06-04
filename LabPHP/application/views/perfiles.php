@@ -123,7 +123,7 @@
         </div>
 
         <div style="margin-bottom:5%;">
-                <button style="border-radius: 5px; background-color:#f5a25d; opacity:50%; color:white; margin-left:5%;">Vincular con Facebook</button>
+                <button type="button" onclick="onLogin();" style="border-radius: 5px; background-color:#f5a25d; opacity:50%; color:white; margin-left:5%;">Vincular con Facebook</button>
         </div>
 
         <div style="margin-left: 60%; margin-bottom: 10%;"> 
@@ -164,6 +164,49 @@
     </div>
 </div>
 
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+<script >
+    
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '414719280503214',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v14.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   function onLogin(){
+    FB.login((response) => {
+        if(response.authResponse){
+            FB.api('/me?fields=email',(response)=>{
+                console.log(response);
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        idFacebok: response.id,
+                    },
+                    url: '<?= base_url().'/index.php/usuario/registrofacebook'; ?>',
+                    dataType: "json",
+                });
+                alert('Usuario vinculado con exito')
+            })
+        }
+        })
+    }
+</script>
 
 
 <?php
