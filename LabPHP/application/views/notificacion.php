@@ -33,32 +33,50 @@ html,
 body {
     margin: 0;
 }
+.div_contenedorr {
+    height: 100vh;
+}
+
+.div_centradoo {
+    width: 80%;
+    height: 100vh;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+
+}
 </style>
 
 
 <body>
-        <?php foreach ($Notificaciones as $row) {?>
-      
-      
-         
-          
-          <div class="row">
-    <div class="col">
-          <div class="card">
-              <h5 class="card-header" style="background: #f5a25d ;"></h5>
-              <div class="card-body">
-                  <h5 class="card-title"></h5>
-                  <p class="card-text"><?=$row->contenido;?></p>
-                  <p class="card-text"><?=$row->time;?></p>
-              </div>
-          </div>
-    </div>
+    <?php if($Notificaciones != null){?>
+    <?php foreach ($Notificaciones as $row) {?>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header" style="background: #f5a25d ;"></h5>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"><?=$row->contenido;?></p>
+                    <p class="card-text"><?=$row->time;?></p>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
     </div>
     <?php 
 } ?>
-    
+    <?php 
+} ?>
+    <?php 
+if($Notificaciones == null){?>
+    <div class="div_contenedorr">
+        <div class="div_centradoo">
+            <h1>Usted no tiene ninguna notificación</h1>
+        </div>
+    </div>
+    <?php } ?>
 </body>
 
 </html>
