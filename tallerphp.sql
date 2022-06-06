@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 02-06-2022 a las 23:39:20
+-- Tiempo de generación: 06-06-2022 a las 18:11:49
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 8.0.1
 
@@ -98032,9 +98032,9 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`numero`, `titulo`, `descripcion`, `precio`, `imagen`, `link`, `fecha_min`, `fecha_max`, `origen`, `destino`, `estado`, `usuario`) VALUES
-(16, 'cafe', 'cafe', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653662408/wewq8yeyznfsz5seb1pi.png', '', '2022-05-27', '2022-06-03', 173976, 606452, 'activo', 31),
-(18, 'cafe', 'cafecito', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653663523/a5wky89436nksfmfn7wo.png', '', '2022-05-27', '2022-06-03', 606538, 132960, 'recibido', 33),
-(23, 'cafe', 'grtgr', 120, '', '', '2022-05-30', '2022-06-02', 132751, 766051, 'activo', 33);
+(16, 'cafe', 'cafe', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653662408/wewq8yeyznfsz5seb1pi.png', '', '2022-05-27', '2022-12-31', 173976, 606452, 'activo', 31),
+(18, 'cafe', 'cafecito', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653663523/a5wky89436nksfmfn7wo.png', '', '2022-05-27', '2022-12-31', 606538, 132960, 'recibido', 33),
+(23, 'cafe', 'grtgr', 120, '', '', '2022-05-30', '2022-12-31', 132751, 766051, 'activo', 33);
 
 -- --------------------------------------------------------
 
@@ -100070,6 +100070,7 @@ CREATE TABLE `usuarios` (
   `biografia` varchar(256) DEFAULT NULL,
   `password` varchar(20) NOT NULL,
   `unido` varchar(20) NOT NULL,
+  `idFacebok` varchar(20) DEFAULT NULL,
   `accion` int(11) NOT NULL DEFAULT '0' COMMENT 'para ver que hace primero el usuario\r\n1 = viaje\r\n2 = compra\r\n\r\n0 = ninguno'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -100077,13 +100078,13 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nick`, `email`, `telefono`, `nombre`, `apellido`, `img`, `biografia`, `password`, `unido`, `accion`) VALUES
-(16, 'Fran', 'franco.valentino@est', 12345678, 'Franco', 'Cuesta', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652801685/Declaration_of_War_zgazzn.jpg', 'holi soy franco', '123456', '17-05-2022', 0),
-(31, 'johnny', 'johnny@gmail.com', 123456789, 'johnny', 'deep', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652897862/lgvzr5tckatuyovjfqtt.webp', 'hola soy johnny', '123456', '17-05-2022', 0),
-(32, 'nico', 'nico.escobar@utec.ed', 12345678, 'Xavier', 'Escobar', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653006548/lw9run7i62bcztj1e36v.jpg', 'El Xavi', '123456', '20-05-2022', 0),
-(33, 'rous', 'romilopez1@hotmail.e', 92956049, 'Romina', 'Lopez', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653315237/spfgbppzewo6c6swjnyf.jpg', 'rous', '123456', '23-05-2022', 0),
-(57, 'romina', 'romina.lopez@estudia', 92956049, 'Romina', 'Lopez', '', 'romina', '123456', '01-06-2022', 2),
-(58, 'lea', 'leandro.marrero03@gm', 12345678, 'Leandro', 'Marrero', '', '', '123456', '02-06-2022', 2);
+INSERT INTO `usuarios` (`id`, `nick`, `email`, `telefono`, `nombre`, `apellido`, `img`, `biografia`, `password`, `unido`, `idFacebok`, `accion`) VALUES
+(16, 'Fran', 'franco.valentino@est', 12345678, 'Franco', 'Cuesta', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652801685/Declaration_of_War_zgazzn.jpg', 'holi soy franco', '123456', '17-05-2022', NULL, 0),
+(31, 'johnny', 'johnny@gmail.com', 123456789, 'johnny', 'deep', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1652897862/lgvzr5tckatuyovjfqtt.webp', 'hola soy johnny', '123456', '17-05-2022', NULL, 0),
+(32, 'nico', 'nico.escobar@utec.ed', 12345678, 'Xavier', 'Escobar', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653006548/lw9run7i62bcztj1e36v.jpg', 'El Xavi', '123456', '20-05-2022', NULL, 0),
+(33, 'rous', 'romilopez1@hotmail.e', 92956049, 'Romina', 'Lopez', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653315237/spfgbppzewo6c6swjnyf.jpg', 'rous', '123456', '23-05-2022', NULL, 0),
+(57, 'romina', 'romina.lopez@estudia', 92956049, 'Romina', 'Lopez', '', 'romina', '123456', '01-06-2022', NULL, 2),
+(58, 'lea', 'leandro.marrero03@gm', 12345678, 'Leandro', 'Marrero', '', '', '123456', '02-06-2022', NULL, 2);
 
 --
 -- Disparadores `usuarios`
@@ -100249,7 +100250,8 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD UNIQUE KEY `nick` (`nick`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `idFacebok` (`idFacebok`);
 
 --
 -- Indices de la tabla `valoraciones`

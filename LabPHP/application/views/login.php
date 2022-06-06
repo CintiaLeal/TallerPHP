@@ -416,7 +416,7 @@ footer {
    function onLogin(){
     FB.login((response) => {
         if(response.authResponse){
-            FB.api('/me?fields=email,name,picture',(response)=>{
+            FB.api('/me?fields=email',(response)=>{
                 console.log(response);
                 $.ajax({
                     type: 'POST',
@@ -425,15 +425,8 @@ footer {
                     },
                     url: '<?= base_url().'/index.php/usuario/iniciofacebook'; ?>',
                     dataType: "json",
-                    success : function(data){
-                        data !== "error" ? window.location.href = data : 
-                        Swal.fire({
-                            title: 'Este usuario no existe',
-                            icon: 'error',
-                            confirmButtonText: 'Registrarse'
-                        }).then((result) => {  window.location.href = "http://localhost/Labphp/users/register" }); 
-                    }
-                });
+                });  
+                
             })
         }
         })
@@ -480,10 +473,6 @@ $.ajax({
                 input.setAttribute("class", "");
                 
             }
-
-            
-           
- 
         }
  
     });
@@ -515,11 +504,7 @@ $.ajax({
             else{
                 input.setAttribute("class", "");
                
-            }
-
-            
-           
- 
+            } 
         }
  
     });

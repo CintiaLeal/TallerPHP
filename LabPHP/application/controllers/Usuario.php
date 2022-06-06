@@ -9,8 +9,7 @@ require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
 class Usuario extends CI_Controller {
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
         $this->load->model('Usuario_model');
     }
@@ -385,6 +384,7 @@ class Usuario extends CI_Controller {
             $this->load->view('errorPermiso.php');
         }
     }
+
     function valorar(){
         session_start();
         if(isset($_SESSION["usuario"])){
@@ -409,7 +409,7 @@ class Usuario extends CI_Controller {
 
     function registrofacebook(){
         $data = array(
-            'idFacebok' => $_POST['idFacebok'],
+            'idFacebok' => $_POST['idFacebok']
         );
         if($this->Usuario_model->registrofacebook($data)){
             $this->load->view('exito.php');
@@ -421,16 +421,12 @@ class Usuario extends CI_Controller {
 
     function iniciofacebook(){
         $data = array(
-            'idFacebok' => $_POST['idFacebok'],
+            'idFacebok' => $_POST['idFacebok']
         );
         if($this->Usuario_model->iniciofacebook($data)){
-            echo "EXITO";
-            echo json_encode("EXITO");
             $this->load->view('inicio.php');
         }
         else{
-            echo "ERROR";
-            echo json_encode("ERROR");
             $this->load->view('error.php');
             
         }
