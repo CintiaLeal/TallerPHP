@@ -370,7 +370,8 @@ class Usuario extends CI_Controller {
     }
 
     function valorarUsuario(){
-        if(isset($_SESSION["usuario"])){
+        // session_start();
+        // if(isset($_SESSION["usuario"])){
             $res = $this->Usuario_model->listarUsuariosNoValorados();
             if(isset($res)){
                 $arr = array('usuarios' => $res);
@@ -379,10 +380,10 @@ class Usuario extends CI_Controller {
             else{
                 $this->load->view('error.php');
             }
-        }
-        else{
-            $this->load->view('errorPermiso.php');
-        }
+        // }
+        // else{
+        //     $this->load->view('errorPermiso.php');
+        // }
     }
 
     function valorar(){
