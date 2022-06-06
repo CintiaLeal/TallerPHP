@@ -17,6 +17,7 @@ class Viaje_model extends CI_Model {
             'fechaV' => $data['fechaV'],
             )
         )){
+
             $res2 = $this->db->query("select id from usuarios where nick = '".$data['username']."'")->result();
             foreach($res2 as $row){
                 $id = $row->id;
@@ -38,7 +39,15 @@ class Viaje_model extends CI_Model {
         foreach($_id as $row){
             $user = $row->id;
         }
-        return $this->db->query("SELECT p.titulo, p.numero FROM pedidos p WHERE p.origen ='".$viaje->citiesD_id."' AND p.destino ='".$viaje->citiesH_id."'
+        $origen = $this->db->query("select id from cities where name ='".$viaje->origen."'")->result();
+        $destino = $this->db->query("select id from cities where name ='".$viaje->destino."'")->result();
+        foreach($origen as $row){
+            $id_origen = $row->id;
+        }
+        foreach($destino as $row){
+            $id_destino = $row->id;
+        }
+        return $this->db->query("SELECT p.titulo, p.numero FROM pedidos p WHERE p.origen ='".$id_origen."' AND p.destino ='".$id_destino."'
         AND ".$viaje->fechaI." AND p.numero NOT IN (SELECT pedido FROM ofertas WHERE viaje = $viaje->viaje_id)")->result(); //FALTAN LOS FILTROS DE LAS FECHAS
     }
 

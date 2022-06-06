@@ -61,7 +61,17 @@ class Pedido_model extends CI_Model {
 
     function pedidoRecibido($idPedido){
         if($this->db->query("update pedidos set estado = 'recibido' where numero =".$idPedido)){
-            return true;
+            $res = $this->db->query("select accion from usuarios where nick ='".$_SESSION["usuario"]."'")->result();
+            foreach($res as $row){
+                if($row->accion == 0){
+                    if($this->db->query("update usuarios set accion = 1 where nick ='".$_SESSION["usuario"]."'")){
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            }
         }
         else{
             return false;
