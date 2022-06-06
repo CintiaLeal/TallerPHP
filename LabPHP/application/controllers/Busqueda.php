@@ -12,31 +12,26 @@ class Busqueda extends CI_Controller {
         
     }
 	function buscar(){
-        $pedidos = $this->Busqueda_model->pedidos();
-		$viajes = $this->Busqueda_model->viajes();
+        // $pedidos = $this->Busqueda_model->pedidos();
+		// $viajes = $this->Busqueda_model->viajes();
+		// $data = array(
+		// 	'pedidos' => $pedidos,
+		// 	'viajes' => $viajes
+		// );
+
+		//print_r($data);
+		
+		$this->load->view('busqueda.php');//,$data
+    }
+
+	function busqueda(){
+		$c = $_POST['contenido'];
+		$pedidos = $this->Busqueda_model->buscarpedidos($c);
+		$viajes = $this->Busqueda_model->buscarviajes($c);
 		$data = array(
 			'pedidos' => $pedidos,
 			'viajes' => $viajes
 		);
-
-		//print_r($data);
-		
-		$this->load->view('busqueda.php',$data);
-    }
-
-	function busqueda(){
-		echo "llega a la funcion";
-
-		$c = $_POST['contenido'];
-
-		echo $c;
-		
-		//$pedidos = $this->Busqueda_model->buscarpedidos($c);
-		$viajes = $this->Busqueda_model->buscarviajes($c);
-		$data = array(
-		//	'pedidos' => $pedidos,
-			'viajes' => $viajes
-		);
-		echo json_encode();
+		echo json_encode($data);
 	}
 }

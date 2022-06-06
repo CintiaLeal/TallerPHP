@@ -387,13 +387,10 @@ function buscarNotificacion() {
             <u><a href="<?= base_url().'/index.php/viaje/publicarViajes'?>" style="color:lightcoral">Viaje</a></u>
         </div>
         <div class="c1">
-                <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">
-                <form action="<?= base_url().'/index.php/Busqueda/buscar'?>" method="POST">
-                <button type="button" style="background-color:dimgray; border-radius:5px;" class="buscar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search"
-                        viewBox="0 0 16 16" style="margin: 3%;">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            <form action="<?= base_url().'/index.php/Busqueda/buscar'?>" method="POST">
+                <button id="buscar" name="buscar" type="submit" style="background-color:dimgray; border-radius:5px;" class="buscar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16" style="margin: 3%;">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
                 </button>
             </form>

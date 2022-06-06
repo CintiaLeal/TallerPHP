@@ -281,7 +281,6 @@ i {
                 <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
             </div>
 			<div class="c1">
-                <input type="search" id="form1" class="form-control buscar" placeholder="Buscar">
                 <form action="<?= base_url().'/index.php/Busqueda/buscar'?>" method="POST">
                     <button id="buscar" name="buscar" type="submit" style="background-color:dimgray; border-radius:5px;" class="buscar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16" style="margin: 3%;">
