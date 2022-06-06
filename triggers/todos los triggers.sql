@@ -55,3 +55,5 @@ UPDATE cupones SET descuento = 420 WHERE u_recibe = _id;
 END;
 END IF;
 END
+
+CREATE TRIGGER `mensaje_oferta` AFTER INSERT ON `ofertas` FOR EACH ROW BEGIN DECLARE idUsuario BIGINT; DECLARE idComprador BIGINT; SET idUsuario = (Select id FROM usuarios u JOIN viaje v ON v.nick = u.nick WHERE v.viaje_id = NEW.viaje); SET idComprador = (Select id FROM usuarios u JOIN pedidos p ON p.usuario = u.id WHERE p.numero = NEW.pedido); INSERT INTO mensaje(envio,recibio,contenido) VALUES(idUsuario,idComprador,"Hola, te hice una oferta sobre tu pedido, ¿qué te parece?"); END
