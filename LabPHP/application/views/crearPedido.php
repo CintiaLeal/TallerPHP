@@ -350,10 +350,10 @@ success: function(resp){
                                 <option value="<?=$cupon->descuento?>">
                                     $<?=$cupon->descuento?>
                                 </option>
-                                <?}}?>
+                                <?}?>
                             </select>
                             <input class="d-none" name="idCupon" id="idCupon" value="<?=$cupon->id?>"> 
-                            
+                            <?}?>
                         </div>
                         <input name="precio" type="text" id="precio" class="d-none"/>
                         <input class="d-none" name="cupon" id="cupon">

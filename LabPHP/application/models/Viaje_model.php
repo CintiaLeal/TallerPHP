@@ -40,7 +40,6 @@ class Viaje_model extends CI_Model {
     }
 
     function devolverPedidosOferta($viaje){
-        session_start();
         $_id = $this->db->query("select id from usuarios where nick ='".$_SESSION["usuario"]."'")->result();
         foreach($_id as $row){
             $user = $row->id;
