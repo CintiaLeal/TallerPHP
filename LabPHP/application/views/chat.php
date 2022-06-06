@@ -446,8 +446,8 @@ function enviar() {
                             id="spiner" name="spiner" role="status">
                             <span class="sr-only"></span>
                         </div>
-
-                        <div id="demo">
+                        <br>
+                        <div id="demo" style="width:100%">
                             <div id="div">
                             </div>
                         </div>
