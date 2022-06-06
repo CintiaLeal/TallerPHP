@@ -17,15 +17,9 @@ class Viaje_model extends CI_Model {
             'fechaV' => $data['fechaV'],
             )
         )){
-            $res = $this->db->query("select accion from usuarios where nick = '".$data['username']."'")->result();
             $res2 = $this->db->query("select id from usuarios where nick = '".$data['username']."'")->result();
             foreach($res2 as $row){
                 $id = $row->id;
-            }
-            foreach($res as $row){
-                if($row->accion == 0){
-                    $this->db->query("update usuarios set accion = 2 where id = ".$id.";");
-                }
             }
             return true;
         }

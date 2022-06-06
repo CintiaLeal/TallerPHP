@@ -30,12 +30,6 @@ class Pedido_model extends CI_Model {
             'destino' => $data['destino'],
             )
         )){
-            $res = $this->db->query("select accion from usuarios where id =".$num)->result();
-            foreach($res as $row){
-                if($row->accion == 0){
-                    $this->db->query("update usuarios set accion = 1 where id =".$num);
-                }
-            }
             return true;
         }
         else{
