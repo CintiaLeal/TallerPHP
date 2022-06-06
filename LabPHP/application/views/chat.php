@@ -424,7 +424,6 @@ function enviar() {
 
     <div class="div_centrado">
 
-        <!--Row with two equal columns-->
         <div class="row">
             <div class="col3">
                 <div class="cont">
