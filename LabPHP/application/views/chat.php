@@ -518,11 +518,11 @@ function enviar() {
                     </div>
                     <div class="chat-message clearfix">
                         <div class="input-group mb-0">
+                            <input type="text" id="contenidoMensaje" name="contenidoMensaje" class="form-control"
+                            placeholder="Mensaje...">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-send" onclick="enviar()"></i></span>
                             </div>
-                            <input type="text" id="contenidoMensaje" name="contenidoMensaje" class="form-control"
-                                placeholder="Enter text here...">
                         </div>
                     </div>
                 </div>
