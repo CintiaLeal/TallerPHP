@@ -6,7 +6,7 @@ class Chat extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Chat_model');
-      //  $this->load->model('Viaje_model');
+     
     }
 
 
@@ -57,6 +57,7 @@ public function buscarChat(){
     }
    
 }
+
 
 public function enviarMensaje(){
     session_start();
