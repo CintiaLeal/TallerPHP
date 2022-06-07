@@ -392,12 +392,11 @@ class Usuario_model extends CI_Model {
     public function iniciofacebook($data){
         session_start();
         if($data['idFacebok']!=null){
-            $nick = $this->db->query("SELECT nick FROM usuarios WHERE idFacebok = '".$data['idFacebok']."'");
+            $nick = $this->db->query("SELECT nick FROM usuarios WHERE idFacebok = '".$data['idFacebok']."'")->result();
             if(!empty($nick)){
                 foreach($nick as $row){
-                    $username = $row->id;
+                    $username = $row->nick;
                 }
-            session_start();
             $_SESSION["usuario"] = $username;
             return true;
         }

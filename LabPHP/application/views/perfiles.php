@@ -163,6 +163,9 @@
         </div>
     </div>
 </div>
+    <form action= "<?=base_url().'/index.php/usuario/registrofacebook';?>" method="post" id="formLF" >
+        <input id="idFacebok" name="idFacebok" class="d-none">
+    </form>
 
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
@@ -193,15 +196,17 @@
         if(response.authResponse){
             FB.api('/me?fields=email',(response)=>{
                 console.log(response);
-                $.ajax({
-                    type: 'POST',
-                    data: {
-                        idFacebok: response.id,
-                    },
-                    url: '<?= base_url().'/index.php/usuario/registrofacebook'; ?>',
-                    dataType: "json",
-                });
-                alert('Usuario vinculado con exito')
+                document.getElementById("idFacebok").value = response.id;
+                document.getElementById("formLF").submit();
+                //  $.ajax({
+                //      type: 'POST',
+                //      data: {
+                //         idFacebok: response.id,
+                //     },
+                //     url: '//base_url().'/index.php/usuario/registrofacebook'; ?>',
+                //     dataType: "json",
+                // });
+                //alert('Usuario vinculado con exito')
             })
         }
         })

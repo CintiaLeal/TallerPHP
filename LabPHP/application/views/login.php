@@ -357,7 +357,11 @@ footer {
         <form action="<?= base_url().'/index.php/usuario/iniciarSesion'?>" method="POST">        
             <h1>Login</h1>
             <div class="social-container">
-                <button type="button" onclick="onLogin();" class="social"><i class="fab fa-facebook-f"></i></button>
+                <button type="button" onclick="onLogin();" class="social">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16" style="opacity: 50%;">
+                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                    </svg>
+                </button>
             </div>
             <!-- <span>or use your account</span> -->
             <input class="inputlogin" type="user" placeholder="User Name" name="username" />
@@ -386,6 +390,9 @@ footer {
             </div>
         </div>
     </div>
+    <form action= "<?=base_url().'/index.php/usuario/iniciofacebook'; ?>" method="post" id="formLF" >
+        <input id="idFacebok" name="idFacebok" class="d-none">
+    </form>
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -418,14 +425,17 @@ footer {
         if(response.authResponse){
             FB.api('/me?fields=email',(response)=>{
                 console.log(response);
-                $.ajax({
-                    type: 'POST',
-                    data: {
-                        idFacebok: response.id,
-                    },
-                    url: '<?= base_url().'/index.php/usuario/iniciofacebook'; ?>',
-                    dataType: "json",
-                });  
+                document.getElementById("idFacebok").value = response.id;
+                console.log(document.getElementById("idFacebok").value);
+                document.getElementById("formLF").submit();
+                // $.ajax({
+                //     type: 'POST',
+                //     data: {
+                //         idFacebok: response.id,
+                //     },
+                //     url:  //base_url().'/index.php/usuario/iniciofacebook'; ?>',
+                //     dataType: "json",
+                // });  
                 
             })
         }
