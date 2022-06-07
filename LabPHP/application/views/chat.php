@@ -342,7 +342,7 @@ function llamada(nick) {
 
 function buscarPerfil(nick) {
     console.log(nick);
-
+    $('#foto').empty();
     $.ajax({
         type: 'POST',
         url: '<?php echo base_url() . 'index.php/chat/buscarPerfil'; ?>',
@@ -355,20 +355,23 @@ function buscarPerfil(nick) {
             let valorFinal = resp.perfil;
 
             //console.log(valorFinal);
-
+         
             valorFinal.forEach(element => {
                 console.log(element);
                 var option = document.createElement("option");
+                var foto = document.getElementById("foto");
+                var i= document.createElement("img");
+                i.setAttribute("src",element.img);
+                i.setAttribute("style","width:50px; height:50px; border-radius:50px;");
                 option.text = element.nombre;
                 option.text = element.apellido;
 
                 option.text = element.nick;
 
-
+                foto.appendChild(i);
                 document.getElementById('nickU').value = element.nick;
-                document.getElementById('img').src = element.img;
-                document.getElementById('nombreApellido').value = element.nombre + " " + element
-                    .apellido;
+                //document.getElementById('img').src = element.img;
+                document.getElementById('nombreApellido').value = element.nombre + " " + element.apellido;
 
 
 
@@ -490,10 +493,11 @@ function enviar() {
                     <div class="chat-header clearfix">
                         <div class="row">
                             <div class="col-lg-6">
-                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                    <img src="img" id="img" alt="Foto de perfil"
-                                        style="width:50px; height:50px; border-radius:50px;">
-                                </a>
+                                <div id="foto">
+                                
+                                   
+                                
+                                </div>
                                 <div class="chat-about">
                                     <input type="hidden" id="nickU" name="nickU" disabled="disabled" />
                                     <input type="text" id="nombreApellido" name="nombreApellido" disabled="disabled" />
