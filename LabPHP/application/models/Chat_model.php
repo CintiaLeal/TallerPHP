@@ -7,31 +7,7 @@ class Chat_model extends CI_Model {
         $this->db->load_rdriver();
         
     }
-/*
-public function datosTodosPerfiles(){
-        $p = $this->db->query("select * from usuarios")->result();
-        if(isset($p)){
-            foreach($p as $row){
-                $nick = $row->nick;
-                $nombre = $row->nombre;
-                $apellido = $row->apellido;
-                $biografia = $row->biografia;
-                $img = $row->img;
-            }
-            $res = array(
-                'nick' => $nick,
-                'nombre' => $nombre,
-                'apellido' => $apellido,
-                'biografia' => $biografia,
-                'imagen' => $img,
-            );
-            return $res;
-        }
-        else{
-            return false;
-        }
-}
-*/
+
 public function Perfiles($username){
 
     return  $this->db->query("select DISTINCT(u.nick) as nick, u.nombre as nombre,u.apellido as apellido, u.img as img from usuarios u, mensaje m where (u.nick = m.envio or m.recibio = u.nick) and u.nick !='$username'")->result();
@@ -55,8 +31,6 @@ public function buscarChat($nick , $username){
 
 
 
-
-//`mensaje` (`id`, `envio`, `recibio`, `fecha`, `contenido`)
     public function enviarMensaje($data){
         $this->db->insert('mensaje',array(
             
