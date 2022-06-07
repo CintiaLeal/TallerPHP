@@ -436,12 +436,17 @@ function enviar() {
     console.log("llego");
 
     var contenido = document.getElementById('contenidoMensaje').value;
-
+    var input = document.getElementById('contenidoMensaje');
+    input.setAttribute("style", "background-color: white;");
     var receptor = document.getElementById('nickU').value;
 
     console.log(contenido);
     console.log(receptor);
-
+    if(contenido ==""){
+        var input = document.getElementById('contenidoMensaje');
+        input.setAttribute("style", "background-color: #E6B0AA;");
+    }
+    else {
     $.ajax({
         type: 'POST',
         url: '<?php echo base_url() . 'index.php/chat/enviarMensaje'; ?>',
@@ -452,7 +457,7 @@ function enviar() {
         dataType: "json",
     });
     document.getElementById('contenidoMensaje').value = "";
-
+    }
     /* var micapa = document.getElementById('demo');
 
 
