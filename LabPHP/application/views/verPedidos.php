@@ -7,7 +7,7 @@ else{
 }
 
 ?>
-<?if(!empty($arreglo)){?>
+<?//if(!empty($arreglo)){?>
 <form action="<?=base_url().'/index.php/pedido/verPedido'?>" id="form" method="POST">
 <div class="conteiner">
     <div style="margin-bottom:3%; text-align: center;">
@@ -43,7 +43,7 @@ else{
     </div>
 </div>
 </form>
-<?} else{?>
+<!-- <?//} else{?>
     <div class="row d-flex flex-column align-items-center">
             <h1 id="titulo" style="text-align: center; font-family: 'Unica One', cursive; color:#389393; opacity: 70%;">Ups!</h2>
         </div>
@@ -51,7 +51,7 @@ else{
             <h4 style="text-align: center; font-family: 'Unica One', cursive; color:#fa7f72; opacity: 70%;">Al parecer no tienes pedidos<br> para ver aún</h4>
         </div>
         <div style="display: flex; justify-content:center;">
-            <a href="<?= base_url().'/index.php/usuario/inicio'?>" style="color:white;"><button type="submit" style="border: none;
+            <a href="<?// base_url().'/index.php/usuario/inicio'?>" style="color:white;"><button type="submit" style="border: none;
             color: white;
             padding: 10px;
             text-align: center;
@@ -66,7 +66,7 @@ else{
             opacity: 50%;"><b>
             Volver al inicio</b></button></a>
         </div>
-<?}?>
+<?//}?> -->
 <?php
     include ('footer.php');
 ?>

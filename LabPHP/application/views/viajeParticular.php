@@ -48,6 +48,11 @@ else{
                 </p>
             </div>
             <?}?>
+            <!-- <form>
+                <div class="contenedorParticular">
+                    <button type="button" class="btnViaje" id="btn">Cancelar viaje</button>
+                </div>
+            </form> -->
             <?if(!empty($pedidos)){?>
                 <div class="contenedorParticular">
                     <p class="atributosV"><u>Ofertar sobre:</u></p>
