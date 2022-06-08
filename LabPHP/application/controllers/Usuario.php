@@ -23,12 +23,12 @@ class Usuario extends CI_Controller {
 
         $mail = new PHPMailer(true);
             // Configuracion SMTP
-            $mail->SMTPDebug = 0;                         // Mostrar salida (Desactivar en producción)
+            $mail->SMTPDebug = 1;                         // Mostrar salida (Desactivar en producción)
             $mail->isSMTP();                                               // Activar envio SMTP
             $mail->Host  = 'smtp.googlemail.com';                     // Servidor SMTP
             $mail->SMTPAuth  = true;                                       // Identificacion SMTP
             $mail->Username  = 'telollevolabphp@gmail.com';                  // Usuario SMTP
-            $mail->Password  = 'telollevoLavphp2022';	          // Contraseña SMTP
+            $mail->Password  = 'telollevoLaboratoriophp2022';	          // Contraseña SMTP
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port  = 587;
             $mail->setFrom('telollevolabphp@gmail.com', 'TeLoLlevo');                // Remitente del correo
