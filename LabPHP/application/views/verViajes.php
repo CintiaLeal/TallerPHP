@@ -7,6 +7,7 @@ else{
 }
 
 ?>
+<?if(!empty($res)){?>
 <form action="<?=base_url().'/index.php/viaje/verViaje'?>" id="form" method="POST">
     <div class="conteiner">
         <div style="margin-bottom:3%; text-align: center;">
@@ -29,6 +30,30 @@ else{
         <input id="idViaje" name="idViaje" class="d-none">
     </div>
 </form>
+<?} else{?>
+    <div class="row d-flex flex-column align-items-center">
+            <h1 id="titulo" style="text-align: center; font-family: 'Unica One', cursive; color:#389393; opacity: 70%;">Ups!</h2>
+        </div>
+        <div class="row d-flex flex-column align-items-center">
+            <h4 style="text-align: center; font-family: 'Unica One', cursive; color:#fa7f72; opacity: 70%;">Al parecer no tienes viajes<br> para ver aún</h4>
+        </div>
+        <div style="display: flex; justify-content:center;">
+            <a href="<?= base_url().'/index.php/usuario/inicio'?>" style="color:white;"><button type="submit" style="border: none;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Sen', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px 1px;
+            cursor: pointer;
+            border-radius: 12px;  
+            background-color:#389393; 
+            opacity: 50%;"><b>
+            Volver al inicio</b></button></a>
+        </div>
+<?}?>
 <?php
     include ('footer.php');
 ?>
