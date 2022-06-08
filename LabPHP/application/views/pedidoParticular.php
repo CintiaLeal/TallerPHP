@@ -76,13 +76,7 @@ else{
                 </div>
             <?}?>
 </form>
-        <form id="form1" action="<?= base_url().'/index.php/pedido/pedidoRecibido'?>" method="POST">
-                <div class="contenedorParticular">
-                        <button type="button" class="btnViaje" id="marcar" onclick="enviar(<?=$pedido->numero?>)">Marcar como recibido</button>
-                </div>
-                <input class="d-none" id="pedido" name="pedido">            
     </div>
-        </form>
     <div>
         <img src="<?=$pedido->imagen?>" alt="Imagen" class="contenedorImagen" style="margin-left:5%; max-width:220px;">
         <div style="margin-left: 30%;">
@@ -104,12 +98,6 @@ else{
 ?>
 
 <script>
-let form2 = document.getElementById("form1");
-
-function enviar(pedido){
-    document.getElementById("pedido").value = pedido;
-    form2.submit();
-}
 
 function share(){ 
     url = 'https://work.workplace.com/sharer.php?display=popup&u=' 

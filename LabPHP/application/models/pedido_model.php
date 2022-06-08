@@ -59,6 +59,12 @@ class Pedido_model extends CI_Model {
         }
     }
 
+    function devolverPedidosParaRecibir(){
+        $pedidos = $this->db->query("select p.numero from pedidos p join ofertas o on o.pedido = p.numero join viaje v on o.viaje = v.viaje_id
+        join usuarios u on u.id = p.usuario where u.nick ='".$_SESSION["usuario"]."' and v.realizado = 1")->result();
+        return $pedidos;
+    }
+
     function pedidoRecibido($idPedido){
         if($this->db->query("update pedidos set estado = 'recibido' where numero =".$idPedido)){
             $res = $this->db->query("select accion from usuarios where nick ='".$_SESSION["usuario"]."'")->result();

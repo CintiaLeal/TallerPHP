@@ -103,7 +103,7 @@
             <h4 style="text-align: center;">Ha ocurrido un problema y no hemos podido realizar su solicitud,<br> por favor intenténtelo de nuevo</h4>
         </div>
         <div style="display: flex; justify-content:center;">
-            <a href="<?= base_url().'/index.php'?>"><button type="submit" class="button button1"><b style="color: white;">Volver al inicio</b></button></a>
+            <a href="<?= base_url().'/index.php/usuario/inicio'?>"><button type="submit" class="button button1"><b style="color: white;">Volver al inicio</b></button></a>
         </div>
 
         <?php

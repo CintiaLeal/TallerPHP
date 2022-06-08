@@ -108,6 +108,17 @@ class Pedido extends CI_Controller {
         }
     }
 
+    function pedidosParaRecibir(){
+        session_start();
+        if(isset($_SESSION["usuario"])){
+            $pedidos = $this->Pedido_model->devolverPedidosParaRecibir();
+            $this->load->view('pedidoRecibido', array('pedidos' => $pedidos));
+        }
+        else{
+            $this->load->view('errorPermiso.php');
+        }
+    }
+
     function pedidoRecibido(){
         session_start();
         if(isset($_SESSION["usuario"])){

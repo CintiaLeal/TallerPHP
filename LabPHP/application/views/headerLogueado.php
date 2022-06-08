@@ -435,6 +435,7 @@ function buscarNotificacion() {
                     </svg>
                 </button>
                 <div class="dropdown-content prioridad">
+                <a href="<?= base_url().'/index.php/usuario/inicio'?>" style="background-color: white;">Inicio</a>
                     <a href="<?= base_url().'/index.php/usuario/verPerfil'?>" style="background-color: white;">Ver
                         perfil</a>
                     <a href="<?= base_url().'/index.php/usuario/editarUsuario'?>"
@@ -445,6 +446,8 @@ function buscarNotificacion() {
                         pedidos</a>
                     <a href="<?= base_url().'/index.php/usuario/valorarUsuario'?>"
                         style="background-color: white;">Calificar usuario</a>
+                    <a href="<?= base_url().'/index.php/pedido/pedidosParaRecibir'?>" style="background-color: white;">Marcar pedidos como
+                    recibidos</a>
                     <a href="<?= base_url().'/index.php/usuario/cerrarSesion'?>" style="background-color: white;">Cerrar
                         sesión</a>
                 </div>

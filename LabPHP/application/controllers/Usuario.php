@@ -153,6 +153,11 @@ class Usuario extends CI_Controller {
         }
     }
 
+    function inicio(){
+        session_start();
+        $this->load->view('inicio.php');
+    }
+
     function cerrarSesion(){
         session_start();
         session_unset();
