@@ -135,7 +135,8 @@ else{
         }
     }
     function buscar(){
-        var estado = $("#estado").val();
+    console.log("hi");
+    var estado = $("#estado").val();
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url() . 'index.php/lugar/getEstados'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
@@ -206,6 +207,8 @@ $.ajax({
 }
 function buscarCiudadx(){
 var estado = $("#esta").val();
+const p  = document.getElementById("publicar");
+p.disabled = false; 
 $.ajax({
 type: 'POST',
 url: '<?php echo base_url() . 'index.php/lugar/getCiudad'; ?>', // C:\MAMP\htdocs\TallerPHP\LabPHP\application\controllers\Viaje.php
@@ -228,6 +231,47 @@ success: function(resp){
 }
 });
 }
+
+function esIgual(){
+    console.log("llega");
+    
+    var c1 = document.getElementById("ciudades").value;
+    var c2 = document.getElementById("c").value;
+
+//pone fecha
+    
+
+  
+    var cop = document.getElementById("c");
+    const p  = document.getElementById("publicar");
+
+    console.log(c2);
+    console.log(c1);
+    fecha();
+    if(c1===c2){ 
+        p.disabled = true; 
+        cop.setAttribute("style", "background-color: #E6B0AA;");
+    }
+    else{
+        p.disabled = false; 
+        cop.setAttribute("style", "background-color: none;");
+    }
+
+}
+function fecha(){
+    var fechaI = document.getElementById("fechaI");
+    const p  = document.getElementById("publicar");
+    if(fechaI.value==""){
+        p.disabled = true;
+        fechaI.setAttribute("style", "background-color: #E6B0AA;");
+    }
+    else{
+        p.disabled = false; 
+        fechaI.setAttribute("style", "background-color: none;");
+    }
+
+}
+
 </script>
 <body>
     <div class="container">
@@ -273,18 +317,18 @@ success: function(resp){
                         </select>
                         </div>
                         <div class="c2p">
-                        <select id="esta"  name="esta" onchange="buscarCiudadx()">
+                        <select id="esta"  name="esta" onchange="buscarCiudadx()" >
                              <option>Estado</option>
                         </select>
                         </div>
                         <div class="c2p">
-                        <select id="c"  name="c" >
-                            <option>Ciudad</option>
+                        <select id="c"  name="c"  onchange="esIgual()">
+                            <option > Ciudad</option>
                         </select>
                         </div>
                         <div class="c2p">
                             <p>Fecha ida:</p>
-                            <input id="fechaI" name="fechaI" class="inputlogin" type="date" />
+                            <input id="fechaI" name="fechaI" onchange="esIgual()" class="inputlogin" type="date" />
                         </div>
                         <div class="c2p">
                             <p id="element2">Fecha vuelta:</p>
@@ -292,7 +336,7 @@ success: function(resp){
                         </div>     
                 </div>
             </div>
-            <button class="btnAViaje" type="submit">Publicar Viaje</button>
+            <button class="btnAViaje" id="publicar" type="submit">Publicar Viaje</button>
         </form>   
     </div>
     </div> 
