@@ -48,7 +48,7 @@ class Viaje_model extends CI_Model {
             $id_destino = $row->id;
         }
         return $this->db->query("SELECT p.titulo, p.numero FROM pedidos p WHERE p.origen ='".$id_origen."' AND p.destino ='".$id_destino."'
-        AND ".$viaje->fechaI." AND p.numero NOT IN (SELECT pedido FROM ofertas WHERE viaje = $viaje->viaje_id)")->result(); //FALTAN LOS FILTROS DE LAS FECHAS
+        AND '".$viaje->fechaI."' < p.fecha_max AND '".$viaje->fechaI."' > p.fecha_min AND p.numero NOT IN (SELECT pedido FROM ofertas WHERE viaje = $viaje->viaje_id)")->result(); //FALTAN LOS FILTROS DE LAS FECHAS
     }
 
     function ofertar($id_pedido,$id_viaje,$comision){
