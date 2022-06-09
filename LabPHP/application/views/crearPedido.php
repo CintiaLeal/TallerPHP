@@ -308,7 +308,7 @@ success: function(resp){
                                 </select>
                                 </div>
                                 <div class="c2p">
-                                <select id="c"  name="c" >
+                                <select id="c"  name="c" onchange="esIgual()">
                                     <option>Ciudad</option>
                                 </select>
                             </div>
@@ -377,7 +377,7 @@ success: function(resp){
             </div>
             <!--Row with three equal columns-->
             <div class="row">
-                <button class="btnbtn" type="submit">Hacer Pedido</button>
+                <button class="btnbtn" id="btnbtn" type="submit">Hacer Pedido</button>
 
             </div>
         </form>
@@ -389,7 +389,28 @@ success: function(resp){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <SCRIPT LANGUAGE="JavaScript">
+function esIgual(){
+    console.log("llega");
+    
+    var c1 = document.getElementById("ciudades").value;
+    var c2 = document.getElementById("c").value;
+//pone fecha
+    var cop = document.getElementById("c");
+    const p  = document.getElementById("btnbtn");
 
+    console.log(c2);
+    console.log(c1);
+   
+    if(c1===c2){ 
+        p.disabled = true; 
+        cop.setAttribute("style", "background-color: #E6B0AA;");
+    }
+    else{
+        p.disabled = false; 
+        cop.setAttribute("style", "background-color: none;");
+    }
+
+}
     
 
         const btn = document.querySelector("#btn");
