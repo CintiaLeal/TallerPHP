@@ -175,7 +175,6 @@ class Usuario_model extends CI_Model {
     }
 
     function editar($data){
-        session_start();
         if($data['nombre']!=null){
             $this->db->query("update usuarios set nombre = "."'".$data["nombre"]."'"."where nick ="."'".$_SESSION["usuario"]."'");
         }
@@ -381,7 +380,11 @@ class Usuario_model extends CI_Model {
     public function registrofacebook($data){
         session_start();
         if($data['idFacebok']!=null){
-            $this->db->query("update usuarios set idFacebok = "."'".$data["idFacebok"]."'"."where nick ="."'".$_SESSION["usuario"]."'");
+            $res = $this->db->query("select id from usuarios where nick ='".$_SESSION["usuario"]."'")->result();
+            foreach($res as $row){
+                $iduser = $row->id;
+            }
+            $this->db->query("update usuarios set idFacebok = "."'".$data["idFacebok"]."'"." where id = ".$iduser);
             return true;
         }
             else{

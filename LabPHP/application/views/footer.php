@@ -65,7 +65,7 @@
                     <label style="color: black; opacity: 50%;">|</label>
                 </div>
                 <div class="c2F">
-                    <label style="color: black; opacity: 50%;">telollevo@gmail.com</label>
+                    <label style="color: black; opacity: 50%;">telollevolabphp@gmail.com</label>
                 </div>
             </div>
 

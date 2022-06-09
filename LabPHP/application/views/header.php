@@ -278,7 +278,7 @@ i {
 <nav>
         <div class="conteiner">
             <div class="c1">
-                <img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto">
+                <a href="<?= base_url().'/index.php/usuario/inicio'?>"><img src="https://res.cloudinary.com/djiek0hdx/image/upload/v1652475313/te_lo_llevo-removebg-preview_e6vtz2.png" alt="Logo" height="80px" width="auto"></a>
             </div>
 			<div class="c1">
                 <form action="<?= base_url().'/index.php/Busqueda/buscar'?>" method="POST">
