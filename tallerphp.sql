@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 08-06-2022 a las 23:00:45
+-- Tiempo de generación: 09-06-2022 a las 18:00:31
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 8.0.1
 
@@ -97871,7 +97871,10 @@ CREATE TABLE `cupones` (
 INSERT INTO `cupones` (`id`, `descuento`, `vencimiento`, `usado`, `u_recibe`, `u_from`) VALUES
 (21, 2100, '01-07-2022', 0, 31, NULL),
 (23, 420, '02-07-2022', 0, 58, 31),
-(24, 2100, '02-07-2022', 0, 31, NULL);
+(24, 2100, '02-07-2022', 0, 31, NULL),
+(25, 420, '09-07-2022', 0, 62, 31),
+(26, 2100, '09-07-2022', 0, 31, NULL),
+(27, 500, '31-06-2022', 0, 62, NULL);
 
 --
 -- Disparadores `cupones`
@@ -97902,14 +97905,9 @@ CREATE TABLE `mensaje` (
 --
 
 INSERT INTO `mensaje` (`time`, `id`, `envio`, `recibio`, `contenido`) VALUES
-('2022-05-21 00:00:00', 946, 'johnny', 'Maria', 'marihols'),
-('2022-05-21 21:40:12', 947, 'johnny', 'Maria', 'mariasoyyo'),
-('2022-05-21 21:41:30', 948, 'johnny', 'Maria', 'cafe'),
-('2022-05-21 21:42:14', 949, 'johnny', 'Maria', 'cafeotra vez'),
 ('2022-05-21 21:46:33', 950, 'johnny', 'Fran', 'hola'),
-('2022-05-21 21:46:45', 951, 'johnny', 'CiantiaLT34', 'hola'),
-(NULL, 952, '31', '31', 'Hola, te hice una oferta sobre tu pedido, ¿qué te parece?'),
-(NULL, 953, 'johnny', 'nicolas', 'Hola, te hice una oferta sobre tu pedido, ¿qué te parece?');
+(NULL, 953, 'johnny', 'nicolas', 'Hola, te hice una oferta sobre tu pedido, ¿qué te parece?'),
+(NULL, 954, 'Fran', 'johnny', 'Holis');
 
 --
 -- Disparadores `mensaje`
@@ -97971,7 +97969,12 @@ INSERT INTO `notificaciones` (`id`, `id_usuario`, `leida`, `contenido`, `time`) 
 (50, 31, 1, 'Su pedido 16 tiene una nueva oferta', '2022-06-06 19:51:32'),
 (53, 59, 1, 'Su pedido 24 tiene una nueva oferta', '2022-06-06 19:51:32'),
 (54, 16, 1, 'Has recibido un cupon!', '2022-06-08 20:47:59'),
-(55, 31, 1, 'Has recibido un cupon!', '2022-06-08 20:47:59');
+(55, 31, 1, 'Has recibido un cupon!', '2022-06-08 20:47:59'),
+(56, 31, 1, 'Tienes un mensaje nuevo', '2022-06-08 23:04:30'),
+(57, 62, 1, 'Has recibido un cupon!', '2022-06-09 14:28:32'),
+(58, 31, 1, 'Has recibido un cupon!', '2022-06-09 14:28:32'),
+(59, 62, 1, 'Has recibido un cupon!', '2022-06-09 17:05:40'),
+(60, 31, 1, 'Has sido valorado por romina', '2022-06-09 17:47:08');
 
 -- --------------------------------------------------------
 
@@ -98062,7 +98065,8 @@ INSERT INTO `pedidos` (`numero`, `titulo`, `descripcion`, `precio`, `imagen`, `l
 (16, 'cafe', 'cafe', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653662408/wewq8yeyznfsz5seb1pi.png', '', '2022-05-27', '2022-06-03', 173976, 606452, 'activo', 31),
 (18, 'cafe', 'cafecito', 250, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653663523/a5wky89436nksfmfn7wo.png', '', '2022-05-27', '2022-06-03', 606538, 132960, 'recibido', 33),
 (23, 'cafe', 'grtgr', 120, '', '', '2022-05-30', '2022-06-02', 132751, 766051, 'activo', 33),
-(24, 'cafe', 'CAFE', 570, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1654214099/glngvodr279pycnznwke.jpg', '', '2022-06-03', '2022-06-10', 766051, 241, 'activo', 59);
+(24, 'cafe', 'CAFE', 570, 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1654214099/glngvodr279pycnznwke.jpg', '', '2022-06-03', '2022-06-10', 766051, 241, 'activo', 59),
+(28, 'cafe', 'cafe', 590, '', '', '2022-06-09', '2022-06-16', 255, 130349, 'activo', 62);
 
 -- --------------------------------------------------------
 
@@ -100112,16 +100116,18 @@ INSERT INTO `usuarios` (`id`, `nick`, `email`, `telefono`, `nombre`, `apellido`,
 (32, 'nico', 'nico.escobar@utec.ed', 12345678, 'Xavier', 'Escobar', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653006548/lw9run7i62bcztj1e36v.jpg', 'El Xavi', '123456', '20-05-2022', 0, NULL),
 (33, 'rous', 'romilopez1@hotmail.e', 92956049, 'Romina', 'Lopez', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1653315237/spfgbppzewo6c6swjnyf.jpg', 'rous', '123456', '23-05-2022', 1, NULL),
 (58, 'lea', 'leandro.marrero03@gm', 12345678, 'Leandro', 'Marrero', '', '', '123456', '02-06-2022', 2, NULL),
-(59, 'nicolas', 'nxescobar@gmail.com', 12345678, 'Nicolas', 'Escobar', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1654213481/qedj327egadezbmz8gmp.jpg', 'Hola soy Nicolas', '123456', '02-06-2022', 2, NULL);
+(59, 'nicolas', 'nxescobar@gmail.com', 12345678, 'Nicolas', 'Escobar', 'https://res.cloudinary.com/dmc55ugqh/image/upload/v1654213481/qedj327egadezbmz8gmp.jpg', 'Hola soy Nicolas', '123456', '02-06-2022', 2, NULL),
+(62, 'romina', 'romina.lopez@estudia', 92956049, 'Clotilde', 'Lopez', '', 'romina', '123456', '09-06-2022', 2, NULL);
 
 --
 -- Disparadores `usuarios`
 --
 DELIMITER $$
 CREATE TRIGGER `valor_cupon_pedido` AFTER UPDATE ON `usuarios` FOR EACH ROW BEGIN
-IF NEW.accion = 1 THEN
+IF NEW.accion = 1 && NEW.idFacebok = OLD.idFacebok THEN
 BEGIN
 DECLARE _id BIGINT;
+DECLARE valorcupon INT;
 SET _id = (SELECT u_from FROM cupones where u_recibe = NEW.id);
 UPDATE cupones SET descuento = 420 WHERE u_recibe = _id;
 END;
@@ -100131,7 +100137,7 @@ $$
 DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `valor_cupon_viaje` AFTER UPDATE ON `usuarios` FOR EACH ROW BEGIN
-IF NEW.accion = 2 THEN
+IF NEW.accion = 2 && NEW.idFacebok = OLD.idFacebok THEN
 BEGIN
 DECLARE _id BIGINT;
 SET _id = (SELECT u_from FROM cupones where u_recibe = NEW.id);
@@ -100164,7 +100170,8 @@ CREATE TABLE `valoraciones` (
 INSERT INTO `valoraciones` (`id`, `valora`, `recibe`, `comentario`, `estrellas`, `tipo`) VALUES
 (4, 31, 33, '\r\n                La mejor', 5, 'comprador'),
 (5, 33, 31, '\r\n                sos un capo', 5, 'viajero'),
-(7, 32, 33, '\r\n                Genia', 5, 'comprador');
+(7, 32, 33, '\r\n                Genia', 5, 'comprador'),
+(8, 62, 31, '\r\n                kpo', 5, 'comprador');
 
 --
 -- Disparadores `valoraciones`
@@ -100202,10 +100209,7 @@ CREATE TABLE `viaje` (
 
 INSERT INTO `viaje` (`viaje_id`, `nick`, `citiesD_id`, `citiesH_id`, `fechaI`, `fechaV`, `realizado`) VALUES
 (5, 'johnny', 606538, 132960, '2022-05-30', '0000-00-00', 1),
-(13, 'lea', 564752, 130371, '2022-06-10', '0000-00-00', 0),
-(14, 'nicolas', 766051, 130371, '2022-06-09', '0000-00-00', 0),
-(15, 'Fran', 766248, 130371, '2022-06-07', '0000-00-00', 1),
-(16, 'johnny', 766051, 241, '2022-06-08', NULL, 0);
+(17, 'romina', 766074, 766051, '2022-06-04', '0000-00-00', 1);
 
 --
 -- Disparadores `viaje`
@@ -100344,19 +100348,19 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT de la tabla `cupones`
 --
 ALTER TABLE `cupones`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=954;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=955;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `ofertas`
@@ -100368,7 +100372,7 @@ ALTER TABLE `ofertas`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `numero` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `numero` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `states`
@@ -100380,19 +100384,19 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT de la tabla `valoraciones`
 --
 ALTER TABLE `valoraciones`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `viaje`
 --
 ALTER TABLE `viaje`
-  MODIFY `viaje_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `viaje_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
@@ -100457,7 +100461,7 @@ DELIMITER $$
 --
 -- Eventos
 --
-CREATE DEFINER=`root`@`localhost` EVENT `viaje_fecha` ON SCHEDULE EVERY 1 DAY STARTS '2022-06-08 16:35:55' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE viaje v SET v.realizado = 1 WHERE v.fechaI < DATE(NOW())$$
+CREATE DEFINER=`root`@`localhost` EVENT `viaje_fecha` ON SCHEDULE EVERY 1 SECOND STARTS '2022-06-09 12:58:56' ON COMPLETION PRESERVE ENABLE DO UPDATE viaje v SET v.realizado = 1 WHERE v.fechaI < DATE(NOW())$$
 
 DELIMITER ;
 COMMIT;
