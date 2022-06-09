@@ -18,7 +18,10 @@ class Pedido extends CI_Controller {
         $ciudadD = $_POST['ciudades'];
         $fechamin =  $_POST['min'];
         $fechamax =  $_POST['max'];
-        $precio = $_POST["precio"];
+        $precio = intval($_POST["precio"])+90;
+        if($_POST['cupon']!=""){
+            $precio = intval($_POST["precio"])+90+$this->Pedido_model->precioCupon($_POST['cupon']);
+        }
         $data = array(
             'username' =>$username,
             'titulo'=>$nombre,
@@ -33,12 +36,17 @@ class Pedido extends CI_Controller {
             'destino' => $ciudadH,
         );
         if($this->Pedido_model->registrar($data)){
-            $this->load->model('Cupon_model');
-            if($this->Cupon_model->usarCupon($_POST["cupon"])){
-                $this->load->view('exito.php');
+            if($_POST['cupon']!=""){
+                $this->load->model('Cupon_model');
+                if($this->Cupon_model->usarCupon($_POST["cupon"])){
+                    $this->load->view('exito.php');
+                }
+                else{
+                    $this->load->view('error.php');
+                }
             }
             else{
-                $this->load->view('error.php');
+                $this->load->view('exito.php');
             }
         }
         else{

@@ -333,7 +333,7 @@ success: function(resp){
                         </div>
                         <div class="c2p">
                             <p>Precio:</p>
-                            <input type="text" id="neto" onkeyup="calcular()" />
+                            <input type="text" id="neto" name="precio"/>
                         </div>
                         <div class="c2p">
                             <p>Link</p>
@@ -344,40 +344,40 @@ success: function(resp){
                             <textarea id = "descripcion" name="descripcion" rows="5" cols="100"></textarea>
                             <p class="amini">Incluir detalles sobre tu pedido</p>
                             <?if(!empty($cupones)){?>
-                            <p>Seleccionar cupon:</p>
+                            <p>Cupones:</p>
                             <select class="listaPedidos" id="cupones" name="cupones">
                                 <?foreach($cupones as $cupon){?>
-                                <option value="<?=$cupon->descuento?>">
+                                <option value="<?=$cupon->id?>">
                                     $<?=$cupon->descuento?>
                                 </option>
                                 <?}?>
                             </select>
-                            <input class="d-none" name="idCupon" id="idCupon" value="<?=$cupon->id?>"> 
+                            <button type="button" onclick="cupondescuento()" style="margin-top:5px; background-color:#389393; color:white; opacity:50%;">Seleccionar</button> 
                             <?}?>
                         </div>
-                        <input name="precio" type="text" id="precio" class="d-none"/>
                         <input class="d-none" name="cupon" id="cupon">
                     </div>
+                    <button class="btnbtn" id="btnbtn" type="submit" style="background-color:#fa7f72;">Hacer Pedido</button>
                 </div>
 
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col3">
                     <div class="">
                         <p class="pmini" value="neto">Precio: $ <input type="text" class="inputCalculados" id="pneto" disabled="disabled" /> </p>
                         <p class="pmini" id="comiTeloLLevo">Tasa de TeloLLevo: $ <input type="text" class="inputCalculados" id="comisTeloLLevo" disabled="disabled" /></p>
-                        <?if(!empty($cupones)){?>
+                        <?//if(!empty($cupones)){?>
                         <p class="pmini" id="desc">Descuento: $ <input type="text" class="inputCalculados" id="descuento" disabled="disabled" /></p>
-                        <?}?>
+                        <?//}?>
                         <p class="pnegrita"><b>Total estimado:  $ <input type="text" id="total" name="total" class="inputCalculados" disabled="disabled" /> </b></p>
                     </div>
 
-                </div>
+                </div> -->
 
             </div>
             <!--Row with three equal columns-->
             <div class="row">
-                <button class="btnbtn" id="btnbtn" type="submit">Hacer Pedido</button>
+                
 
             </div>
         </form>
@@ -433,17 +433,21 @@ function esIgual(){
         imagen.value = urlImagen;
         console.log(imagen.value);
 
-    function calcular() {
-        ne = eval(document.getElementById('neto').value);
+    // function calcular() {
+    //     ne = eval(document.getElementById('neto').value);
 
-        document.getElementById("cupon").value = document.getElementById("idCupon").value;
-        comiTeloLLevo = ne * 0.1;
-        total = ne + comiTeloLLevo;
-        document.getElementById('comisTeloLLevo').value = comiTeloLLevo;
-        document.getElementById('descuento').value = document.getElementById("cupones").value;
-        document.getElementById('pneto').value = ne;
-        document.getElementById('total').value = total - document.getElementById("cupones").value;
-        document.getElementById("precio").value = total - document.getElementById("cupones").value;
+    //     comiTeloLLevo = ne * 0.1;
+    //     total = ne + comiTeloLLevo;
+    //     document.getElementById('comisTeloLLevo').value = comiTeloLLevo;
+    //     document.getElementById('pneto').value = ne;
+    //     document.getElementById('total').value = total;
+    //     document.getElementById("precio").value = total;
+    // }
+
+    function cupondescuento(){
+        document.getElementById('descuento').value = document.getElementById("desc").value;
+        document.getElementById("cupon").value = document.getElementById("cupones").value;
+        console.log(document.getElementById("cupon").value);
     }
 </SCRIPT>
 

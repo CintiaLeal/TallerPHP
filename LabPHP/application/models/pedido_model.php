@@ -8,6 +8,14 @@ class Pedido_model extends CI_Model {
         $this->db->load_rdriver();
         
     }
+
+    function precioCupon($idcupon){
+        $res = $this->db->query("select descuento from cupones where id =".$idcupon)->result();
+        foreach($res as $row){
+            return $row->descuento;
+        }
+    }
+
     public function registrar($data){
         $id = $this->db->query("select id from usuarios where nick ='".$data['username']."'")->result();
         if(isset($id)){
