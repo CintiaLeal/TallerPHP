@@ -73,19 +73,18 @@ class Usuario extends CI_Controller {
                 'unido' => $fechaActual
             );
             //enviar el mail y cargar la vista para verificar el codigo
-            $code = $this->enviarMail($email,$name);
+            // $code = $this->enviarMail($email,$name);
             $usuarios = $this->Usuario_model->listarUsuarios();
             $arr = array(
                 'data' => $data,
-                'code' => $code,
                 'usuarios' => $usuarios
             );
-            if($code!=false){
+            // if($code!=false){
                 $this->load->view('verificacion.php',$arr);
-            }
-            else{ //es decir que no se pudo mandar el mail
-                $this->load->view('error.php');
-            }   
+            // }
+            // else{ //es decir que no se pudo mandar el mail
+            //     $this->load->view('error.php');
+            // }   
     }
 
     function validar(){

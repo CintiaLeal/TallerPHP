@@ -11,19 +11,12 @@ else{
 
 <form action="<?= base_url().'/index.php/usuario/validar'?>" id="form" method="POST">
     <div style="display: flex; text-align: center; justify-content: center; margin: 10px;">
-        <h1><u style="font-family: 'Unica One', cursive; color:lightseagreen;">Por favor introduzca el código de verificación</u></h1>
+        <h1><u style="font-family: 'Unica One', cursive; color:lightseagreen;">Por favor seleccione si ha sido invitado por alguno de los usuarios</u></h1>
     </div>
 
-    <div style="display: flex; text-align: center; justify-content: center; margin: 10px;">
-        <input type="number" name="codigo" id="codigo" placeholder="Código de verificación" style="border-radius: 10px;">
-    </div>
-
-    <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
-        <button type="button" id="validar" style="border-radius: 15px; background-color:darksalmon; color:white;">Verificar</button>
-    </div>
     <?if(!empty($usuarios)){?>
     <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
-    <select id="listaUsuarios">
+    <select id="listaUsuarios" style="font-family: 'Sen', sans-serif; background-color:lightsalmon; border-radius: 10px; color: white; border-color:#606060; font-size:large;">
         <?foreach($usuarios as $usuario){?>
         <option id="nickUsuario" value="<?=$usuario->nick?>">
             <?=$usuario->nick;?>
@@ -34,6 +27,10 @@ else{
     
     <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
         <button type="button" onclick="referido()" id="invitado" style="border-radius: 15px; background-color:lightseagreen; color:white;">Seleccionar referido</button>
+    </div>
+
+    <div style="display: flex; text-align: center; justify-content: center; margin: 20px;">
+        <button type="button" id="validar" style="border-radius: 15px; background-color:darksalmon; color:white;">Confirmar</button>
     </div>
     <?}?>
     <input class="d-none" id="nombre" name="nombre" value="<?=$data['nombre']?>">
@@ -55,22 +52,24 @@ else{
 <script>
 function referido(){
     document.getElementById("nickReferido").value = document.getElementById("listaUsuarios").value;
+    console.log(document.getElementById("nickReferido").value);
 }
-function validar(){
-    let cod = document.getElementById("codigo");
-    let form = document.getElementById("form");
-    if(<?=$code?> == cod.value){
-        alert("Los códigos coinciden! Bienvenid@");
-        form.submit();
-    }
-    else{
-        alert("Ups! Los códigos no coinciden, pruebe de nuevo");
-    }
-}
-
+// function validar(){
+//     let cod = document.getElementById("codigo");
+//     let form = document.getElementById("form");
+//     if(<?//$code?> == cod.value){
+//         alert("Los códigos coinciden! Bienvenid@");
+//         form.submit();
+//     }
+//     else{
+//         alert("Ups! Los códigos no coinciden, pruebe de nuevo");
+//     }
+// }
+let form = document.getElementById("form");
 let btn = document.getElementById("validar");
 btn.addEventListener("click", e => {
     e.preventDefault();
-    validar();
+    // validar();
+    form.submit();
 });
 </script>
