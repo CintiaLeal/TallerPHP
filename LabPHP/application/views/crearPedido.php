@@ -357,6 +357,7 @@ success: function(resp){
                         </div>
                         <input class="d-none" name="cupon" id="cupon">
                     </div>
+                    <p class="amini">Nuestra tasa fija es de $90</p>
                     <button class="btnbtn" id="btnbtn" type="submit" style="background-color:#fa7f72;">Hacer Pedido</button>
                 </div>
 
