@@ -70,3 +70,12 @@ correspondiente. Si quien ingresó realizó un viaje el usuario recibirá 50 USD
 descuento, en cambio si el nuevo integrante concretó una compra, ambos recibirán 10
 USD. El cupón obtenido sirve para aplicar a futuras compras, el usuario elige cuándo
 hacerlo, aunque un cupón obtenido tienen vigencia de un año a partir de su emisión.
+## Plataforma desarrollada
+![image](https://user-images.githubusercontent.com/66495366/173108519-4da36877-1cb9-4a92-81c9-114ca2b9cc69.png)
+![image](https://user-images.githubusercontent.com/66495366/173108630-4f45c9be-22d4-47a9-8822-f6d4db82b7e3.png)
+![image](https://user-images.githubusercontent.com/66495366/173108683-09c6bc0c-72cb-479d-8733-a41a0ade7f2d.png)
+![image](https://user-images.githubusercontent.com/66495366/173108890-da8f5268-9509-4a8f-bcff-55a77b09e826.png)
+![image](https://user-images.githubusercontent.com/66495366/173108755-3d2064d4-152a-427c-a41c-b6ca673e15b0.png)
+
+
+
